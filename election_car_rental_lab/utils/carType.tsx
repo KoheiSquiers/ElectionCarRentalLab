@@ -19,9 +19,10 @@ import SubTotal from "./subTotal";
 interface Props {
   control: any;
   errors: any;
+  calcValue: any;
 }
 
-const CarType = ({ control, errors }: Props) => {
+const CarType = ({ control, errors, calcValue }: Props) => {
 
   // 車のギャラリースタイルについて
   //
@@ -40,18 +41,19 @@ const CarType = ({ control, errors }: Props) => {
         <Container fixed>
           <Grid
             container
+            spacing={1}
           >
-            <Grid item sm={12}>
 
+            <Grid item sm={12}>
               <RhfToggleButtonGroup
                 control={control}
                 name={"carClass"}
                 options={
                   [
-                    { label: "軽自動車", value: "1" },
-                    { label: "コンパクトカー", value: "2" },
-                    { label: "普通車", value: "3" },
-                    { label: "バンタイプ", value: "4" },
+                    { label: "軽自動車", value: "lightCar" },
+                    { label: "コンパクトカー", value: "compactCar" },
+                    { label: "普通車", value: "standardCar" },
+                    { label: "バンタイプ", value: "vanCar" },
                   ]
                 }
                 sx={{ pb: 3, whiteSpace: "nowrap" }}
@@ -61,86 +63,110 @@ const CarType = ({ control, errors }: Props) => {
 
             {/*カード写真*/}
 
-
-            <Controller
-              control={control}
-              name={"name"}
-              render={({ field }): JSX.Element => (
-                <ToggleButtonGroup
-                  {...field}
-                  exclusive
-                  color="primary"
-                  fullWidth
-                  sx={{ pb: 3 }}
-                  onChange={(e, value) => {
-                    field.onChange(value);
-                  }}>
-                  <ToggleButton value={"option.alue"}>
-                    <Card>
-                      <CardMedia
-                      >
-                        <Container maxWidth="sm">
-                          <Image src={ImageTest} />
-                        </Container>
-                      </CardMedia>
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div" sx={{ whiteSpace: "nowrap" }}>
-                          ハコバン
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </ToggleButton>
-                  {/*<ToggleButton value={"option.value"}>*/}
-                  {/*  <Card>*/}
-                  {/*    <CardMedia*/}
-                  {/*    >*/}
-                  {/*      <Container maxWidth="sm">*/}
-                  {/*        <Image src={ImageTest} />*/}
-                  {/*      </Container>*/}
-                  {/*    </CardMedia>*/}
-                  {/*    <CardContent>*/}
-                  {/*      <Typography gutterBottom variant="h5" component="div" sx={{ whiteSpace: "nowrap" }}>*/}
-                  {/*        ハコバン*/}
-                  {/*      </Typography>*/}
-                  {/*    </CardContent>*/}
-                  {/*  </Card>*/}
-                  {/*</ToggleButton>*/}
-                  {/*<ToggleButton value={"option.lue"}>*/}
-                  {/*  <Card>*/}
-                  {/*    <CardMedia*/}
-                  {/*    >*/}
-                  {/*      <Container maxWidth="sm">*/}
-                  {/*        <Image src={ImageTest} />*/}
-                  {/*      </Container>*/}
-                  {/*    </CardMedia>*/}
-                  {/*    <CardContent>*/}
-                  {/*      <Typography gutterBottom variant="h5" component="div" sx={{ whiteSpace: "nowrap" }}>*/}
-                  {/*        ハコバン*/}
-                  {/*      </Typography>*/}
-                  {/*    </CardContent>*/}
-                  {/*  </Card>*/}
-                  {/*</ToggleButton>*/}
-                </ToggleButtonGroup>
-              )}
-            />
-
-            <Grid item sm={7} />
-            <Grid item sm={5}>
-              <RhfToggleButtonGroup
+            <Grid item sm={4}>
+              <Controller
                 control={control}
-                name={"signalLight"}
-                size={"small"}
-                options={
-                  [
-                    { label: "外照", value: "outLight" },
-                    { label: "内照", value: "inLight" },
-                    { label: "登壇", value: "topLight" },
-                  ]
-                }
+                name={"carType.boxCar"}
+                render={({ field }): JSX.Element => (
+                  <ToggleButtonGroup
+                    {...field}
+                    exclusive
+                    color="primary"
+                    fullWidth
+                    sx={{ pb: 3 }}
+                    onChange={(e, value) => {
+                      field.onChange(value);
+                    }}>
+                    <ToggleButton value={"option.alue"}>
+                      <Card>
+                        <CardMedia
+                        >
+                          {/*<Container maxWidth="sm">*/}
+                          <Image src={ImageTest} />
+                          {/*</Container>*/}
+                        </CardMedia>
+                        <CardContent>
+                          <Typography gutterBottom component="div" sx={{ whiteSpace: "nowrap" }}>
+                            ハコバン
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                )}
               />
             </Grid>
 
-            <SubTotal control={control} />
+            <Grid item sm={4}>
+              <Controller
+                control={control}
+                name={"name"}
+                render={({ field }): JSX.Element => (
+                  <ToggleButtonGroup
+                    {...field}
+                    exclusive
+                    color="primary"
+                    fullWidth
+                    sx={{ pb: 3 }}
+                    onChange={(e, value) => {
+                      field.onChange(value);
+                    }}>
+                    <ToggleButton value={"option.alue"}>
+                      <Card>
+                        <CardMedia
+                        >
+                          {/*<Container maxWidth="sm">*/}
+                          <Image src={ImageTest} />
+                          {/*</Container>*/}
+                        </CardMedia>
+                        <CardContent>
+                          <Typography gutterBottom component="div" sx={{ whiteSpace: "nowrap" }}>
+                            ハコバン
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                )}
+              />
+            </Grid>
+
+            <Grid item sm={4}>
+              <Controller
+                control={control}
+                name={"name"}
+                render={({ field }): JSX.Element => (
+                  <ToggleButtonGroup
+                    {...field}
+                    exclusive
+                    color="primary"
+                    fullWidth
+                    sx={{ pb: 3 }}
+                    onChange={(e, value) => {
+                      field.onChange(value);
+                    }}>
+                    <ToggleButton value={"option.alue"}>
+                      <Card>
+                        <CardMedia
+                        >
+                          {/*<Container maxWidth="sm">*/}
+                          <Image src={ImageTest} />
+                          {/*</Container>*/}
+                        </CardMedia>
+                        <CardContent>
+                          <Typography gutterBottom component="div" sx={{ whiteSpace: "nowrap" }}>
+                            ハコバン
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                )}
+              />
+            </Grid>
+
+
+            <SubTotal control={control} calcValue={calcValue} />
 
           </Grid>
         </Container>

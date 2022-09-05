@@ -6,9 +6,10 @@ import { RhfRadioButton } from "../component/molecules/rhfForm";
 
 interface Props {
   control: any;
+  calcValue: any;
 }
 
-const SubTotal = ({ control }: Props) => {
+const SubTotal = ({ control, calcValue }: Props) => {
   return (
     <Grid item sm={12}>
       <Grid
@@ -17,6 +18,21 @@ const SubTotal = ({ control }: Props) => {
         justifyContent="flex-end"
         alignItems="flex-end"
       >
+        <Grid item sm={7} />
+        <Grid item sm={5}>
+          <RhfToggleButtonGroup
+            control={control}
+            name={"signalLight"}
+            size={"small"}
+            options={
+              [
+                { label: "外照", value: "outLight" },
+                { label: "内照", value: "inLight" },
+                { label: "登壇", value: "topLight" },
+              ]
+            }
+          />
+        </Grid>
 
         <Grid item sm={8}>
           <Grid container>
@@ -28,7 +44,7 @@ const SubTotal = ({ control }: Props) => {
                 label={"アンプサイズ"}
                 size={"small"}
                 row={true}
-                sx={{ pl: "20px" }}
+                sx={{ pl: "20px", flexWrap: "nowrap" }}
                 options={
                   [
                     { label: "150w", value: "150" },
@@ -66,7 +82,7 @@ const SubTotal = ({ control }: Props) => {
             fontStyle={"italic"}
             borderBottom={1}
           >
-            ¥ 24,003
+            {`¥ ${calcValue.subTotalPrice}`}
           </Typography>
         </Grid>
 

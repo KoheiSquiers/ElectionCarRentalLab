@@ -12,9 +12,10 @@ import RhfCheckbox from "../component/molecules/rhfForm/rhfCheckbox";
 interface Props {
   control: any;
   errors: any;
+  calcValue: any;
 }
 
-const CarOption = ({ control, errors }: Props) => {
+const CarOption = ({ control, errors, calcValue }: Props) => {
   return (
     <>
       <Grid item sm={12}>
@@ -25,7 +26,11 @@ const CarOption = ({ control, errors }: Props) => {
       {/*テスト*/}
       <Grid item sm={12}>
         <Container fixed>
-          <Grid container>
+          <Grid
+            container
+            alignItems="flex-end"
+            sx={{ pb: 2 }}
+          >
             <Grid item sm={12}>
               <Grid
                 container
@@ -52,7 +57,7 @@ const CarOption = ({ control, errors }: Props) => {
 
                 <Grid item sm={4}>
                   <RhfSelectBox
-                    name={"wirelessMike.piece"}
+                    name={"wirelessMikeNumber"}
                     label={""}
                     variant={"standard"}
                     control={control}
@@ -65,12 +70,6 @@ const CarOption = ({ control, errors }: Props) => {
                       ]
                     }
                   />
-                </Grid>
-
-                <Grid item sm={4}>
-                  <Typography textAlign={"center"}>
-                    {/*¥15,000*/}
-                  </Typography>
                 </Grid>
 
 
@@ -120,7 +119,7 @@ const CarOption = ({ control, errors }: Props) => {
               />
             </Grid>
 
-            <Grid item sm={12}>
+            <Grid item sm={8}>
               <RhfCheckbox
                 control={control}
                 label={"ボディラッピング"}
@@ -132,6 +131,16 @@ const CarOption = ({ control, errors }: Props) => {
                   ]
                 }
               />
+            </Grid>
+            <Grid item sm={4}>
+              <Typography
+                variant={"h6"}
+                textAlign={"center"}
+                fontStyle={"italic"}
+                borderBottom={1}
+              >
+                {`¥ ${calcValue.subTotalPrice}`}
+              </Typography>
             </Grid>
 
           </Grid>

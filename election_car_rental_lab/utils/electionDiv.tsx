@@ -17,6 +17,7 @@ import { Controller } from "react-hook-form";
 import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButtonGroup";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { prefCd } from "./preCd";
 
 interface Props {
   control: any;
@@ -29,21 +30,19 @@ const ElectionDiv = ({ control, errors }: Props) => {
 
   return (
     <>
-      {/*<Grid item sm={12}>*/}
-      {/*  <Typography variant={"h6"}>選挙区分</Typography>*/}
-      {/*</Grid>*/}
+
 
       <Grid item sm={12}>
         <RhfToggleButtonGroup
           control={control}
           name={"electoralClass"}
-          sx={{ pb: 1 }}
+          sx={{ pb: 1, whiteSpace: "nowrap" }}
           options={
             [
               { label: "統一地方選", value: "union" },
               { label: "一般選挙", value: "general" },
               { label: "衆議委員選挙", value: "lowRep" },
-              { label: "広告宣伝者", value: "kokoku" },
+              { label: "広告宣伝者", value: "advertisement" },
 
             ]
           }
@@ -62,12 +61,7 @@ const ElectionDiv = ({ control, errors }: Props) => {
                 control={control}
                 errors={errors}
                 size={"small"}
-                options={
-                  [
-                    { label: "鳥取県", value: "tottori" },
-                    { label: "島根県", value: "shimane" },
-                  ]
-                }
+                options={prefCd}
               />
             </Grid>
 

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Paper,
   Container,
   Typography,
   Divider,
   Grid,
-  Button,
+  Button, Box,
 
 } from "@mui/material";
 import { blue, green } from "@mui/material/colors";
@@ -16,8 +16,37 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import CarType from "../utils/carType";
 import ElectionDiv from "../utils/electionDiv";
 import CarOption from "../utils/carOption";
+import Footer from "../utils/footer";
+import { useGetWindowSize } from "../hooks/useGetWindowSixe";
+import Simulation from "../lib/simulation";
+
+const formDefaultValue = {
+  electoralClass: "union", // 選挙区分
+  electionArea: { label: "鳥取県", value: "tottori" }, // 選挙エリア
+  parliamentClass: "chairman", // 議会区分
+
+  carClass: "lightCar",
+  carType: {
+    boxCar: "",
+  },
+  signalLight: "outLight", // ライト区分
+  ampSize: "150", // アンプサイズ
+  speaker: "twe", // スピーカー
+
+  wirelessMike: false, // ワイヤレスマイク
+  wirelessMikeNumber: "one", //ワイヤレスマイク数
+  sd: false, // SDカード
+  wirelessIncome: false, // ワイヤレスインカム
+  handSpeaker: false, // ハンドスピーカー
+  bodyRapping: false, // ボディラッピング
+
+
+};
 
 const Home = () => {
+  const windowSize = useGetWindowSize();
+  const [calcValue, setCalcValue] = useState<any>("0");
+
   const {
     handleSubmit,
     formState: { errors },
@@ -26,44 +55,62 @@ const Home = () => {
     getValues,
     setValue,
   } = useForm<any>({
-    // defaultValues: formDefaultValue,
+    defaultValues: formDefaultValue,
     // resolver: yupResolver(schema),
   });
 
   const formSubmitHandler: SubmitHandler<any> = (inputValues) => {
-    alert("form が送信されました");
     console.dir(inputValues);
+    const calcData = Simulation(inputValues);
+    setCalcValue(calcData);
   };
+
+  useEffect(() => {
+    // const calcData = Simulation(formDefaultValue);
+    // setCalcValue(calcData);
+  }, []);
+
   return (
     <Container maxWidth="sm" sx={{ background: blue }}>
       <Paper elevation={3} sx={{ p: 5 }}>
-        <Grid container>
+        <Box
+          sx={{
+            pt: 3,
+            pl: 3,
+            pr: 3,
+            pb: 0,
+            overflow: "scroll",
+            height: windowSize.height - 120,
+          }}
+        >
 
-          {/*メインタイトル*/}
-          <Grid item sm={6}>
-            <Typography variant={"h5"}>お見積り</Typography>
+          <Grid container>
+
+            {/*メインタイトル*/}
+            <Grid item sm={12}>
+              <Typography variant={"h5"}>料金シュミレーション</Typography>
+            </Grid>
+            <Grid item sm={12}>
+              <Divider sx={{ mb: 2 }} />
+            </Grid>
+            <form onBlur={handleSubmit(formSubmitHandler)}>
+
+              {/*選挙区分*/}
+              <ElectionDiv control={control} errors={errors} />
+
+              {/*サイズ・車両タイプ*/}
+              <CarType control={control} errors={errors} calcValue={calcValue} />
+
+              {/*オプション選択*/}
+              <CarOption control={control} errors={errors} calcValue={calcValue} />
+
+              {/*  フッター  */}
+              <Footer calcValue={calcValue} />
+
+
+            </form>
           </Grid>
-          <Grid item sm={12}>
-            <Divider sx={{ mb: 2 }} />
-          </Grid>
-          <form onSubmit={handleSubmit(formSubmitHandler)}>
-
-            {/*選挙区分*/}
-            <ElectionDiv control={control} errors={errors} />
-
-            {/*サイズ・車両タイプ*/}
-            <CarType control={control} errors={errors} />
-
-            {/*オプション選択*/}
-            <CarOption control={control} errors={errors} />
-
-            {/*送信ボタン*/}
-            {/*最終的にはフォーカスを外した段階で送信させる*/}
-            <Button type="submit" variant="contained" size="large">
-              登録
-            </Button>
-          </form>
-        </Grid>
+        </Box>
       </Paper>
     </Container>
   );
