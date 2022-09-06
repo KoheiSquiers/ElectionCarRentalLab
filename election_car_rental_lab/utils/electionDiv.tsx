@@ -18,6 +18,7 @@ import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButton
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { prefCd } from "./preCd";
+import RhfDatePicker from "../component/molecules/rhfForm/rhfDatePicker";
 
 interface Props {
   control: any;
@@ -35,6 +36,7 @@ const ElectionDiv = ({ control, errors }: Props) => {
       <Grid item sm={12}>
         <RhfToggleButtonGroup
           control={control}
+          errors={errors}
           name={"electoralClass"}
           sx={{ pb: 1, whiteSpace: "nowrap" }}
           options={
@@ -66,22 +68,17 @@ const ElectionDiv = ({ control, errors }: Props) => {
             </Grid>
 
             <Grid item sm={4} sx={{ pr: 2 }}>
-              {/*TODO datePicker 日本語化　コンポーネント作成*/}
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  label="告示日"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(params) => <TextField size={"small"} variant={"standard"} {...params} />}
-                />
-              </LocalizationProvider>
+              <RhfDatePicker
+                control={control}
+                errors={errors}
+                name={"notificationDate"}
+                label={"告示日"} />
             </Grid>
 
             <Grid item sm={4} sx={{ pr: 2 }}>
               <RhfToggleButtonGroup
                 control={control}
+                errors={errors}
                 name={"parliamentClass"}
                 size={"small"}
                 sx={{ pt: "8px" }}

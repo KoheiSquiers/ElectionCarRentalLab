@@ -19,6 +19,8 @@ import CarOption from "../utils/carOption";
 import Footer from "../utils/footer";
 import { useGetWindowSize } from "../hooks/useGetWindowSixe";
 import Simulation from "../lib/simulation";
+import moment from "moment";
+import { convDate } from "../utils/convDate";
 
 const formDefaultValue = {
   electoralClass: "union", // 選挙区分
@@ -61,6 +63,9 @@ const Home = () => {
 
   const formSubmitHandler: SubmitHandler<any> = (inputValues) => {
     console.dir(inputValues);
+    
+    inputValues.notificationDate = convDate(inputValues.notificationDate);
+
     const calcData = Simulation(inputValues);
     setCalcValue(calcData);
   };
