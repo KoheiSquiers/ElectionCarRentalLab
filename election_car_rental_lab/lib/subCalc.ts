@@ -1,5 +1,5 @@
 // ワイヤレスマイク数　コンバート
-export const convMikeNumber = (value) => {
+export const convMikeNumber = (value: string) => {
   switch (value) {
     case "one":
       return 1;
