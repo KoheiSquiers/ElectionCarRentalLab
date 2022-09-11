@@ -1,7 +1,7 @@
 import { convMikeNumber } from "./subCalc";
 
 interface InputValues {
-  electoralClass: "union", // 選挙区分
+  electoralClass: "1" | "2" | "3" | "4", // 選挙区分
   electionArea: { label: "鳥取県", value: "tottori" }, // 選挙エリア
   parliamentClass: "chairman", // 議会区分
 
@@ -28,6 +28,23 @@ interface InputValues {
 const Simulation = (
   inputValue: InputValues,
 ) => {
+  // レンタル区分
+  const electoralClass = () => {
+    switch (inputValue.electoralClass) {
+      case "1":
+        return 100;
+      case "2":
+        return 200;
+      case "3":
+        return 300;
+      case "4":
+        return 400;
+    }
+  };
+
+  const subTotalPrice = electoralClass();
+
+
   // ワイヤレスマイク単価セット（1本分）
   const mikeValue = inputValue?.wirelessMike ? 1500 : 0;
   // ワイヤレスマイク数セット
@@ -52,7 +69,6 @@ const Simulation = (
   const insurancePrice = insuranceValue * insuranceDays;
 
 
-  const subTotalPrice = 100;
   const optionTotalPrice = totalMikePrice + sdPrice + incomePrice + handSpeakerPrice + insurancePrice;
   const totalPrice = subTotalPrice + optionTotalPrice;
 

@@ -23,14 +23,58 @@ import RhfDatePicker from "../component/molecules/rhfForm/rhfDatePicker";
 interface Props {
   control: any;
   errors: any;
+  setValue: any;
 }
 
-const ElectionDiv = ({ control, errors }: Props) => {
+const ElectionDiv = ({ control, errors, setValue }: Props) => {
 
-  const [value, setValue] = useState<Date | null>(null);
+
+  // const [alignment, setAlignment] = React.useState("union");
+  // const handleAlignment = (
+  //   event: React.MouseEvent<HTMLElement>,
+  //   newAlignment: string | null,
+  // ) => {
+  //   console.dir(newAlignment);
+  //   if (newAlignment !== null) {
+  //     setAlignment(newAlignment);
+  //     setValue(newAlignment, true);
+  //   } else {
+  //     setValue("union", false);
+  //     setValue("general", false);
+  //     setValue("lowRep", false);
+  //     setValue("advertisement", false);
+  //     setValue(newAlignment, true);
+  //   }
+  //
+  // };
 
   return (
     <>
+
+      {/*<Grid item sm={12}>*/}
+
+      {/*  <ToggleButtonGroup*/}
+      {/*    value={alignment}*/}
+      {/*    exclusive*/}
+      {/*    color="primary"*/}
+      {/*    fullWidth*/}
+      {/*    sx={{ pb: 1, whiteSpace: "nowrap" }}*/}
+      {/*    onChange={handleAlignment}*/}
+      {/*  >*/}
+      {/*    <ToggleButton value={"union"}>*/}
+      {/*      統一地方選*/}
+      {/*    </ToggleButton>*/}
+      {/*    <ToggleButton value={"general"}>*/}
+      {/*      一般選挙*/}
+      {/*    </ToggleButton>*/}
+      {/*    <ToggleButton value={"lowRep"}>*/}
+      {/*      衆議委員選挙*/}
+      {/*    </ToggleButton>*/}
+      {/*    <ToggleButton value={"advertisement"}>*/}
+      {/*      広告宣伝者*/}
+      {/*    </ToggleButton>*/}
+      {/*  </ToggleButtonGroup>*/}
+      {/*</Grid>*/}
 
 
       <Grid item sm={12}>
@@ -41,15 +85,20 @@ const ElectionDiv = ({ control, errors }: Props) => {
           sx={{ pb: 1, whiteSpace: "nowrap" }}
           options={
             [
-              { label: "統一地方選", value: "union" },
-              { label: "一般選挙", value: "general" },
-              { label: "衆議委員選挙", value: "lowRep" },
-              { label: "広告宣伝者", value: "advertisement" },
+              // { label: "統一地方選挙", value: "union" },
+              // { label: "一般地方選挙", value: "general" },
+              // { label: "衆・参議委員選挙", value: "lowRep" },
+              // { label: "広告宣伝者", value: "advertisement" },
+              { label: "統一地方選挙", value: "1" },
+              { label: "一般地方選挙", value: "2" },
+              { label: "衆・参議委員選挙", value: "3" },
+              { label: "広告宣伝者", value: "4" },
 
             ]
           }
         />
       </Grid>
+
       <Grid item sm={12} sx={{ pb: 2 }}>
         <Container fixed>
           <Grid

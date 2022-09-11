@@ -19,14 +19,15 @@ export interface CheckBoxProps {
 
 type RhfCheckBoxProps = RhfProps & CheckBoxProps;
 
-const RhfCheckbox = ({
-                       control,
-                       label,
-                       options,
-                       sx,
-                       row = false,
-                       labelPlacement = "end",
-                     }: RhfCheckBoxProps) => {
+const RhfCheckbox = (
+  {
+    control,
+    label,
+    options,
+    sx,
+    row = false,
+    labelPlacement = "end",
+  }: RhfCheckBoxProps) => {
   return (
     <FormControl>
       <FormLabel>{label}</FormLabel>

@@ -19,7 +19,6 @@ import CarOption from "../utils/carOption";
 import Footer from "../utils/footer";
 import { useGetWindowSize } from "../hooks/useGetWindowSixe";
 import Simulation from "../lib/simulation";
-import moment from "moment";
 import { convDate } from "../utils/convDate";
 
 const formDefaultValue = {
@@ -118,13 +117,16 @@ const Home = () => {
             <Grid item sm={12}>
               <Divider sx={{ mb: 2, mt: 2 }} />
             </Grid>
+
+            {/*TODO 最適化*/}
             <form
+              // onClick={handleSubmit(formSubmitHandler)}
               onChange={handleSubmit(formSubmitHandler)}
-              onBlur={handleSubmit(formSubmitHandler)}
+              // onBlur={handleSubmit(formSubmitHandler)}
             >
 
               {/*選挙区分*/}
-              <ElectionDiv control={control} errors={errors} />
+              <ElectionDiv control={control} errors={errors} setValue={setValue} />
 
               {/*サイズ・車両タイプ*/}
               <CarClass setValue={setValue} control={control} errors={errors} calcValue={calcValue} />

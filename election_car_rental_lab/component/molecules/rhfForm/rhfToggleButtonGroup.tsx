@@ -19,15 +19,19 @@ const RhfToggleButtonGroup = ({ control, name, options, sx, size = "medium" }: R
       name={name}
       render={({ field }): JSX.Element => (
         <ToggleButtonGroup
-          {...field}
           exclusive
           color="primary"
           fullWidth
           sx={sx}
           size={size}
+          {...field}
           onChange={(e, value) => {
-            field.onChange(value);
-          }}>
+            console.dir("クリック！");
+            if (value !== null) {
+              field.onChange(value);
+            }
+          }}
+        >
           {options.map((option, index) => (
             <ToggleButton key={index} value={option.value}>
               {option.label}
