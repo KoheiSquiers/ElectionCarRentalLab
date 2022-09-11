@@ -1,31 +1,60 @@
-interface SimulationProps {
-  inputValue: any;
+import { convMikeNumber } from "./subCalc";
+
+interface InputValues {
+  electoralClass: "union", // 選挙区分
+  electionArea: { label: "鳥取県", value: "tottori" }, // 選挙エリア
+  parliamentClass: "chairman", // 議会区分
+
+  carClass: "lightCar",
+  carType: {},
+  signalLight: "outLight", // ライト区分
+  ampSize: "150", // アンプサイズ
+  speaker: "twe", // スピーカー
+
+  // オプション
+  wirelessMike: boolean // ワイヤレスマイク
+  wirelessMikeNumber: number //ワイヤレスマイク数
+  sd: boolean // SDカード
+  wirelessIncome: boolean // ワイヤレスインカム
+  handSpeaker: boolean // ハンドスピーカー
+
+  insurance: boolean
+  insuranceDays: number
+
+  bodyRapping: boolean // ボディラッピング
+
 }
 
-
 const Simulation = (
-  {
-    inputValue,
-  }
-    : SimulationProps,
+  inputValue: InputValues,
 ) => {
-  const electoralClassValue = 100;
-  const electionAreaValue = 100;
-  const parliamentClassValue = 100;
-  const carClassValue = 100;
-  const signalLightValue = 100;
-  const ampSizeValue = 100;
-  const speakerValue = 100;
-  const wirelessMikeValue = 100;
-  const wirelessMikeNumberValue = 100;
-  const sdValue = 100;
-  const wirelessIncomeValue = 100;
-  const handSpeakerValue = 100;
-  const bodyRappingValue = 100;
+  // ワイヤレスマイク単価セット（1本分）
+  const mikeValue = inputValue?.wirelessMike ? 1500 : 0;
+  // ワイヤレスマイク数セット
+  const mikeNumberValue = inputValue?.wirelessMikeNumber;
+  // ワイヤレスマイク料金 ・・・ ワイヤレスマイク * 数量
+  const totalMikePrice = mikeValue * mikeNumberValue;
+
+  // SDカード料金
+  const sdPrice = inputValue?.sd ? 20000 : 0;
+
+  // ワイヤレスインカム料金
+  const incomePrice = inputValue?.wirelessIncome ? 1000 : 0;
+
+  // ハンドスピーカー料金
+  const handSpeakerPrice = inputValue?.handSpeaker ? 1500 : 0;
+
+  // 保険単価セット（1日分）
+  const insuranceValue = inputValue?.insurance ? 1500 : 0;
+  // 保険日数セット
+  const insuranceDays = inputValue?.insuranceDays;
+  // 保険料金 ... 保険単価 * 日数
+  const insurancePrice = insuranceValue * insuranceDays;
+
 
   const subTotalPrice = 100;
-  const optionTotalPrice = 100;
-  const totalPrice = 100;
+  const optionTotalPrice = totalMikePrice + sdPrice + incomePrice + handSpeakerPrice + insurancePrice;
+  const totalPrice = subTotalPrice + optionTotalPrice;
 
   return {
     subTotalPrice: subTotalPrice,

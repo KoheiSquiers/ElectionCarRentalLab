@@ -17,7 +17,7 @@ import { Controller } from "react-hook-form";
 import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButtonGroup";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { prefCd } from "./preCd";
+import { prefCd } from "../constants/preCd";
 import RhfDatePicker from "../component/molecules/rhfForm/rhfDatePicker";
 
 interface Props {
@@ -84,7 +84,7 @@ const ElectionDiv = ({ control, errors }: Props) => {
                 sx={{ pt: "8px" }}
                 options={
                   [
-                    { label: "議長", value: "chairman" },
+                    { label: "議員", value: "chairman" },
                     { label: "首長", value: "chief" },
                   ]
                 }

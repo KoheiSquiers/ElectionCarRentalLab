@@ -5,7 +5,7 @@ import {
   Typography,
   Divider,
   Grid,
-  Button, Box,
+  Button, Box, FormControl, InputLabel, MenuItem, SelectChangeEvent, Select,
 
 } from "@mui/material";
 import { blue, green } from "@mui/material/colors";
@@ -13,7 +13,7 @@ import { blue, green } from "@mui/material/colors";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 
-import CarType from "../utils/carType";
+import CarClass from "../utils/carClass";
 import ElectionDiv from "../utils/electionDiv";
 import CarOption from "../utils/carOption";
 import Footer from "../utils/footer";
@@ -28,18 +28,18 @@ const formDefaultValue = {
   parliamentClass: "chairman", // 議会区分
 
   carClass: "lightCar",
-  carType: {
-    boxCar: "",
-  },
+  carType: {},
   signalLight: "outLight", // ライト区分
   ampSize: "150", // アンプサイズ
   speaker: "twe", // スピーカー
 
   wirelessMike: false, // ワイヤレスマイク
-  wirelessMikeNumber: "one", //ワイヤレスマイク数
+  wirelessMikeNumber: 1, //ワイヤレスマイク数
   sd: false, // SDカード
   wirelessIncome: false, // ワイヤレスインカム
   handSpeaker: false, // ハンドスピーカー
+  insurance: false,
+  insuranceDays: 1,
   bodyRapping: false, // ボディラッピング
 
 
@@ -47,7 +47,11 @@ const formDefaultValue = {
 
 const Home = () => {
   const windowSize = useGetWindowSize();
-  const [calcValue, setCalcValue] = useState<any>("0");
+  const [calcValue, setCalcValue] = useState<any>({
+    subTotalPrice: 0,
+    optionTotalPrice: 0,
+    totalPrice: 0,
+  });
 
   const {
     handleSubmit,
@@ -63,20 +67,22 @@ const Home = () => {
 
   const formSubmitHandler: SubmitHandler<any> = (inputValues) => {
     console.dir(inputValues);
-    
+
     inputValues.notificationDate = convDate(inputValues.notificationDate);
 
     const calcData = Simulation(inputValues);
     setCalcValue(calcData);
   };
 
-  useEffect(() => {
-    // const calcData = Simulation(formDefaultValue);
-    // setCalcValue(calcData);
-  }, []);
+
+  // レイアウトサイズ変更
+  const [containerSize, setContainerSize] = useState<any>("md");
+  const handleChange = (event: SelectChangeEvent) => {
+    setContainerSize(event.target.value);
+  };
 
   return (
-    <Container maxWidth="sm" sx={{ background: blue }}>
+    <Container maxWidth={containerSize} sx={{ background: blue }}>
       <Paper elevation={3} sx={{ p: 5 }}>
         <Box
           sx={{
@@ -92,19 +98,36 @@ const Home = () => {
           <Grid container>
 
             {/*メインタイトル*/}
-            <Grid item sm={12}>
+            <Grid item sm={8}>
               <Typography variant={"h5"}>料金シュミレーション</Typography>
             </Grid>
-            <Grid item sm={12}>
-              <Divider sx={{ mb: 2 }} />
+            <Grid item sm={4}>
+
+              <FormControl fullWidth variant="standard">
+                <InputLabel>レイアウトサイズ</InputLabel>
+                <Select value={containerSize} onChange={handleChange}>
+                  <MenuItem value={"xs"}>xs</MenuItem>
+                  <MenuItem value={"sm"}>sm</MenuItem>
+                  <MenuItem value={"md"}>md</MenuItem>
+                  <MenuItem value={"lg"}>lg</MenuItem>
+                  <MenuItem value={"xl"}>xl</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
-            <form onBlur={handleSubmit(formSubmitHandler)}>
+
+            <Grid item sm={12}>
+              <Divider sx={{ mb: 2, mt: 2 }} />
+            </Grid>
+            <form
+              onChange={handleSubmit(formSubmitHandler)}
+              onBlur={handleSubmit(formSubmitHandler)}
+            >
 
               {/*選挙区分*/}
               <ElectionDiv control={control} errors={errors} />
 
               {/*サイズ・車両タイプ*/}
-              <CarType control={control} errors={errors} calcValue={calcValue} />
+              <CarClass setValue={setValue} control={control} errors={errors} calcValue={calcValue} />
 
               {/*オプション選択*/}
               <CarOption control={control} errors={errors} calcValue={calcValue} />

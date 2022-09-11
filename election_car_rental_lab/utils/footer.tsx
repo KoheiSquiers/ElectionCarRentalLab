@@ -28,15 +28,16 @@ const Footer = ({ calcValue }: Props) => {
       >
         <Grid container>
           <Grid container direction="row">
-            <Grid item sm={4} />
-            <Grid item sm={8}>
+            <Grid item sm={2} />
+            <Grid item sm={10}>
               <Typography
                 variant={"h6"}
-                textAlign={"center"}
+                textAlign={"right"}
                 fontStyle={"italic"}
                 borderBottom={1}
+                noWrap={true}
               >
-                {`合計金額 ${calcValue.totalPrice}円（税込）`}
+                {`合計金額 ¥${calcValue.totalPrice.toLocaleString()}（税込）`}
               </Typography>
             </Grid>
           </Grid>

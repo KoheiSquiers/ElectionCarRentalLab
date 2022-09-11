@@ -1,179 +1,118 @@
-import {
-  Card, CardActionArea,
-  CardContent,
-  CardMedia,
-  Container, Divider,
-  Grid,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import ImageTest from "../public/image/hakoban.jpeg";
-import React from "react";
+import { Grid } from "@mui/material";
 import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButtonGroup";
-import { Controller } from "react-hook-form";
-import SubTotal from "./subTotal";
+import React from "react";
+import CarToggle from "../component/organisms/rapForm/carToggle";
 
+// 軽自動車
+import nBox from "../public/image/lightCar/nBox.png";
+import every from "../public/image/lightCar/every.png";
 
-interface Props {
+// コンパクトカー
+import note from "../public/image/compactCar/note.png";
+
+// 普通車
+import corollaFielder from "../public/image/standardCar/corollaFielder.png";
+
+// バンタイプ
+import noah from "../public/image/boxCar/noah.png";
+import regiusaceAce from "../public/image/boxCar/regiusaceAce.png";
+import townAce from "../public/image/boxCar/townAce.png";
+
+interface CarCarProps {
   control: any;
-  errors: any;
-  calcValue: any;
+  setValue: any;
 }
 
-const CarType = ({ control, errors, calcValue }: Props) => {
-
-  // 車のギャラリースタイルについて
-  //
-  // ToggleButtonGroup 一つにつき一個の車を表示させる
-  // 写真とcardは透明にする
-  // がんばれ！
-
-
+export const LightCar = ({ control, setValue }: CarCarProps) => {
   return (
     <>
-      <Grid item sm={12}>
-        <Typography variant={"h6"}>サイズ・車両タイプ</Typography>
+      <Grid item sm={6}>
+        <CarToggle setValue={setValue} control={control} name={"carType.boxCar"} label={"軽ハイトワゴン"} image={nBox} />
       </Grid>
 
-      <Grid item sm={12} sx={{ pb: 2 }}>
-        <Container fixed>
-          <Grid
-            container
-            spacing={1}
-          >
-
-            <Grid item sm={12}>
-              <RhfToggleButtonGroup
-                control={control}
-                name={"carClass"}
-                options={
-                  [
-                    { label: "軽自動車", value: "lightCar" },
-                    { label: "コンパクトカー", value: "compactCar" },
-                    { label: "普通車", value: "standardCar" },
-                    { label: "バンタイプ", value: "vanCar" },
-                  ]
-                }
-                sx={{ pb: 3, whiteSpace: "nowrap" }}
-              />
-
-            </Grid>
-
-            {/*カード写真*/}
-
-            <Grid item sm={4}>
-              <Controller
-                control={control}
-                name={"carType.boxCar"}
-                render={({ field }): JSX.Element => (
-                  <ToggleButtonGroup
-                    {...field}
-                    exclusive
-                    color="primary"
-                    fullWidth
-                    sx={{ pb: 3 }}
-                    onChange={(e, value) => {
-                      field.onChange(value);
-                    }}>
-                    <ToggleButton value={"option.alue"}>
-                      <Card>
-                        <CardMedia
-                        >
-                          {/*<Container maxWidth="sm">*/}
-                          <Image src={ImageTest} />
-                          {/*</Container>*/}
-                        </CardMedia>
-                        <CardContent>
-                          <Typography gutterBottom component="div" sx={{ whiteSpace: "nowrap" }}>
-                            ハコバン
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </ToggleButton>
-                  </ToggleButtonGroup>
-                )}
-              />
-            </Grid>
-
-            <Grid item sm={4}>
-              <Controller
-                control={control}
-                name={"name"}
-                render={({ field }): JSX.Element => (
-                  <ToggleButtonGroup
-                    {...field}
-                    exclusive
-                    color="primary"
-                    fullWidth
-                    sx={{ pb: 3 }}
-                    onChange={(e, value) => {
-                      field.onChange(value);
-                    }}>
-                    <ToggleButton value={"option.alue"}>
-                      <Card>
-                        <CardMedia
-                        >
-                          {/*<Container maxWidth="sm">*/}
-                          <Image src={ImageTest} />
-                          {/*</Container>*/}
-                        </CardMedia>
-                        <CardContent>
-                          <Typography gutterBottom component="div" sx={{ whiteSpace: "nowrap" }}>
-                            ハコバン
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </ToggleButton>
-                  </ToggleButtonGroup>
-                )}
-              />
-            </Grid>
-
-            <Grid item sm={4}>
-              <Controller
-                control={control}
-                name={"name"}
-                render={({ field }): JSX.Element => (
-                  <ToggleButtonGroup
-                    {...field}
-                    exclusive
-                    color="primary"
-                    fullWidth
-                    sx={{ pb: 3 }}
-                    onChange={(e, value) => {
-                      field.onChange(value);
-                    }}>
-                    <ToggleButton value={"option.alue"}>
-                      <Card>
-                        <CardMedia
-                        >
-                          {/*<Container maxWidth="sm">*/}
-                          <Image src={ImageTest} />
-                          {/*</Container>*/}
-                        </CardMedia>
-                        <CardContent>
-                          <Typography gutterBottom component="div" sx={{ whiteSpace: "nowrap" }}>
-                            ハコバン
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </ToggleButton>
-                  </ToggleButtonGroup>
-                )}
-              />
-            </Grid>
-
-
-            <SubTotal control={control} calcValue={calcValue} />
-
-          </Grid>
-        </Container>
+      <Grid item sm={6}>
+        <CarToggle setValue={setValue} control={control} name={"carType.every"} label={"軽ハコバン"} image={every} />
       </Grid>
-      <Divider />
+
+      <Grid item sm={6}>
+        <CarToggle setValue={setValue} control={control} name={"carType.note"} label={"コンパクトカー"} image={note} />
+      </Grid>
+
     </>
   );
 };
 
-export default CarType;
+export const CompactCar = ({ control, setValue }: CarCarProps) => {
+  return (
+    <>
+      <Grid item sm={6}>
+        <CarToggle
+          setValue={setValue}
+          control={control}
+          name={"carType.corollaFielder"}
+          label={"カローラ フィルダー"}
+          image={corollaFielder} />
+      </Grid>
+
+      <Grid item sm={6}>
+        <CarToggle
+          setValue={setValue}
+          control={control}
+          name={"carType.corollaFielder"}
+          label={"トヨタ シエンタ"}
+          image={corollaFielder} />
+      </Grid>
+
+      <Grid item sm={6}>
+        <CarToggle
+          setValue={setValue}
+          control={control}
+          name={"carType.corollaFielder"}
+          label={"プロボックス"}
+          image={corollaFielder} />
+      </Grid>
+    </>
+  );
+};
+
+export const StandardCar = ({ control, setValue }: CarCarProps) => {
+  return (
+    <>
+      <Grid item sm={6}>
+        <CarToggle
+          setValue={setValue}
+          control={control}
+          name={"carType.noah"}
+
+          label={"NOAH"}
+          image={noah} />
+      </Grid>
+      <Grid item sm={6}>
+        <CarToggle
+          setValue={setValue}
+          control={control}
+          name={"carType.townAce"}
+          label={"タウンエース"}
+          image={townAce} />
+      </Grid>
+
+    </>
+  );
+};
+
+export const VanCar = ({ control, setValue }: CarCarProps) => {
+  return (
+    <>
+
+      <Grid item sm={6}>
+        <CarToggle
+          setValue={setValue}
+          control={control}
+          name={"carType.regiusaceAce"}
+          label={"regiusaceAce"}
+          image={regiusaceAce} />
+      </Grid>
+
+    </>
+  );
+};
