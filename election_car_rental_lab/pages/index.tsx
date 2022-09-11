@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { blue, green } from "@mui/material/colors";
 
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 
 
 import CarClass from "../utils/carClass";
@@ -46,6 +46,13 @@ const formDefaultValue = {
 
 const Home = () => {
   const windowSize = useGetWindowSize();
+
+  // レイアウトサイズ変更
+  const [containerSize, setContainerSize] = useState<any>("md");
+  const handleChange = (event: SelectChangeEvent) => {
+    setContainerSize(event.target.value);
+  };
+
   const [calcValue, setCalcValue] = useState<any>({
     subTotalPrice: 0,
     optionTotalPrice: 0,
@@ -59,10 +66,12 @@ const Home = () => {
     reset,
     getValues,
     setValue,
+    watch,
   } = useForm<any>({
     defaultValues: formDefaultValue,
     // resolver: yupResolver(schema),
   });
+
 
   const formSubmitHandler: SubmitHandler<any> = (inputValues) => {
     console.dir(inputValues);
@@ -74,11 +83,15 @@ const Home = () => {
   };
 
 
-  // レイアウトサイズ変更
-  const [containerSize, setContainerSize] = useState<any>("md");
-  const handleChange = (event: SelectChangeEvent) => {
-    setContainerSize(event.target.value);
-  };
+  useEffect(() => {
+    const subscription = watch((value) => {
+      const calcData = Simulation(value);
+      setCalcValue(calcData);
+
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
 
   return (
     <Container maxWidth={containerSize} sx={{ background: blue }}>
@@ -121,7 +134,7 @@ const Home = () => {
             {/*TODO 最適化*/}
             <form
               // onClick={handleSubmit(formSubmitHandler)}
-              onChange={handleSubmit(formSubmitHandler)}
+              // onChange={handleSubmit(formSubmitHandler)}
               // onBlur={handleSubmit(formSubmitHandler)}
             >
 
