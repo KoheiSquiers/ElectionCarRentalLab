@@ -35,13 +35,13 @@ const Simulation = (
   const electoralClass = () => {
     switch (inputValue.electoralClass) {
       case "union": //統一地方選挙
-        return 100;
+        return 1000;
       case "general": // 一般地方選挙
-        return 200;
+        return 2000;
       case "lowRep": // 衆・参議委員選挙
-        return 300;
+        return 3000;
       case "advertisement": // 広告宣伝者
-        return 400;
+        return 4000;
       default:
         return 0;
     }
