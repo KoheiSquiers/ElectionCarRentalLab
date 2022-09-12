@@ -37,6 +37,7 @@ const formDefaultValue = {
   sd: false, // SDカード
   wirelessIncome: false, // ワイヤレスインカム
   handSpeaker: false, // ハンドスピーカー
+  bluetoothUnit: false, // Bluetoothユニット
   insurance: false,
   insuranceDays: 1,
   bodyRapping: false, // ボディラッピング
