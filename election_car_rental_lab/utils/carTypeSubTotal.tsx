@@ -71,7 +71,7 @@ const CarTypeSubTotal = ({ control, errors, calcValue }: Props) => {
                 options={
                   [
                     { label: "2個", value: "twe" },
-                    { label: "3個", value: "three" },
+                    { label: "4個", value: "four" },
                   ]
                 }
               />

@@ -26,7 +26,6 @@ const RhfToggleButtonGroup = ({ control, name, options, sx, size = "medium" }: R
           size={size}
           {...field}
           onChange={(e, value) => {
-            console.dir("クリック！");
             if (value !== null) {
               field.onChange(value);
             }

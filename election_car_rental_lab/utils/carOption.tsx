@@ -166,6 +166,21 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
             </Grid>
 
             <Grid item sm={12}>
+              <RhfCheckbox
+                control={control}
+                errors={errors}
+                label={"Bluetoothユニット"}
+                row={true}
+                sx={{ pl: "20px" }}
+                options={
+                  [
+                    { label: "￥15,000", name: "bluetoothUnit" },
+                  ]
+                }
+              />
+            </Grid>
+
+            <Grid item sm={12}>
               <Grid
                 container
                 spacing={0}

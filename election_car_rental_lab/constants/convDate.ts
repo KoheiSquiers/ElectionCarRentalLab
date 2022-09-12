@@ -7,3 +7,7 @@ export const convDate = (date: any) => {
 
   return date;
 };
+
+export const en = (data: number) => {
+  return data && `¥${data.toLocaleString()}`;
+};

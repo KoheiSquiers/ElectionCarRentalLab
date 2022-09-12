@@ -19,15 +19,15 @@ import CarOption from "../utils/carOption";
 import Footer from "../utils/footer";
 import { useGetWindowSize } from "../hooks/useGetWindowSixe";
 import Simulation from "../lib/simulation";
-import { convDate } from "../utils/convDate";
 
 const formDefaultValue = {
-  electoralClass: "union", // 選挙区分
+  electoralClass: "union", // レンタル区分
   electionArea: { label: "鳥取県", value: "tottori" }, // 選挙エリア
   parliamentClass: "chairman", // 議会区分
 
-  carClass: "lightCar",
-  carType: {},
+  carClass: "s", // 車区分
+  carType: { s: "nBox", m: "corollaFielder", l: "noah", ll: "regiusaceAce" }, // 車種
+
   signalLight: "outLight", // ライト区分
   ampSize: "150", // アンプサイズ
   speaker: "twe", // スピーカー
@@ -73,25 +73,23 @@ const Home = () => {
   });
 
 
-  const formSubmitHandler: SubmitHandler<any> = (inputValues) => {
-    console.dir(inputValues);
-
-    inputValues.notificationDate = convDate(inputValues.notificationDate);
-
-    const calcData = Simulation(inputValues);
-    setCalcValue(calcData);
-  };
-
-
+  // 値が変更されるたびにページ全体がレンダリングされるため、最適解ではない。
+  // メモ化などを行い、レンダリングをコントロールするべき
+  // 特にAPI fetchは気をつけよう
   useEffect(() => {
     const subscription = watch((value) => {
+      console.dir(value);
       const calcData = Simulation(value);
       setCalcValue(calcData);
-
     });
     return () => subscription.unsubscribe();
   }, [watch]);
 
+  // 初回レンダリング時に計算を行う
+  useEffect(() => {
+    const calcData = Simulation(formDefaultValue);
+    setCalcValue(calcData);
+  }, []);
 
   return (
     <Container maxWidth={containerSize} sx={{ background: blue }}>

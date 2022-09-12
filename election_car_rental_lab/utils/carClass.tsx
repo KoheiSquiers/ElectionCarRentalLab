@@ -17,7 +17,7 @@ import CarTypeSubTotal from "./carTypeSubTotal";
 import CarToggle from "../component/organisms/rapForm/carToggle";
 
 import { useWatch } from "react-hook-form";
-import { LightCar, CompactCar, VanCar, StandardCar } from "./carType";
+import { LightCar, CompactCar, VanCar, StandardCar } from "../component/organisms/carType";
 
 
 interface Props {
@@ -35,16 +35,16 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
 
   useEffect(() => {
     switch (getCarClass) {
-      case "lightCar":
+      case "s":
         setCarClass(<LightCar control={control} setValue={setValue} />);
         return;
-      case "compactCar":
+      case "m":
         setCarClass(<CompactCar control={control} setValue={setValue} />);
         return;
-      case "standardCar":
+      case "l":
         setCarClass(<StandardCar control={control} setValue={setValue} />);
         return;
-      case "vanCar":
+      case "ll":
         setCarClass(<VanCar control={control} setValue={setValue} />);
         return;
       default:
@@ -72,10 +72,10 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
                 name={"carClass"}
                 options={
                   [
-                    { label: "Sクラス", value: "lightCar" },
-                    { label: "Mクラス", value: "compactCar" },
-                    { label: "Lクラス", value: "standardCar" },
-                    { label: "LLクラス", value: "vanCar" },
+                    { label: "Sクラス", value: "s" },
+                    { label: "Mクラス", value: "m" },
+                    { label: "Lクラス", value: "l" },
+                    { label: "LLクラス", value: "ll" },
                   ]
                 }
                 sx={{ pb: 3, whiteSpace: "nowrap" }}
