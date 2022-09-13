@@ -94,15 +94,15 @@ const Home = () => {
 
   return (
     <Container maxWidth={containerSize} sx={{ background: blue }}>
-      <Paper elevation={3} sx={{ p: 5 }}>
+      <Paper elevation={3} sx={{ p: 3 }}>
         <Box
           sx={{
-            pt: 3,
+            pt: 0,
             pl: 3,
             pr: 3,
             pb: 0,
             overflow: "scroll",
-            height: windowSize.height - 120,
+            height: windowSize.height - 70,
           }}
         >
 

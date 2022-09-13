@@ -219,7 +219,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               </Grid>
             </Grid>
 
-            <Grid item sm={8}>
+            <Grid item sm={6}>
               <RhfCheckbox
                 control={control}
                 errors={errors}
@@ -234,14 +234,14 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               />
             </Grid>
 
-            <Grid item sm={4}>
+            <Grid item sm={6}>
               <Typography
                 variant={"h6"}
-                textAlign={"center"}
+                textAlign={"right"}
                 fontStyle={"italic"}
-                borderBottom={1}
+                // borderBottom={1}
               >
-                {`¥ ${calcValue.optionTotalPrice.toLocaleString()}`}
+                {`オプション ¥ ${calcValue.optionTotalPrice.toLocaleString()}（税込）`}
               </Typography>
             </Grid>
 

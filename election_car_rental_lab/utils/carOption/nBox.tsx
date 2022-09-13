@@ -1,16 +1,14 @@
+import { Grid } from "@mui/material";
+import RhfToggleButtonGroup from "../../component/molecules/rhfForm/rhfToggleButtonGroup";
+import { RhfRadioButton } from "../../component/molecules/rhfForm";
 import React from "react";
-import { Container, Grid, Typography } from "@mui/material";
-import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButtonGroup";
-import { RhfRadioButton } from "../component/molecules/rhfForm";
 
-
-interface Props {
+interface option {
   control: any;
   errors: any;
-  calcValue: any;
 }
 
-const CarTypeSubTotal = ({ control, errors, calcValue }: Props) => {
+const nBoxOption = ({ control, errors }: option) => {
   return (
     <Grid item sm={12}>
       <Grid
@@ -30,8 +28,6 @@ const CarTypeSubTotal = ({ control, errors, calcValue }: Props) => {
             options={
               [
                 { label: "外照明", value: "outLight" },
-                { label: "内照明", value: "inLight" },
-                { label: "登壇", value: "topLight" },
               ]
             }
           />
@@ -52,8 +48,6 @@ const CarTypeSubTotal = ({ control, errors, calcValue }: Props) => {
                 options={
                   [
                     { label: "150w", value: "150" },
-                    { label: "300w", value: "300" },
-                    { label: "600w", value: "600" },
                   ]
                 }
               />
@@ -79,23 +73,10 @@ const CarTypeSubTotal = ({ control, errors, calcValue }: Props) => {
 
           </Grid>
         </Grid>
-
-        <Grid item sm={4}>
-          <Typography
-            variant={"h6"}
-            textAlign={"right"}
-            fontStyle={"italic"}
-            // borderBottom={1}
-          >
-            {`小計 ¥ ${calcValue.subTotalPrice.toLocaleString()}（税込）`}
-          </Typography>
-        </Grid>
-
-
       </Grid>
     </Grid>
 
   );
 };
 
-export default CarTypeSubTotal;
+export default nBoxOption;
