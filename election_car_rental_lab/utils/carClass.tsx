@@ -86,7 +86,7 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
             {carClass}
 
 
-            <CarTypeSubTotal control={control} errors={errors} calcValue={calcValue} />
+            <CarTypeSubTotal setValue={setValue} control={control} errors={errors} calcValue={calcValue} />
 
           </Grid>
         </Container>
