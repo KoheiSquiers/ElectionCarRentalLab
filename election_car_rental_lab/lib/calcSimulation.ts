@@ -28,7 +28,7 @@ interface InputValues {
 
 }
 
-const Simulation = (
+const CalcSimulation = (
   inputValue: InputValues,
 ) => {
   // レンタル区分
@@ -227,4 +227,4 @@ const Simulation = (
   };
 };
 
-export default Simulation;
+export default CalcSimulation;

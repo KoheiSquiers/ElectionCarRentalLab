@@ -27,7 +27,7 @@ const Footer = ({ calcValue }: Props) => {
         }}
       >
         <Grid container sx={{ pt: 1 }}>
-          <Grid sm={8}>
+          <Grid item sm={8}>
             <Grid container>
               <Grid item sm={12}>
                 <Typography
