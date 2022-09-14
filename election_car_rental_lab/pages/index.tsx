@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Simulation from "./simlation";
 
-
 const Home = () => {
-  return(
-      <Simulation />
-  );
+  return <Simulation />;
 };
 
 export default Home;

@@ -3,11 +3,15 @@ import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import SendIcon from "@mui/icons-material/Send";
 
+import { useRouter } from "next/router";
+
 interface Props {
   calcValue: any;
 }
 
 const Footer = ({ calcValue }: Props) => {
+
+  const router = useRouter();
   return (
     <Box
       sx={{
@@ -82,7 +86,7 @@ const Footer = ({ calcValue }: Props) => {
                     variant="contained"
                     startIcon={<SendIcon />}
                     onClick={() => {
-                      alert("お問合せはまだ作ってないよ！（9/16完成予定）");
+                      router.push("/contact");
                     }}
                   >
                     お問合せ
