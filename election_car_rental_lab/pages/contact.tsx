@@ -27,9 +27,11 @@ import { useRouter } from "next/router";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import InputForm from "../utils/contact/input";
+import Confirmation from "../utils/contact/confirmation";
+import Sending from "../utils/contact/sending";
 
 const Contact = () => {
-  const router = useRouter();
   const windowSize = useGetWindowSize();
 
   const [sendData] = useQState<any>(["sendData"]);
@@ -38,7 +40,7 @@ const Contact = () => {
   // カラー変更
   const [globalColor, setGlobalColor] = useQState<string>(
     ["globalColor"],
-    "primary",
+    "warning",
   );
   const handleChangeColor = (event: SelectChangeEvent) => {
     setGlobalColor(event.target.value);
@@ -51,7 +53,7 @@ const Contact = () => {
   };
 
   // formType Change
-  const [formTypeChange, setFormTypeChange] = useState<any>("standard");
+  const [formTypeChange, setFormTypeChange] = useState<any>("outlined");
   const handleChangeForm = (event: SelectChangeEvent) => {
     setFormTypeChange(event.target.value);
   };
@@ -75,9 +77,16 @@ const Contact = () => {
     resolver: yupResolver(schema),
   });
 
+  const [inputData, setInputData] = useState();
+
   const formSubmitHandler: SubmitHandler<any> = (data) => {
-    alert("まだ作ってないでーしゅ");
+    setInputData(data);
+    setStepper(1);
+    // alert("まだ作ってないでーしゅ");
   };
+
+  // stepper control
+  const [stepper, setStepper] = useState<number>(0);
 
   return (
     <>
@@ -144,9 +153,9 @@ const Contact = () => {
 
                 {/*ステッパー*/}
                 <Grid item sm={12}>
-                  <Box sx={{ pb: 2 }}>
+                  <Box sx={{ pb: 4 }}>
                     <Container maxWidth="sm">
-                      <Stepper>
+                      <Stepper activeStep={stepper}>
                         <Step>
                           <StepButton>お問合せ入力</StepButton>
                         </Step>
@@ -166,131 +175,26 @@ const Contact = () => {
                 {/*メインフォーム*/}
                 <Grid item sm={12}>
                   <form onSubmit={handleSubmit(formSubmitHandler)}>
-                    {/* container fixsed で可変スタイルでもいいかも*/}
-                    <Container maxWidth="xs">
-                      <Grid container rowSpacing={2}>
-                        <Grid item sm={12}>
-                          <RhfTextArea
-                            control={control}
-                            errors={errors}
-                            name={"name"}
-                            label={"お名前*"}
-                            variant={formTypeChange}
-                          />
-                        </Grid>
+                    {/*入力*/}
+                    {stepper === 0 && (
+                      <InputForm
+                        control={control}
+                        errors={errors}
+                        variant={formTypeChange}
+                        setStepper={setStepper}
+                      />
+                    )}
 
-                        <Grid item sm={12}>
-                          <RhfTextArea
-                            control={control}
-                            errors={errors}
-                            name={"furigana"}
-                            label={"フリガナ*"}
-                            variant={formTypeChange}
-                          />
-                        </Grid>
+                    {/*確認*/}
+                    {stepper === 1 && (
+                      <Confirmation
+                        inputData={inputData}
+                        setStepper={setStepper}
+                      />
+                    )}
 
-                        <Grid item sm={12}>
-                          <RhfTextArea
-                            control={control}
-                            errors={errors}
-                            name={"tel"}
-                            label={"電話番号"}
-                            variant={formTypeChange}
-                          />
-                        </Grid>
-
-                        <Grid item sm={12}>
-                          <RhfTextArea
-                            control={control}
-                            errors={errors}
-                            name={"mail"}
-                            label={"メールアドレス*"}
-                            variant={formTypeChange}
-                          />
-                        </Grid>
-
-                        <Grid item sm={12}>
-                          <RhfTextArea
-                            control={control}
-                            errors={errors}
-                            name={"mailCheck"}
-                            label={"メールアドレス再入力*"}
-                            variant={formTypeChange}
-                          />
-                        </Grid>
-
-                        <Grid item sm={12}>
-                          <RhfTextArea
-                            control={control}
-                            errors={errors}
-                            name={"postCode"}
-                            label={"郵便番号"}
-                            variant={formTypeChange}
-                          />
-                        </Grid>
-
-                        <Grid item sm={12}>
-                          <RhfTextArea
-                            control={control}
-                            errors={errors}
-                            name={"address"}
-                            label={"住所"}
-                            variant={formTypeChange}
-                          />
-                        </Grid>
-
-                        <Grid item sm={12}>
-                          <RhfSelectBox
-                            control={control}
-                            errors={errors}
-                            name={"contactType"}
-                            label={"当社との連絡方法*"}
-                            variant={formTypeChange}
-                            options={[
-                              { label: "電話", value: "tel" },
-                              { label: "メール", value: "mail" },
-                            ]}
-                          />
-                        </Grid>
-
-                        <Grid item sm={12}>
-                          <RhfTextArea
-                            control={control}
-                            errors={errors}
-                            name={"contactDetails"}
-                            label={"お問合せ内容"}
-                            variant={formTypeChange}
-                            multiline={true}
-                            rows={5}
-                          />
-                        </Grid>
-
-                        <Grid item sm={6}>
-                          <Box textAlign={"left"} padding={2}>
-                            <Button
-                              variant={"outlined"}
-                              centerRipple={true}
-                              onClick={() => {
-                                router.back();
-                              }}
-                            >
-                              戻る
-                            </Button>
-                          </Box>
-                        </Grid>
-                        <Grid item sm={6}>
-                          <Box textAlign={"right"} padding={2}>
-                            <Button
-                              type="submit"
-                              variant={"contained"}
-                              centerRipple={true}
-                            >
-                              確認画面へ
-                            </Button>
-                          </Box>
-                        </Grid>
-                      </Grid>
-                    </Container>
+                    {/*送信*/}
+                    {stepper === 2 && <Sending setStepper={setStepper} />}
                   </form>
                 </Grid>
               </Grid>

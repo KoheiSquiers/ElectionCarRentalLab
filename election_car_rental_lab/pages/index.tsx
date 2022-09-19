@@ -1,5 +1,5 @@
 import React from "react";
-import Simulation from "./simlation";
+import Simulation from "./simulation";
 
 const Home = () => {
   return <Simulation />;
