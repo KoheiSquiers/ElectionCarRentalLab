@@ -93,11 +93,11 @@ const Contact = () => {
             >
               <Grid container>
                 {/*メインタイトル*/}
-                <Grid item sm={6}>
+                <Grid item xs={12} sm={6}>
                   <Typography variant={"h5"}>お問合せ(未完成)</Typography>
                 </Grid>
 
-                <Grid item sm={2} sx={{ pr: 1 }}>
+                <Grid item xs={4} sm={2} sx={{ pr: 1 }}>
                   <FormControl fullWidth variant="standard">
                     <InputLabel>カラータイプ</InputLabel>
                     <Select value={globalColor} onChange={handleChangeColor}>
@@ -111,7 +111,7 @@ const Contact = () => {
                   </FormControl>
                 </Grid>
 
-                <Grid item sm={2} sx={{ pr: 1 }}>
+                <Grid item xs={4} sm={2} sx={{ pr: 1 }}>
                   <FormControl fullWidth variant="standard">
                     <InputLabel>フォームタイプ</InputLabel>
                     <Select value={formTypeChange} onChange={handleChangeForm}>
@@ -122,7 +122,7 @@ const Contact = () => {
                   </FormControl>
                 </Grid>
 
-                <Grid item sm={2}>
+                <Grid item xs={4} sm={2}>
                   <FormControl fullWidth variant="standard">
                     <InputLabel>レイアウトサイズ</InputLabel>
                     <Select value={containerSize} onChange={handleChangeSize}>
@@ -145,11 +145,11 @@ const Contact = () => {
                     <Container maxWidth="sm">
                       <Stepper activeStep={stepper}>
                         <Step>
-                          <StepButton>お問合せ入力</StepButton>
+                          <StepButton>入力</StepButton>
                         </Step>
 
                         <Step>
-                          <StepButton>お問合せ確認</StepButton>
+                          <StepButton>確認</StepButton>
                         </Step>
 
                         <Step>
