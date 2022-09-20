@@ -115,10 +115,9 @@ const InputForm = ({ variant, setStepper, setInputData }: InputFormProps) => {
           {alertOpen && (
             <Snackbar
               open={alertOpen}
-              autoHideDuration={3000}
+              autoHideDuration={2000}
               onClose={handleClose}
-              anchorOrigin={{ vertical: "top", horizontal: "right" }}
-              sx={{ pr: 6 }}
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
             >
               <Alert
                 severity="error"
