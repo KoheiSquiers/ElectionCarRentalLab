@@ -16,10 +16,10 @@ const ConfLabel = ({ label, value }: ConfLabelProps) => {
   return (
     <>
       <Grid sm={6}>
-        <Typography variant={"h6"}>{label}</Typography>
+        <Typography>{label}</Typography>
       </Grid>
       <Grid sm={6}>
-        <Typography variant={"h6"}>{value}</Typography>
+        <Typography>{value}</Typography>
       </Grid>
     </>
   );
@@ -47,7 +47,10 @@ const Confirmation = ({ inputData, setStepper }: ConfirmationProps) => {
         <ConfLabel label={"メールアドレス"} value={inputData.mail} />
         <ConfLabel label={"郵便番号"} value={inputData.postCode} />
         <ConfLabel label={"住所"} value={inputData.address} />
-        <ConfLabel label={"当社との連絡方法"} value={inputData.contactType} />
+        <ConfLabel
+          label={"当社との連絡方法"}
+          value={inputData.contactType === "tel" ? "電話" : "メール"}
+        />
         <ConfLabel label={"お問合せ内容"} value={inputData.contactDetails} />
 
         <Grid item sm={6}>
@@ -72,7 +75,7 @@ const Confirmation = ({ inputData, setStepper }: ConfirmationProps) => {
                 setStepper(2);
               }}
             >
-              確認画面へ
+              送信
             </Button>
           </Box>
         </Grid>
