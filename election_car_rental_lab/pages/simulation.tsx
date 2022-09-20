@@ -19,10 +19,10 @@ import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 
 import { useQState } from "../hooks/library/useQstate";
 
-import CarClass from "../utils/carClass";
-import ElectionDiv from "../utils/electionDiv";
-import CarOption from "../utils/carOption";
-import Footer from "../utils/footer";
+import CarClass from "../features/simulation/carClass";
+import ElectionDiv from "../features/simulation/electionDiv";
+import CarOption from "../features/simulation/carOption";
+import Footer from "../features/simulation/footer";
 import { useGetWindowSize } from "../hooks/useGetWindowSixe";
 import CalcSimulation from "../lib/calcSimulation";
 import Layout from "../component/templates/layout";

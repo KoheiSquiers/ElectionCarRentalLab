@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
-import RhfToggleButtonGroup from "../../../component/molecules/rhfForm/rhfToggleButtonGroup";
-import { RhfRadioButton } from "../../../component/molecules/rhfForm";
+import RhfToggleButtonGroup from "../../../../component/molecules/rhfForm/rhfToggleButtonGroup";
+import { RhfRadioButton } from "../../../../component/molecules/rhfForm";
 import React from "react";
 
 interface option {
@@ -9,7 +9,8 @@ interface option {
   calcValue: any;
 }
 
-const RegiusaceAceOption = ({ control, errors, calcValue }: option) => {
+const NBoxOption = ({ control, errors, calcValue }: option) => {
+  console.dir(calcValue.subTotalPrice);
   return (
     <Grid item sm={12}>
       <Grid
@@ -26,20 +27,12 @@ const RegiusaceAceOption = ({ control, errors, calcValue }: option) => {
             name={"signalLight"}
             size={"small"}
             sx={{ whiteSpace: "nowrap" }}
-            options={
-              [
-                { label: "内照明", value: "inLight" },
-                { label: "登壇", value: "topLight" },
-                // todo ワイドadd
-                { label: "ワイドボディ", value: "outLight" },
-              ]
-            }
+            options={[{ label: "外照明", value: "outLight" }]}
           />
         </Grid>
 
         <Grid item sm={8}>
           <Grid container>
-
             <Grid item sm={12}>
               <RhfRadioButton
                 control={control}
@@ -49,12 +42,7 @@ const RegiusaceAceOption = ({ control, errors, calcValue }: option) => {
                 size={"small"}
                 row={true}
                 sx={{ pl: "20px", flexWrap: "nowrap" }}
-                options={
-                  [
-                    // todo 600w add
-                    { label: "600w", value: "150" },
-                  ]
-                }
+                options={[{ label: "150w", value: "150" }]}
               />
             </Grid>
 
@@ -67,33 +55,23 @@ const RegiusaceAceOption = ({ control, errors, calcValue }: option) => {
                 size={"small"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={
-                  [
-                    { label: "2個", value: "twe" },
-                    { label: "4個", value: "four" },
-                  ]
-                }
+                options={[
+                  { label: "2個", value: "twe" },
+                  { label: "4個", value: "four" },
+                ]}
               />
             </Grid>
-
           </Grid>
         </Grid>
 
         <Grid item sm={4}>
-          <Typography
-            variant={"h6"}
-            textAlign={"right"}
-            fontStyle={"italic"}
-          >
+          <Typography variant={"h6"} textAlign={"right"} fontStyle={"italic"}>
             {`小計 ¥ ${calcValue.subTotalPrice.toLocaleString()}（税込）`}
           </Typography>
         </Grid>
-
-
       </Grid>
     </Grid>
-
   );
 };
 
-export default RegiusaceAceOption;
+export default NBoxOption;

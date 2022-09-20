@@ -27,9 +27,22 @@ import { useRouter } from "next/router";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import InputForm from "../utils/contact/input";
-import Confirmation from "../utils/contact/confirmation";
-import Sending from "../utils/contact/sending";
+import InputForm from "../features/contact/input";
+import Confirmation from "../features/contact/confirmation";
+import Sending from "../features/contact/sending";
+import { schema } from "../features/contact/parts/inputParts";
+
+export interface InputValue {
+  name: string; //"お名前"
+  furigana: string; //"フリガナ"
+  tel: string; //"電話番号"
+  mail: string; //"メールアドレス"
+  mailCheck: string;
+  postCode: string; //"郵便番号"
+  address: string; //"住所"
+  contactType: string; //"当社との連絡方法"
+  contactDetails: string; //"お問合せ内容"
+}
 
 const Contact = () => {
   const windowSize = useGetWindowSize();
@@ -58,32 +71,7 @@ const Contact = () => {
     setFormTypeChange(event.target.value);
   };
 
-  const schema = yup.object().shape({
-    name: yup.string().required("必須です"),
-    furigana: yup.string().required("必須です"),
-  });
-
-  // react hook form
-  const {
-    handleSubmit,
-    formState: { errors },
-    control,
-    reset,
-    getValues,
-    setValue,
-    watch,
-  } = useForm<any>({
-    // defaultValues: formDefaultValue,
-    resolver: yupResolver(schema),
-  });
-
   const [inputData, setInputData] = useState();
-
-  const formSubmitHandler: SubmitHandler<any> = (data) => {
-    setInputData(data);
-    setStepper(1);
-    // alert("まだ作ってないでーしゅ");
-  };
 
   // stepper control
   const [stepper, setStepper] = useState<number>(0);
@@ -174,28 +162,25 @@ const Contact = () => {
 
                 {/*メインフォーム*/}
                 <Grid item sm={12}>
-                  <form onSubmit={handleSubmit(formSubmitHandler)}>
-                    {/*入力*/}
-                    {stepper === 0 && (
-                      <InputForm
-                        control={control}
-                        errors={errors}
-                        variant={formTypeChange}
-                        setStepper={setStepper}
-                      />
-                    )}
+                  {/*入力*/}
+                  {stepper === 0 && (
+                    <InputForm
+                      variant={formTypeChange}
+                      setInputData={setInputData}
+                      setStepper={setStepper}
+                    />
+                  )}
 
-                    {/*確認*/}
-                    {stepper === 1 && (
-                      <Confirmation
-                        inputData={inputData}
-                        setStepper={setStepper}
-                      />
-                    )}
+                  {/*確認*/}
+                  {stepper === 1 && (
+                    <Confirmation
+                      inputData={inputData}
+                      setStepper={setStepper}
+                    />
+                  )}
 
-                    {/*送信*/}
-                    {stepper === 2 && <Sending setStepper={setStepper} />}
-                  </form>
+                  {/*送信*/}
+                  {stepper === 2 && <Sending setStepper={setStepper} />}
                 </Grid>
               </Grid>
             </Box>

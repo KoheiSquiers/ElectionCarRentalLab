@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
 import {
-  Container, Grid, Radio, Typography, FormControlLabel, RadioGroup, FormControl, Select, MenuItem, InputLabel,
+  Container,
+  Grid,
+  Radio,
+  Typography,
+  FormControlLabel,
+  RadioGroup,
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel,
 } from "@mui/material";
 import { Controller, useWatch } from "react-hook-form";
 
-import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButtonGroup";
-import { RhfAutocomplete, RhfRadioButton, RhfSelectBox } from "../component/molecules/rhfForm";
-import RhfCheckbox from "../component/molecules/rhfForm/rhfCheckbox";
-import { monthSelect } from "../constants/month";
-
+import RhfToggleButtonGroup from "../../component/molecules/rhfForm/rhfToggleButtonGroup";
+import {
+  RhfAutocomplete,
+  RhfRadioButton,
+  RhfSelectBox,
+} from "../../component/molecules/rhfForm";
+import RhfCheckbox from "../../component/molecules/rhfForm/rhfCheckbox";
+import { monthSelect } from "../../constants/month";
 
 interface Props {
   control: any;
@@ -17,8 +29,6 @@ interface Props {
 }
 
 const CarOption = ({ control, errors, calcValue }: Props) => {
-
-
   // ワイヤレスマイクフォーム制御
   //
   const [mikeLabel, setMikeLabel] = useState<string>("¥15,000");
@@ -44,7 +54,8 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
   // 保険フォーム制御
   //
   const [insuranceLabel, setInsuranceLabel] = useState<string>("¥1,500");
-  const [insuranceDaysDisabled, setInsuranceDaysDisabled] = useState<boolean>(false);
+  const [insuranceDaysDisabled, setInsuranceDaysDisabled] =
+    useState<boolean>(false);
   // 保険チェック状態と保険日数を取得
   const getInsurance = useWatch({ control, name: "insurance" });
   const getInsuranceDays = useWatch({ control, name: "insuranceDays" });
@@ -56,7 +67,6 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
     const label = 1500 * getInsuranceDays;
 
     setInsuranceLabel(`¥${label.toLocaleString()}`);
-
   }, [getInsurance, getInsuranceDays]);
 
   return (
@@ -65,14 +75,9 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
         <Typography variant={"h6"}>オプション</Typography>
       </Grid>
 
-
       <Grid item sm={12}>
         <Container fixed>
-          <Grid
-            container
-            alignItems="flex-end"
-            sx={{ pb: 2 }}
-          >
+          <Grid container alignItems="flex-end" sx={{ pb: 2 }}>
             <Grid item sm={12}>
               <Grid
                 container
@@ -81,21 +86,15 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 justifyContent="flex-start"
                 alignItems="center"
               >
-
                 <Grid item sm={4}>
                   <RhfCheckbox
                     control={control}
                     errors={errors}
                     label={"ワイヤレスマイク"}
                     sx={{ pl: "20px", flexWrap: "nowrap" }}
-                    options={
-                      [
-                        { label: mikeLabel, name: "wirelessMike" },
-                      ]
-                    }
+                    options={[{ label: mikeLabel, name: "wirelessMike" }]}
                   />
                 </Grid>
-
 
                 <Grid item sm={8}>
                   <RhfSelectBox
@@ -106,19 +105,14 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                     control={control}
                     errors={errors}
                     sx={{ maxWidth: 150 }}
-                    options={
-                      [
-                        { label: "1本", value: 1 },
-                        { label: "2本", value: 2 },
-                      ]
-                    }
+                    options={[
+                      { label: "1本", value: 1 },
+                      { label: "2本", value: 2 },
+                    ]}
                   />
                 </Grid>
-
-
               </Grid>
             </Grid>
-
 
             <Grid item sm={12}>
               <RhfCheckbox
@@ -127,11 +121,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"SD"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={
-                  [
-                    { label: "¥20,000", name: "sd" },
-                  ]
-                }
+                options={[{ label: "¥20,000", name: "sd" }]}
               />
             </Grid>
 
@@ -142,11 +132,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"ワイヤレスインカム"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={
-                  [
-                    { label: "¥1,000", name: "wirelessIncome" },
-                  ]
-                }
+                options={[{ label: "¥1,000", name: "wirelessIncome" }]}
               />
             </Grid>
 
@@ -157,11 +143,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"ハンドスピーカー"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={
-                  [
-                    { label: "¥1,500", name: "handSpeaker" },
-                  ]
-                }
+                options={[{ label: "¥1,500", name: "handSpeaker" }]}
               />
             </Grid>
 
@@ -172,11 +154,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"Bluetoothユニット"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={
-                  [
-                    { label: "￥15,000", name: "bluetoothUnit" },
-                  ]
-                }
+                options={[{ label: "￥15,000", name: "bluetoothUnit" }]}
               />
             </Grid>
 
@@ -195,11 +173,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                     label={"保険"}
                     row={true}
                     sx={{ pl: "20px" }}
-                    options={
-                      [
-                        { label: insuranceLabel, name: "insurance" },
-                      ]
-                    }
+                    options={[{ label: insuranceLabel, name: "insurance" }]}
                   />
                 </Grid>
                 <Grid item sm={8}>
@@ -211,9 +185,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                     variant={"standard"}
                     disabled={insuranceDaysDisabled}
                     sx={{ maxWidth: 150 }}
-                    options={
-                      monthSelect
-                    }
+                    options={monthSelect}
                   />
                 </Grid>
               </Grid>
@@ -226,11 +198,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"ボディラッピング"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={
-                  [
-                    { label: "要相談", name: "bodyRapping" },
-                  ]
-                }
+                options={[{ label: "要相談", name: "bodyRapping" }]}
               />
             </Grid>
 
@@ -244,15 +212,10 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 {`オプション ¥ ${calcValue.optionTotalPrice.toLocaleString()}（税込）`}
               </Typography>
             </Grid>
-
           </Grid>
-
-
         </Container>
       </Grid>
-
     </>
-
   );
 };
 

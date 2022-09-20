@@ -3,22 +3,22 @@ import {
   Container,
   Divider,
   Grid,
-  TextField, TextFieldProps,
+  TextField,
+  TextFieldProps,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
 
-
 import React, { useState } from "react";
-import { RhfAutocomplete } from "../component/molecules/rhfForm";
+import { RhfAutocomplete } from "../../component/molecules/rhfForm";
 import ja from "date-fns/locale/ja";
 import { Controller } from "react-hook-form";
-import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButtonGroup";
+import RhfToggleButtonGroup from "../../component/molecules/rhfForm/rhfToggleButtonGroup";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { prefCd } from "../constants/preCd";
-import RhfDatePicker from "../component/molecules/rhfForm/rhfDatePicker";
+import { prefCd } from "../../constants/preCd";
+import RhfDatePicker from "../../component/molecules/rhfForm/rhfDatePicker";
 
 interface Props {
   control: any;
@@ -27,8 +27,6 @@ interface Props {
 }
 
 const ElectionDiv = ({ control, errors, setValue }: Props) => {
-
-
   return (
     <>
       <Grid item sm={12}>
@@ -37,22 +35,18 @@ const ElectionDiv = ({ control, errors, setValue }: Props) => {
           errors={errors}
           name={"electoralClass"}
           sx={{ pb: 1, whiteSpace: "nowrap" }}
-          options={
-            [
-              { label: "統一地方選挙", value: "union" },
-              { label: "一般地方選挙", value: "general" },
-              { label: "衆・参議委員選挙", value: "lowRep" },
-              { label: "広告宣伝者", value: "advertisement" },
-            ]
-          }
+          options={[
+            { label: "統一地方選挙", value: "union" },
+            { label: "一般地方選挙", value: "general" },
+            { label: "衆・参議委員選挙", value: "lowRep" },
+            { label: "広告宣伝者", value: "advertisement" },
+          ]}
         />
       </Grid>
 
       <Grid item sm={12} sx={{ pb: 2 }}>
         <Container fixed>
-          <Grid
-            container
-          >
+          <Grid container>
             <Grid item sm={4} sx={{ pr: 2 }}>
               <RhfAutocomplete
                 name={"electionArea"}
@@ -70,7 +64,8 @@ const ElectionDiv = ({ control, errors, setValue }: Props) => {
                 control={control}
                 errors={errors}
                 name={"notificationDate"}
-                label={"告示日"} />
+                label={"告示日"}
+              />
             </Grid>
 
             <Grid item sm={4} sx={{ pr: 2 }}>
@@ -80,23 +75,17 @@ const ElectionDiv = ({ control, errors, setValue }: Props) => {
                 name={"parliamentClass"}
                 size={"small"}
                 sx={{ pt: "8px" }}
-                options={
-                  [
-                    { label: "議員", value: "chairman" },
-                    { label: "首長", value: "chief" },
-                  ]
-                }
+                options={[
+                  { label: "議員", value: "chairman" },
+                  { label: "首長", value: "chief" },
+                ]}
               />
             </Grid>
-
-
           </Grid>
-
         </Container>
       </Grid>
     </>
   );
 };
-
 
 export default ElectionDiv;

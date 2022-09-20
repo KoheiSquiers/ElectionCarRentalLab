@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Container, Grid, Typography } from "@mui/material";
-import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButtonGroup";
-import { RhfRadioButton } from "../component/molecules/rhfForm";
+import RhfToggleButtonGroup from "../../component/molecules/rhfForm/rhfToggleButtonGroup";
+import { RhfRadioButton } from "../../component/molecules/rhfForm";
 import { useWatch } from "react-hook-form";
-import { CompactCar, LightCar, StandardCar, VanCar } from "../component/organisms/carType";
+import {
+  CompactCar,
+  LightCar,
+  StandardCar,
+  VanCar,
+} from "../../component/organisms/carType";
 import NBoxOption from "./carOption/s/nBoxOption";
 import EveryOption from "./carOption/s/everyOption";
 import NoteOption from "./carOption/s/note";
@@ -14,7 +19,6 @@ import NoahOption from "./carOption/l/noahOprion";
 import TownAceOption from "./carOption/l/townAce";
 import RegiusaceAceOption from "./carOption/ll/regiusaceAce";
 
-
 interface Props {
   setValue: any;
   control: any;
@@ -23,49 +27,101 @@ interface Props {
 }
 
 const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
-
   const [carType, setCarType] = useState<any>("");
   const getCarClass = useWatch({ control, name: "carClass" });
   const getCarType = useWatch({ control, name: "carType" });
-
 
   // useWatchでサイレンダンリングされるため、副作用はセットしない
   useEffect(() => {
     switch (getCarType[getCarClass]) {
       // sClass
       case "nBox":
-        setCarType(<NBoxOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <NBoxOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
       case "every":
-        setCarType(<EveryOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <EveryOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
       case "note":
-        setCarType(<NoteOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <NoteOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
 
       // mClass
       case "corollaFielder":
-        setCarType(<CorollaFielderOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <CorollaFielderOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
       case "shienta":
-        setCarType(<ShientaOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <ShientaOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
       case "proBoc":
         // setValue("ampSize", "300");
-        setCarType(<ProBocOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <ProBocOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
 
       // lClass
       case "noah":
-        setCarType(<NoahOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <NoahOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
       case "townAce":
-        setCarType(<TownAceOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <TownAceOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
 
       // llClass
       case "regiusaceAce":
-        setCarType(<RegiusaceAceOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <RegiusaceAceOption
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+          />,
+        );
         return;
 
       default:
@@ -73,9 +129,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
     }
   }, [getCarClass, getCarType, calcValue]);
 
-  return (
-    carType
-  );
+  return carType;
 };
 
 export default CarTypeSubTotal;

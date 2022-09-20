@@ -1,24 +1,30 @@
 import {
-  Card, CardActionArea,
+  Card,
+  CardActionArea,
   CardContent,
   CardMedia,
-  Container, Divider,
+  Container,
+  Divider,
   Grid,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import ImageTest from "../public/image/lightCar/nBox.png";
+import ImageTest from "../../public/image/lightCar/nBox.png";
 import React, { useEffect, useState } from "react";
-import RhfToggleButtonGroup from "../component/molecules/rhfForm/rhfToggleButtonGroup";
+import RhfToggleButtonGroup from "../../component/molecules/rhfForm/rhfToggleButtonGroup";
 import { Controller } from "react-hook-form";
 import CarTypeSubTotal from "./carTypeSubTotal";
-import CarToggle from "../component/organisms/rapForm/carToggle";
+import CarToggle from "../../component/organisms/rapForm/carToggle";
 
 import { useWatch } from "react-hook-form";
-import { LightCar, CompactCar, VanCar, StandardCar } from "../component/organisms/carType";
-
+import {
+  LightCar,
+  CompactCar,
+  VanCar,
+  StandardCar,
+} from "../../component/organisms/carType";
 
 interface Props {
   setValue: any;
@@ -28,8 +34,6 @@ interface Props {
 }
 
 const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
-
-
   const [carClass, setCarClass] = useState<any>("");
   const getCarClass = useWatch({ control, name: "carClass" });
 
@@ -60,24 +64,18 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
 
       <Grid item sm={12} sx={{ pb: 2 }}>
         <Container fixed>
-          <Grid
-            container
-            spacing={1}
-          >
-
+          <Grid container spacing={1}>
             <Grid item sm={12}>
               <RhfToggleButtonGroup
                 control={control}
                 errors={errors}
                 name={"carClass"}
-                options={
-                  [
-                    { label: "Sクラス", value: "s" },
-                    { label: "Mクラス", value: "m" },
-                    { label: "Lクラス", value: "l" },
-                    { label: "LLクラス", value: "ll" },
-                  ]
-                }
+                options={[
+                  { label: "Sクラス", value: "s" },
+                  { label: "Mクラス", value: "m" },
+                  { label: "Lクラス", value: "l" },
+                  { label: "LLクラス", value: "ll" },
+                ]}
                 sx={{ pb: 3, whiteSpace: "nowrap" }}
               />
             </Grid>
@@ -85,9 +83,12 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
             {/*カード写真*/}
             {carClass}
 
-
-            <CarTypeSubTotal setValue={setValue} control={control} errors={errors} calcValue={calcValue} />
-
+            <CarTypeSubTotal
+              setValue={setValue}
+              control={control}
+              errors={errors}
+              calcValue={calcValue}
+            />
           </Grid>
         </Container>
       </Grid>
