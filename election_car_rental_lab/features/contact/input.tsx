@@ -181,10 +181,10 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             </Snackbar>
           )}
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Typography>【基本情報】</Typography>
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -195,7 +195,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -206,7 +206,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Controller
               control={control}
               name={"postCode"}
@@ -243,7 +243,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -254,7 +254,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -265,7 +265,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -276,7 +276,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -288,10 +288,10 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
           </Grid>
 
           {/* 事務所系*/}
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Typography>【選挙事務所情報】</Typography>
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Controller
               control={control}
               name={"officePostCode"}
@@ -330,7 +330,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -341,7 +341,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -352,7 +352,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -363,7 +363,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfSelectBox
               control={control}
               errors={errors}
@@ -377,13 +377,13 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Typography>
               【納車・引き取り】（希望があればご記入ください）
             </Typography>
           </Grid>
 
-          <Grid item sm={6}>
+          <Grid item xs={12} sm={6}>
             <RhfDateTimePicker
               control={control}
               errors={errors}
@@ -391,7 +391,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
               label={"納車日時"}
             />
           </Grid>
-          <Grid item sm={6} sx={{ pl: 2 }}>
+          <Grid item xs={12} sm={6} sx={{ pl: { sm: 2 } }}>
             <RhfSelectBox
               control={control}
               errors={errors}
@@ -406,7 +406,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
           {startOtherDisplay && (
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfTextArea
                 control={control}
                 errors={errors}
@@ -418,7 +418,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             </Grid>
           )}
 
-          <Grid item sm={6}>
+          <Grid item xs={12} sm={6}>
             <RhfDateTimePicker
               control={control}
               errors={errors}
@@ -426,7 +426,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
               label={"引取日時"}
             />
           </Grid>
-          <Grid item sm={6} sx={{ pl: 2 }}>
+          <Grid item xs={12} sm={6} sx={{ pl: { sm: 2 } }}>
             <RhfSelectBox
               control={control}
               errors={errors}
@@ -441,7 +441,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
           {endOtherDisplay && (
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfTextArea
                 control={control}
                 errors={errors}
@@ -453,7 +453,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             </Grid>
           )}
 
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <RhfTextArea
               control={control}
               errors={errors}
@@ -465,7 +465,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
             />
           </Grid>
 
-          <Grid item sm={6}>
+          <Grid item xs={6}>
             <Box textAlign={"center"} padding={2}>
               <Button
                 variant={"outlined"}
@@ -478,7 +478,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
               </Button>
             </Box>
           </Grid>
-          <Grid item sm={6}>
+          <Grid item xs={6}>
             <Box textAlign={"center"} padding={2}>
               <Button type={"submit"} variant={"contained"} centerRipple={true}>
                 確認画面へ
