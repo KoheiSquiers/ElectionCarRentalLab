@@ -209,7 +209,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 fontStyle={"italic"}
                 // borderBottom={1}
               >
-                {`オプション ¥ ${calcValue.optionTotalPrice.toLocaleString()}（税込）`}
+                {`オプション ¥ ${calcValue?.optionTotalPrice?.toLocaleString()}（税込）`}
               </Typography>
             </Grid>
           </Grid>

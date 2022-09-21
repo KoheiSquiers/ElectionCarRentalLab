@@ -10,7 +10,6 @@ interface Props {
 }
 
 const Footer = ({ calcValue }: Props) => {
-
   const router = useRouter();
   return (
     <Box
@@ -41,38 +40,28 @@ const Footer = ({ calcValue }: Props) => {
                   noWrap={true}
                   paddingBottom={1}
                 >
-                  {`合計金額 ¥${calcValue.totalPrice.toLocaleString()}（税込）`}
+                  {`合計金額 ¥${calcValue?.totalPrice?.toLocaleString()}（税込）`}
                 </Typography>
               </Grid>
-              <Typography
-                variant={"caption"}
-                textAlign={"left"}
-                color={"red"}
-              >
+              <Typography variant={"caption"} textAlign={"left"} color={"red"}>
                 {`公費負担額(¥16,100/日)は別途当社から選管にてご請求させていただきます。`}
               </Typography>
 
-              <Typography
-                variant={"caption"}
-                textAlign={"left"}
-                color={"red"}
-              >
+              <Typography variant={"caption"} textAlign={"left"} color={"red"}>
                 *工費負担額とは、レンタカー利用の場合の借り入れ金額を指します。
               </Typography>
-
             </Grid>
           </Grid>
 
           <Grid item sm={4}>
             <Grid container rowSpacing={1}>
-
               <Grid item sm={12}>
                 <Box textAlign={"right"}>
                   <Button
                     variant="outlined"
                     startIcon={<PictureAsPdfIcon />}
                     onClick={() => {
-                      alert("PDFはまだ作ってないよ！（9/21 完成予定）");
+                      alert("未完成");
                     }}
                   >
                     見積もり
@@ -93,12 +82,9 @@ const Footer = ({ calcValue }: Props) => {
                   </Button>
                 </Box>
               </Grid>
-
             </Grid>
           </Grid>
-
         </Grid>
-
       </Box>
     </Box>
   );

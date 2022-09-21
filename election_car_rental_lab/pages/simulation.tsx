@@ -116,7 +116,7 @@ const Simulation = () => {
     setCalcData(firstCalcData);
 
     setSendData(sendData);
-  }, []);
+  }, [sendData, setCalcData, setSendData]);
 
   return (
     <Layout>
