@@ -19,9 +19,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: color.main,
-        light: color.light,
-        dark: color.dark,
+        main: "#ed6c02",
+        light: "#ff9800",
+        dark: "#e65100",
         contrastText: "#fff",
       },
       secondary: {
@@ -29,6 +29,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         light: color.light,
         dark: color.dark,
         contrastText: "#fff",
+      },
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 768,
+        lg: 1025,
+        xl: 1536,
       },
     },
   });

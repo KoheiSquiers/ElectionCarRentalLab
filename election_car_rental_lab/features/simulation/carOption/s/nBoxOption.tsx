@@ -10,7 +10,6 @@ interface option {
 }
 
 const NBoxOption = ({ control, errors, calcValue }: option) => {
-  console.dir(calcValue.subTotalPrice);
   return (
     <Grid item sm={12}>
       <Grid

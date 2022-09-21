@@ -24,7 +24,7 @@ import ElectionDiv from "../features/simulation/electionDiv";
 import CarOption from "../features/simulation/carOption";
 import Footer from "../features/simulation/footer";
 import { useGetWindowSize } from "../hooks/useGetWindowSixe";
-import CalcSimulation from "../lib/calcSimulation";
+import CalcSimulation from "../utils/calcSimulation";
 import Layout from "../component/templates/layout";
 
 interface simulation {
@@ -76,30 +76,9 @@ const formDefaultValue = {
 const Simulation = () => {
   const windowSize = useGetWindowSize();
 
-  // カラー変更
-  const [globalColor, setGlobalColor] = useQState<string>(
-    ["globalColor"],
-    "primary",
-  );
-  const handleChangeColor = (event: SelectChangeEvent) => {
-    setGlobalColor(event.target.value);
-  };
-
-  // レイアウトサイズ変更
-  const [containerSize, setContainerSize] = useState<any>("md");
-  const handleChange = (event: SelectChangeEvent) => {
-    setContainerSize(event.target.value);
-  };
-
   // グローバルステート
-  const [sendData, setSendData] = useQState(["sendData"]);
+  const [sendData, setSendData] = useQState(["sendData"], formDefaultValue);
   const [calcData, setCalcData] = useQState(["calcData"]);
-
-  const [calcValue, setCalcValue] = useState<any>({
-    subTotalPrice: 0,
-    optionTotalPrice: 0,
-    totalPrice: 0,
-  });
 
   const {
     handleSubmit,
@@ -110,7 +89,7 @@ const Simulation = () => {
     setValue,
     watch,
   } = useForm<any>({
-    defaultValues: formDefaultValue,
+    defaultValues: sendData,
     // resolver: yupResolver(schema),
   });
 
@@ -119,7 +98,6 @@ const Simulation = () => {
   // 特にAPI fetchは気をつけよう
   useEffect(() => {
     const subscription = watch((value) => {
-      console.dir(value);
       const calcData = CalcSimulation(value);
 
       // グローバルステートにセット
@@ -129,15 +107,20 @@ const Simulation = () => {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  // 初回レンダリング時に計算を行う
+  //
+  // 初回レンダリング時にグローバルステートにセット
+  //
   useEffect(() => {
-    const calcData = CalcSimulation(formDefaultValue);
-    setCalcValue(calcData);
+    // ToDo any!!
+    const firstCalcData = CalcSimulation(sendData);
+    setCalcData(firstCalcData);
+
+    setSendData(sendData);
   }, []);
 
   return (
     <Layout>
-      <Container maxWidth={containerSize}>
+      <Container maxWidth={"md"}>
         <Paper elevation={3} sx={{ p: 3 }}>
           <Box
             sx={{
@@ -151,35 +134,8 @@ const Simulation = () => {
           >
             <Grid container>
               {/*メインタイトル*/}
-              <Grid item sm={8}>
+              <Grid item sm={12}>
                 <Typography variant={"h5"}>料金シュミレーション</Typography>
-              </Grid>
-
-              <Grid item sm={2} sx={{ pr: 1 }}>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel>カラータイプ</InputLabel>
-                  <Select value={globalColor} onChange={handleChangeColor}>
-                    <MenuItem value={"primary"}>青色</MenuItem>
-                    <MenuItem value={"secondary"}>紫色</MenuItem>
-                    <MenuItem value={"error"}>赤色</MenuItem>
-                    <MenuItem value={"warning"}>黄色</MenuItem>
-                    <MenuItem value={"info"}>水色</MenuItem>
-                    <MenuItem value={"success"}>緑色</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-
-              <Grid item sm={2}>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel>レイアウトサイズ</InputLabel>
-                  <Select value={containerSize} onChange={handleChange}>
-                    <MenuItem value={"xs"}>xs</MenuItem>
-                    <MenuItem value={"sm"}>sm</MenuItem>
-                    <MenuItem value={"md"}>md</MenuItem>
-                    <MenuItem value={"lg"}>lg</MenuItem>
-                    <MenuItem value={"xl"}>xl</MenuItem>
-                  </Select>
-                </FormControl>
               </Grid>
 
               <Grid item sm={12}>
@@ -204,18 +160,18 @@ const Simulation = () => {
                   setValue={setValue}
                   control={control}
                   errors={errors}
-                  calcValue={calcValue}
+                  calcValue={calcData}
                 />
 
                 {/*オプション選択*/}
                 <CarOption
                   control={control}
                   errors={errors}
-                  calcValue={calcValue}
+                  calcValue={calcData}
                 />
 
                 {/*  フッター  */}
-                <Footer calcValue={calcValue} />
+                <Footer calcValue={calcData} />
               </form>
             </Grid>
           </Box>

@@ -31,6 +31,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
   const getCarClass = useWatch({ control, name: "carClass" });
   const getCarType = useWatch({ control, name: "carType" });
 
+  // 車のタイプによって、オプション表示を切り替える
   // useWatchでサイレンダンリングされるため、副作用はセットしない
   useEffect(() => {
     switch (getCarType[getCarClass]) {
@@ -43,7 +44,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
       case "every":
         setCarType(
           <EveryOption
@@ -52,7 +53,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
       case "note":
         setCarType(
           <NoteOption
@@ -61,7 +62,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
 
       // mClass
       case "corollaFielder":
@@ -72,7 +73,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
       case "shienta":
         setCarType(
           <ShientaOption
@@ -81,7 +82,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
       case "proBoc":
         // setValue("ampSize", "300");
         setCarType(
@@ -91,7 +92,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
 
       // lClass
       case "noah":
@@ -102,7 +103,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
       case "townAce":
         setCarType(
           <TownAceOption
@@ -111,7 +112,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
 
       // llClass
       case "regiusaceAce":
@@ -122,7 +123,7 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
             calcValue={calcValue}
           />,
         );
-        return;
+        break;
 
       default:
         break;
@@ -133,85 +134,3 @@ const CarTypeSubTotal = ({ setValue, control, errors, calcValue }: Props) => {
 };
 
 export default CarTypeSubTotal;
-
-// <Grid item sm={12}>
-//   <Grid
-//     container
-//     direction="row"
-//     justifyContent="flex-end"
-//     alignItems="flex-end"
-//   >
-//     <Grid item sm={7} />
-//     <Grid item sm={5}>
-//       <RhfToggleButtonGroup
-//         control={control}
-//         errors={errors}
-//         name={"signalLight"}
-//         size={"small"}
-//         sx={{ whiteSpace: "nowrap" }}
-//         options={
-//           [
-//             { label: "外照明", value: "outLight" },
-//             { label: "内照明", value: "inLight" },
-//             { label: "登壇", value: "topLight" },
-//           ]
-//         }
-//       />
-//     </Grid>
-//
-//     <Grid item sm={8}>
-//       <Grid container>
-//
-//         <Grid item sm={12}>
-//           <RhfRadioButton
-//             control={control}
-//             errors={errors}
-//             name={"ampSize"}
-//             label={"アンプサイズ"}
-//             size={"small"}
-//             row={true}
-//             sx={{ pl: "20px", flexWrap: "nowrap" }}
-//             options={
-//               [
-//                 { label: "150w", value: "150" },
-//                 { label: "300w", value: "300" },
-//                 { label: "600w", value: "600" },
-//               ]
-//             }
-//           />
-//         </Grid>
-//
-//         <Grid item sm={12}>
-//           <RhfRadioButton
-//             control={control}
-//             errors={errors}
-//             name={"speaker"}
-//             label={"スピーカー"}
-//             size={"small"}
-//             row={true}
-//             sx={{ pl: "20px" }}
-//             options={
-//               [
-//                 { label: "2個", value: "twe" },
-//                 { label: "4個", value: "four" },
-//               ]
-//             }
-//           />
-//         </Grid>
-//
-//       </Grid>
-//     </Grid>
-//
-//     <Grid item sm={4}>
-//       <Typography
-//         variant={"h6"}
-//         textAlign={"right"}
-//         fontStyle={"italic"}
-//       >
-//         {`小計 ¥ ${calcValue.subTotalPrice.toLocaleString()}（税込）`}
-//       </Typography>
-//     </Grid>
-//
-//
-//   </Grid>
-// </Grid>

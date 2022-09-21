@@ -38,6 +38,7 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
   const getCarClass = useWatch({ control, name: "carClass" });
 
   useEffect(() => {
+    // 車クラスによって表示する車を変更する
     switch (getCarClass) {
       case "s":
         setCarClass(<LightCar control={control} setValue={setValue} />);

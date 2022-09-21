@@ -17,6 +17,7 @@ export const useGetZipAddress = (zipcode: string) => {
     },
     {
       keepPreviousData: true,
+      enabled: !!zipcode,
     },
   );
   if (isLoading && isError) {

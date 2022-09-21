@@ -1,9 +1,8 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-
-// reactQuery
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+// reactQuery
 const queryClient = new QueryClient();
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 

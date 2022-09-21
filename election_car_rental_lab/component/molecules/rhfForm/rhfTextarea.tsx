@@ -12,6 +12,7 @@ export interface TextAreaProps {
   defaultValue?: string;
   variant?: "outlined" | "filled" | "standard";
   size?: "medium" | "small";
+  placeholder?: string;
   multiline?: boolean;
   rows?: number;
   readOnly?: boolean;
@@ -33,6 +34,7 @@ const RhfTextarea = ({
   defaultValue,
   variant = "outlined",
   size = "medium",
+  placeholder,
   multiline = false,
   rows = 0,
   readOnly = false,
@@ -54,6 +56,7 @@ const RhfTextarea = ({
           disabled={disabled}
           variant={variant}
           size={size}
+          placeholder={placeholder}
           multiline={multiline}
           rows={rows}
           error={name in errors}
