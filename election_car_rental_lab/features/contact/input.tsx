@@ -124,7 +124,7 @@ const InputForm = ({ variant, setStepper, setInputData }: InputFormProps) => {
                 onClose={handleClose}
                 sx={{ width: "100%" }}
               >
-                住所の取得に失敗しました。
+                住所の検索に失敗しました。
               </Alert>
             </Snackbar>
           )}

@@ -27,6 +27,29 @@ import { useGetWindowSize } from "../hooks/useGetWindowSixe";
 import CalcSimulation from "../lib/calcSimulation";
 import Layout from "../component/templates/layout";
 
+interface simulation {
+  electoralClass: string; // レンタル区分
+  electionArea: { label: string; value: string }; // 選挙エリア
+  parliamentClass: string; // 議会区分
+
+  carClass: string; // 車区分
+  carType: { s: string; m: string; l: string; ll: string }; // 車種
+
+  signalLight: string; // ライト区分
+  ampSize: string; // アンプサイズ
+  speaker: string; // スピーカー
+
+  wirelessMike: boolean; // ワイヤレスマイク
+  wirelessMikeNumber: number; //ワイヤレスマイク数
+  sd: boolean; // SDカード
+  wirelessIncome: boolean; // ワイヤレスインカム
+  handSpeaker: boolean; // ハンドスピーカー
+  bluetoothUnit: boolean; // Bluetoothユニット
+  insurance: boolean;
+  insuranceDays: number;
+  bodyRapping: boolean; // ボディラッピング
+}
+
 const formDefaultValue = {
   electoralClass: "union", // レンタル区分
   electionArea: { label: "鳥取県", value: "tottori" }, // 選挙エリア
@@ -98,7 +121,6 @@ const Simulation = () => {
     const subscription = watch((value) => {
       console.dir(value);
       const calcData = CalcSimulation(value);
-      setCalcValue(calcData);
 
       // グローバルステートにセット
       setSendData(value);
