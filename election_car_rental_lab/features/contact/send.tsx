@@ -41,10 +41,10 @@ interface ConfLabelProps {
 const ConfLabel = ({ label, value }: ConfLabelProps) => {
   return (
     <>
-      <Grid xs={12} sm={6}>
-        <Typography>【 {label} 】</Typography>
+      <Grid xs={12} sm={6} sx={{ textAlign: { xs: "center", md: "left" } }}>
+        <Typography fontWeight={"bold"}>【 {label} 】</Typography>
       </Grid>
-      <Grid xs={12} sm={6} sx={{ textAlign: { xs: "right", sm: "left" } }}>
+      <Grid xs={12} sm={6} sx={{ textAlign: { xs: "center", sm: "left" } }}>
         <Typography>{value}</Typography>
       </Grid>
     </>

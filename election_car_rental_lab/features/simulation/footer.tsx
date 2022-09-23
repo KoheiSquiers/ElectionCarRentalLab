@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import SendIcon from "@mui/icons-material/Send";
 
 import { useRouter } from "next/router";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Quote } from "../../public/pdfCreate";
 
 interface Props {
   calcValue: any;
@@ -11,13 +13,20 @@ interface Props {
 
 const Footer = ({ calcValue }: Props) => {
   const router = useRouter();
+
+  // hookを使用して、PDFDownloadLinkがSSRを実行しないようにする
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <Box
       sx={{
         position: "sticky",
         bottom: 0,
         mb: 0,
-        height: 100,
+        height: 110,
         background: "white",
 
         pl: 3,
@@ -56,17 +65,21 @@ const Footer = ({ calcValue }: Props) => {
           <Grid item sm={4}>
             <Grid container rowSpacing={1}>
               <Grid item sm={12}>
-                <Box textAlign={"right"}>
-                  <Button
-                    variant="outlined"
-                    startIcon={<PictureAsPdfIcon />}
-                    onClick={() => {
-                      alert("未完成");
-                    }}
+                {isClient && (
+                  <PDFDownloadLink
+                    document={<Quote calcValue={calcValue} />}
+                    fileName="[選挙レンタカーラボ]見積書.pdf"
                   >
-                    見積もり
-                  </Button>
-                </Box>
+                    <Box textAlign={"right"}>
+                      <Button
+                        variant="outlined"
+                        startIcon={<PictureAsPdfIcon />}
+                      >
+                        見積もり
+                      </Button>
+                    </Box>
+                  </PDFDownloadLink>
+                )}
               </Grid>
 
               <Grid item sm={12}>

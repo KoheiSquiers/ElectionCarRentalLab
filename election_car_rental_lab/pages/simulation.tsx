@@ -27,7 +27,7 @@ import { useGetWindowSize } from "../hooks/useGetWindowSixe";
 import CalcSimulation from "../utils/calcSimulation";
 import Layout from "../component/templates/layout";
 
-interface simulation {
+export interface simulation {
   electoralClass: string; // レンタル区分
   electionArea: { label: string; value: string }; // 選挙エリア
   parliamentClass: string; // 議会区分
@@ -120,63 +120,40 @@ const Simulation = () => {
 
   return (
     <Layout>
-      <Container maxWidth={"md"}>
-        <Paper elevation={3} sx={{ p: 3 }}>
-          <Box
-            sx={{
-              pt: 0,
-              pl: 3,
-              pr: 3,
-              pb: 0,
-              overflow: "scroll",
-              height: windowSize.height - 70,
-            }}
-          >
-            <Grid container>
-              {/*メインタイトル*/}
-              <Grid item sm={12}>
-                <Typography variant={"h5"}>料金シュミレーション</Typography>
-              </Grid>
+      <Grid container>
+        {/*メインタイトル*/}
+        <Grid item sm={12}>
+          <Typography variant={"h5"}>料金シュミレーション</Typography>
+        </Grid>
 
-              <Grid item sm={12}>
-                <Divider sx={{ mb: 2, mt: 2 }} />
-              </Grid>
+        <Grid item sm={12}>
+          <Divider sx={{ mb: 2, mt: 2 }} />
+        </Grid>
 
-              {/*TODO 最適化*/}
-              <form
-              // onClick={handleSubmit(formSubmitHandler)}
-              // onChange={handleSubmit(formSubmitHandler)}
-              // onBlur={handleSubmit(formSubmitHandler)}
-              >
-                {/*選挙区分*/}
-                <ElectionDiv
-                  control={control}
-                  errors={errors}
-                  setValue={setValue}
-                />
+        {/*TODO 最適化*/}
+        <form
+        // onClick={handleSubmit(formSubmitHandler)}
+        // onChange={handleSubmit(formSubmitHandler)}
+        // onBlur={handleSubmit(formSubmitHandler)}
+        >
+          {/*選挙区分*/}
+          <ElectionDiv control={control} errors={errors} setValue={setValue} />
 
-                {/*サイズ・車両タイプ*/}
-                <CarClass
-                  setValue={setValue}
-                  control={control}
-                  errors={errors}
-                  calcValue={calcData}
-                />
+          {/*サイズ・車両タイプ*/}
+          <CarClass
+            setValue={setValue}
+            control={control}
+            errors={errors}
+            calcValue={calcData}
+          />
 
-                {/*オプション選択*/}
-                <CarOption
-                  control={control}
-                  errors={errors}
-                  calcValue={calcData}
-                />
+          {/*オプション選択*/}
+          <CarOption control={control} errors={errors} calcValue={calcData} />
 
-                {/*  フッター  */}
-                <Footer calcValue={calcData} />
-              </form>
-            </Grid>
-          </Box>
-        </Paper>
-      </Container>
+          {/*  フッター  */}
+          <Footer calcValue={calcData} />
+        </form>
+      </Grid>
     </Layout>
   );
 };

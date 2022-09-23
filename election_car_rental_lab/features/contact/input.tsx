@@ -480,7 +480,12 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
           </Grid>
           <Grid item xs={6}>
             <Box textAlign={"center"} padding={2}>
-              <Button type={"submit"} variant={"contained"} centerRipple={true}>
+              <Button
+                type={"submit"}
+                variant={"contained"}
+                centerRipple={true}
+                sx={{ whiteSpace: "nowrap" }}
+              >
                 確認画面へ
               </Button>
             </Box>

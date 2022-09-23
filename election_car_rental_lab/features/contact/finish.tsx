@@ -14,7 +14,7 @@ const Finish = ({ setStepper }: SendingProps) => {
     <>
       <Container maxWidth="xs">
         <Grid container>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Typography
               textAlign={"center"}
               variant={"h6"}
@@ -24,37 +24,37 @@ const Finish = ({ setStepper }: SendingProps) => {
             </Typography>
           </Grid>
 
-          <Grid item sm={12} sx={{ pt: 2 }}>
+          <Grid item xs={12} sx={{ pt: 2 }}>
             <Typography textAlign={"center"}>仮文章</Typography>
           </Grid>
 
-          <Grid item sm={12} sx={{ pt: 2 }}>
+          <Grid item xs={12} sx={{ pt: 2 }}>
             <Typography textAlign={"center"}>
               お問合せいただきありがとうございました。
             </Typography>
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Typography textAlign={"center"}>
               3営業日以内にご希望いただいた連絡方法にて、弊社からご連絡させていただきます。
             </Typography>
           </Grid>
-          <Grid item sm={12} sx={{ pt: 2 }}>
+          <Grid item xs={12} sx={{ pt: 2 }}>
             <Typography textAlign={"center"}>
               ＊3営業日以内に連絡がない場合は、お手数ですが、下記連絡先までお問合せください。
             </Typography>
           </Grid>
-          <Grid item sm={12} sx={{ pt: 2 }}>
+          <Grid item xs={12} sx={{ pt: 2 }}>
             <Typography textAlign={"center"}>
               ＊3営業日以内に連絡がない場合は、お手数ですが、下記連絡先までお問合せください。
             </Typography>
           </Grid>
-          <Grid item sm={12} sx={{ pt: 2 }}>
+          <Grid item xs={12} sx={{ pt: 2 }}>
             <Typography variant={"h6"} textAlign={"center"}>
               090-1234-4567
             </Typography>
           </Grid>
 
-          <Grid item sm={6} sx={{ pt: 4 }}>
+          <Grid item xs={8} sx={{ pt: 4, pr: 2 }}>
             <Box textAlign={"center"}>
               <Button
                 variant="outlined"
@@ -63,12 +63,12 @@ const Finish = ({ setStepper }: SendingProps) => {
                   alert("未完成");
                 }}
               >
-                見積もり発行
+                見積もり書
               </Button>
             </Box>
           </Grid>
 
-          <Grid item sm={6} sx={{ pt: 4 }}>
+          <Grid item xs={4} sx={{ pt: 4 }}>
             <Box textAlign={"center"}>
               <Button
                 variant={"contained"}
@@ -77,7 +77,7 @@ const Finish = ({ setStepper }: SendingProps) => {
                   router.push("simulation");
                 }}
               >
-                {"　　　TOP　　　"}
+                {"TOP"}
               </Button>
             </Box>
           </Grid>

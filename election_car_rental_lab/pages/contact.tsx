@@ -105,72 +105,57 @@ const Contact = () => {
   return (
     <>
       <Layout>
-        <Container maxWidth={"md"}>
-          <Paper elevation={3} sx={{ p: 3 }}>
-            <Box
-              sx={{
-                pt: 0,
-                pl: 3,
-                pr: 3,
-                pb: 0,
-                overflow: "scroll",
-                height: windowSize.height - 70,
-              }}
-            >
-              <Grid container>
-                {/*メインタイトル*/}
-                <Grid item xs={12} sm={12}>
-                  <Typography variant={"h5"}>お問合せ</Typography>
-                </Grid>
+        <Grid container>
+          {/*メインタイトル*/}
+          <Grid item xs={12}>
+            <Typography variant={"h5"}>お問合せ</Typography>
+          </Grid>
 
-                <Grid item sm={12}>
-                  <Divider sx={{ mb: 2, mt: 2 }} />
-                </Grid>
+          <Grid item xs={12}>
+            <Divider sx={{ mb: 2, mt: 2 }} />
+          </Grid>
 
-                {/*ステッパー*/}
-                <Grid item sm={12}>
-                  <Box sx={{ pb: 4 }}>
-                    <Container maxWidth="sm">
-                      <Stepper activeStep={stepper}>
-                        <Step>
-                          <StepButton>入力</StepButton>
-                        </Step>
+          {/*ステッパー*/}
+          <Grid item xs={12}>
+            <Box sx={{ pb: 4 }}>
+              <Container maxWidth="sm">
+                <Stepper activeStep={stepper}>
+                  <Step>
+                    <StepButton>入力</StepButton>
+                  </Step>
 
-                        <Step>
-                          <StepButton>確認</StepButton>
-                        </Step>
+                  <Step>
+                    <StepButton>確認</StepButton>
+                  </Step>
 
-                        <Step>
-                          <StepButton>完了</StepButton>
-                        </Step>
-                      </Stepper>
-                    </Container>
-                  </Box>
-                </Grid>
-
-                {/*メインフォーム*/}
-                <Grid item sm={12}>
-                  {/*入力*/}
-                  {stepper === 0 && (
-                    <InputForm
-                      setInputData={setInputData}
-                      inputData={inputData}
-                      setStepper={setStepper}
-                    />
-                  )}
-
-                  {/*確認*/}
-                  {stepper === 1 && (
-                    <Send inputData={inputData} setStepper={setStepper} />
-                  )}
-
-                  {/*送信*/}
-                  {stepper === 2 && <Finish setStepper={setStepper} />}
-                </Grid>
-              </Grid>
+                  <Step>
+                    <StepButton>完了</StepButton>
+                  </Step>
+                </Stepper>
+              </Container>
             </Box>
-          </Paper>
-        </Container>
+          </Grid>
+
+          {/*メインフォーム*/}
+          <Grid item xs={12}>
+            {/*入力*/}
+            {stepper === 0 && (
+              <InputForm
+                setInputData={setInputData}
+                inputData={inputData}
+                setStepper={setStepper}
+              />
+            )}
+
+            {/*確認*/}
+            {stepper === 1 && (
+              <Send inputData={inputData} setStepper={setStepper} />
+            )}
+
+            {/*送信*/}
+            {stepper === 2 && <Finish setStepper={setStepper} />}
+          </Grid>
+        </Grid>
       </Layout>
     </>
   );
