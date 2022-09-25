@@ -1,16 +1,31 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import { Box, Card, CardContent, CardMedia, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
+import { useGetWindowSize } from "../../../hooks/useGetWindowSixe";
 
 interface CarToggleProps {
   control: any;
   name: string;
-  options: { label: string, value: string, priceLabel: string | number, image: any }[];
+  options: {
+    label: string;
+    value: string;
+    priceLabel: string | number;
+    image: any;
+  }[];
 }
 
 const CarToggle = ({ control, name, options }: CarToggleProps) => {
-
+  const windowSize = useGetWindowSize();
+  const noSmartPhone = windowSize.width >= 600;
   return (
     <Controller
       control={control}
@@ -20,38 +35,38 @@ const CarToggle = ({ control, name, options }: CarToggleProps) => {
           {...field}
           exclusive
           color="primary"
+          orientation={noSmartPhone ? "horizontal" : "vertical"}
           fullWidth
-          sx={{ pb: 3 }}
+          sx={{
+            pb: 3,
+          }}
           onChange={(e, value) => {
             if (value !== null) {
               field.onChange(value);
             }
           }}
         >
-
           {options.map((option, index) => (
-            <ToggleButton
-              key={index}
-              value={option.value}
-            >
+            <ToggleButton key={index} value={option.value}>
               <Card sx={{ backgroundColor: "#fff0", boxShadow: "none" }}>
                 <CardMedia>
-                  <Box sx={{ width: "100%" }}>
+                  <Box
+                    sx={{
+                      width: "100%",
+                    }}
+                  >
                     <Image src={option.image} height={"100"} width={"150"} />
                   </Box>
                 </CardMedia>
                 <CardContent>
-                  <Typography gutterBottom component="div" sx={{ whiteSpace: "nowrap" }}>
-                    {option.label}
-                  </Typography>
-                  <Typography gutterBottom component="div" sx={{ whiteSpace: "nowrap" }}>
+                  <Typography gutterBottom>{option.label}</Typography>
+                  <Typography gutterBottom sx={{ wordBreak: "break-all" }}>
                     {option.priceLabel}
                   </Typography>
                 </CardContent>
               </Card>
             </ToggleButton>
           ))}
-
         </ToggleButtonGroup>
       )}
     />

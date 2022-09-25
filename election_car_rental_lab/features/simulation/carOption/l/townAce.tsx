@@ -12,21 +12,21 @@ interface option {
 const TownAceOption = ({ control, errors, calcValue }: option) => {
   console.dir(calcValue.subTotalPrice);
   return (
-    <Grid item sm={12}>
+    <Grid item xs={12}>
       <Grid
         container
         direction="row"
         justifyContent="flex-end"
         alignItems="flex-end"
       >
-        <Grid item sm={7} />
-        <Grid item sm={5}>
+        <Grid item xs={0} sm={7} />
+        <Grid item xs={12} sm={5} sx={{ pb: 2 }}>
           <RhfToggleButtonGroup
             control={control}
             errors={errors}
             name={"signalLight"}
             size={"small"}
-            sx={{ whiteSpace: "nowrap" }}
+            sx={{}}
             options={[
               // todo defaltvalueSet
               // { label: "内照明", value: "inLight" },
@@ -36,9 +36,9 @@ const TownAceOption = ({ control, errors, calcValue }: option) => {
           />
         </Grid>
 
-        <Grid item sm={8}>
+        <Grid item xs={12} sm={8}>
           <Grid container>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfRadioButton
                 control={control}
                 errors={errors}
@@ -46,7 +46,7 @@ const TownAceOption = ({ control, errors, calcValue }: option) => {
                 label={"アンプサイズ"}
                 size={"small"}
                 row={true}
-                sx={{ pl: "20px", flexWrap: "nowrap" }}
+                sx={{ pl: "20px" }}
                 options={[
                   // todo defaltvalueSet
                   // { label: "300w", value: "300" },
@@ -55,7 +55,7 @@ const TownAceOption = ({ control, errors, calcValue }: option) => {
               />
             </Grid>
 
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfRadioButton
                 control={control}
                 errors={errors}
@@ -73,7 +73,7 @@ const TownAceOption = ({ control, errors, calcValue }: option) => {
           </Grid>
         </Grid>
 
-        <Grid item sm={4}>
+        <Grid item xs={12} sm={4}>
           <Typography variant={"h6"} textAlign={"right"} fontStyle={"italic"}>
             {`小計 ¥ ${calcValue.subTotalPrice.toLocaleString()}（税込）`}
           </Typography>

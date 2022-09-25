@@ -71,14 +71,14 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
 
   return (
     <>
-      <Grid item sm={12}>
+      <Grid item xs={12}>
         <Typography variant={"h6"}>オプション</Typography>
       </Grid>
 
-      <Grid item sm={12}>
+      <Grid item xs={12}>
         <Container fixed>
           <Grid container alignItems="flex-end" sx={{ pb: 2 }}>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <Grid
                 container
                 spacing={0}
@@ -86,17 +86,17 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 justifyContent="flex-start"
                 alignItems="center"
               >
-                <Grid item sm={4}>
+                <Grid item xs={6} sm={4}>
                   <RhfCheckbox
                     control={control}
                     errors={errors}
                     label={"ワイヤレスマイク"}
-                    sx={{ pl: "20px", flexWrap: "nowrap" }}
+                    sx={{ pl: "20px" }}
                     options={[{ label: mikeLabel, name: "wirelessMike" }]}
                   />
                 </Grid>
 
-                <Grid item sm={8}>
+                <Grid item xs={6} sm={8}>
                   <RhfSelectBox
                     name={"wirelessMikeNumber"}
                     label={""}
@@ -114,7 +114,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               </Grid>
             </Grid>
 
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfCheckbox
                 control={control}
                 errors={errors}
@@ -125,7 +125,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               />
             </Grid>
 
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfCheckbox
                 control={control}
                 errors={errors}
@@ -136,7 +136,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               />
             </Grid>
 
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfCheckbox
                 control={control}
                 errors={errors}
@@ -147,7 +147,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               />
             </Grid>
 
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfCheckbox
                 control={control}
                 errors={errors}
@@ -158,7 +158,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               />
             </Grid>
 
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <Grid
                 container
                 spacing={0}
@@ -166,7 +166,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 justifyContent="flex-start"
                 alignItems="center"
               >
-                <Grid item sm={4}>
+                <Grid item xs={6} sm={4}>
                   <RhfCheckbox
                     control={control}
                     errors={errors}
@@ -176,7 +176,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                     options={[{ label: insuranceLabel, name: "insurance" }]}
                   />
                 </Grid>
-                <Grid item sm={8}>
+                <Grid item xs={6} sm={8}>
                   <RhfSelectBox
                     control={control}
                     errors={errors}
@@ -191,7 +191,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               </Grid>
             </Grid>
 
-            <Grid item sm={6}>
+            <Grid item xs={12} sm={6}>
               <RhfCheckbox
                 control={control}
                 errors={errors}
@@ -202,10 +202,10 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
               />
             </Grid>
 
-            <Grid item sm={6}>
+            <Grid item xs={12} sm={6}>
               <Typography
                 variant={"h6"}
-                textAlign={"right"}
+                textAlign={{ xs: "left", sm: "right" }}
                 fontStyle={"italic"}
                 // borderBottom={1}
               >
@@ -223,11 +223,11 @@ export default CarOption;
 
 // ゴミ箱
 
-// <Grid item sm={12}>
+// <Grid item xs={12}>
 //   <Container fixed>
 //     <Grid container>
 //
-//       <Grid item sm={12}>
+//       <Grid item xs={12}>
 //         <RhfRadioButton
 //           control={control}
 //           name={"wirelessMike"}
@@ -241,7 +241,7 @@ export default CarOption;
 //         />
 //       </Grid>
 //
-//       <Grid item sm={12}>
+//       <Grid item xs={12}>
 //         <RhfRadioButton
 //           control={control}
 //           name={"sd"}
@@ -255,7 +255,7 @@ export default CarOption;
 //         />
 //       </Grid>
 //
-//       <Grid item sm={12}>
+//       <Grid item xs={12}>
 //         <RhfRadioButton
 //           control={control}
 //           name={"wirelessIncome"}
@@ -269,7 +269,7 @@ export default CarOption;
 //         />
 //       </Grid>
 //
-//       <Grid item sm={12}>
+//       <Grid item xs={12}>
 //         <RhfRadioButton
 //           control={control}
 //           name={"handSpeaker"}
@@ -283,7 +283,7 @@ export default CarOption;
 //         />
 //       </Grid>
 //
-//       <Grid item sm={12}>
+//       <Grid item xs={12}>
 //         <RhfRadioButton
 //           control={control}
 //           name={"bodyRapping"}

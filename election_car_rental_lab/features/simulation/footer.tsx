@@ -29,7 +29,7 @@ const Footer = ({ sendData, calcData }: Props) => {
         position: "sticky",
         bottom: 0,
         mb: 0,
-        height: 110,
+        // height: 110,
         background: "white",
 
         pl: 3,
@@ -49,7 +49,7 @@ const Footer = ({ sendData, calcData }: Props) => {
                   variant={"h5"}
                   textAlign={"left"}
                   fontStyle={"italic"}
-                  noWrap={true}
+                  // noWrap={true}
                   paddingBottom={1}
                 >
                   {`合計金額 ¥${calcData?.totalPrice?.toLocaleString()}（税込）`}

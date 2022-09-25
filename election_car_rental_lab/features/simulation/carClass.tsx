@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -66,7 +67,7 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
       <Grid item sm={12} sx={{ pb: 2 }}>
         <Container fixed>
           <Grid container spacing={1}>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfToggleButtonGroup
                 control={control}
                 errors={errors}
@@ -77,13 +78,15 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
                   { label: "Lクラス", value: "l" },
                   { label: "LLクラス", value: "ll" },
                 ]}
-                sx={{ pb: 3, whiteSpace: "nowrap" }}
+                sx={{ pb: 3 }}
+                // sx={{ pb: 3, whiteSpace: "nowrap" }}
               />
             </Grid>
 
             {/*カード写真*/}
-            {carClass}
 
+            {carClass}
+            {/*サブトータル*/}
             <CarTypeSubTotal
               setValue={setValue}
               control={control}

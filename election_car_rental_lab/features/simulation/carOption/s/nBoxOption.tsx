@@ -11,28 +11,28 @@ interface option {
 
 const NBoxOption = ({ control, errors, calcValue }: option) => {
   return (
-    <Grid item sm={12}>
+    <Grid item xs={12}>
       <Grid
         container
         direction="row"
         justifyContent="flex-end"
         alignItems="flex-end"
       >
-        <Grid item sm={7} />
-        <Grid item sm={5}>
+        <Grid item xs={0} sm={7} />
+        <Grid item xs={12} sm={5} sx={{ pb: 2 }}>
           <RhfToggleButtonGroup
             control={control}
             errors={errors}
             name={"signalLight"}
             size={"small"}
-            sx={{ whiteSpace: "nowrap" }}
+            sx={{}}
             options={[{ label: "外照明", value: "outLight" }]}
           />
         </Grid>
 
-        <Grid item sm={8}>
+        <Grid item xs={12} sm={8}>
           <Grid container>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfRadioButton
                 control={control}
                 errors={errors}
@@ -40,12 +40,12 @@ const NBoxOption = ({ control, errors, calcValue }: option) => {
                 label={"アンプサイズ"}
                 size={"small"}
                 row={true}
-                sx={{ pl: "20px", flexWrap: "nowrap" }}
+                sx={{ pl: "20px" }}
                 options={[{ label: "150w", value: "150" }]}
               />
             </Grid>
 
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <RhfRadioButton
                 control={control}
                 errors={errors}
@@ -63,7 +63,7 @@ const NBoxOption = ({ control, errors, calcValue }: option) => {
           </Grid>
         </Grid>
 
-        <Grid item sm={4}>
+        <Grid item xs={12} sm={4}>
           <Typography variant={"h6"} textAlign={"right"} fontStyle={"italic"}>
             {`小計 ¥ ${calcValue.subTotalPrice.toLocaleString()}（税込）`}
           </Typography>

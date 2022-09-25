@@ -125,11 +125,11 @@ const Simulation = () => {
     <Layout>
       <Grid container>
         {/*メインタイトル*/}
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Typography variant={"h5"}>料金シュミレーション</Typography>
         </Grid>
 
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Divider sx={{ mb: 2, mt: 2 }} />
         </Grid>
 

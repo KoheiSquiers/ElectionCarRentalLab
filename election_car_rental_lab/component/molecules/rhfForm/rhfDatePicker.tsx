@@ -11,29 +11,31 @@ export interface DatePickerProps {
   name: string;
   label: string;
 
+  variant?: "outlined" | "filled" | "standard";
   required?: boolean;
   views?: Array<"year" | "day" | "month">;
   openTo?: "year" | "day" | "month";
+  size?: "medium" | "small";
   mask?: string;
   inputFormat?: string;
 }
 
 type RhfDatePickerProps = RhfProps & DatePickerProps;
 
-const RhfDatePicker = (
-  {
-    control,
-    errors,
-    name,
-    label,
+const RhfDatePicker = ({
+  control,
+  errors,
+  name,
+  label,
 
-    required = false,
-    views = ["year", "month", "day"],
-    openTo = "year",
-    inputFormat = "yyyy/MM/dd",
-    mask = "____/__/__",
-  }: RhfDatePickerProps) => {
-
+  size = "small",
+  variant = "outlined",
+  required = false,
+  views = ["year", "month", "day"],
+  openTo = "year",
+  inputFormat = "yyyy/MM/dd",
+  mask = "____/__/__",
+}: RhfDatePickerProps) => {
   const styles = {
     mobiledialogprops: {
       ".MuiDatePickerToolbar-title": {
@@ -75,8 +77,8 @@ const RhfDatePicker = (
                 {...params}
                 required={required}
                 fullWidth
-                size={"small"}
-                variant={"standard"}
+                size={size}
+                variant={variant}
                 inputProps={{
                   ...params.inputProps,
                   placeholder: "yyyy/MM/dd/", //プレースホルダー（フォーカスを合わせたときに薄く表示される入力例）
