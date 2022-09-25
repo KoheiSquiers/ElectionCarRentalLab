@@ -253,7 +253,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 variant={"h6"}
                 textAlign={{ xs: "left", sm: "right" }}
                 fontStyle={"italic"}
-                // borderBottom={1}aa
+              >
                 {`オプション ¥ ${calcValue?.optionTotalPrice?.toLocaleString()}（税込）`}
               </Typography>
             </Grid>
