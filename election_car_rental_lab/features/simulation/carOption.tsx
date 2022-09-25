@@ -21,6 +21,8 @@ import {
 } from "../../component/molecules/rhfForm";
 import RhfCheckbox from "../../component/molecules/rhfForm/rhfCheckbox";
 import { monthSelect } from "../../constants/month";
+import { useQState } from "../../hooks/library/useQstate";
+import { SendDataType } from "../../pages/simulation";
 
 interface Props {
   control: any;
@@ -69,6 +71,8 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
     setInsuranceLabel(`¥${label.toLocaleString()}`);
   }, [getInsurance, getInsuranceDays]);
 
+  const [sendData] = useQState<SendDataType>(["sendData"]);
+
   return (
     <>
       <Grid item xs={12}>
@@ -92,7 +96,13 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                     errors={errors}
                     label={"ワイヤレスマイク"}
                     sx={{ pl: "20px" }}
-                    options={[{ label: mikeLabel, name: "wirelessMike" }]}
+                    options={[
+                      {
+                        label: mikeLabel,
+                        name: "wirelessMike",
+                        defaultChecked: sendData.wirelessMike,
+                      },
+                    ]}
                   />
                 </Grid>
 
@@ -121,7 +131,13 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"SD"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={[{ label: "¥20,000", name: "sd" }]}
+                options={[
+                  {
+                    label: "¥20,000",
+                    name: "sd",
+                    defaultChecked: sendData.sd,
+                  },
+                ]}
               />
             </Grid>
 
@@ -132,7 +148,13 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"ワイヤレスインカム"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={[{ label: "¥1,000", name: "wirelessIncome" }]}
+                options={[
+                  {
+                    label: "¥1,000",
+                    name: "wirelessIncome",
+                    defaultChecked: sendData.wirelessIncome,
+                  },
+                ]}
               />
             </Grid>
 
@@ -143,7 +165,13 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"ハンドスピーカー"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={[{ label: "¥1,500", name: "handSpeaker" }]}
+                options={[
+                  {
+                    label: "¥1,500",
+                    name: "handSpeaker",
+                    defaultChecked: sendData.handSpeaker,
+                  },
+                ]}
               />
             </Grid>
 
@@ -154,7 +182,13 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"Bluetoothユニット"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={[{ label: "￥15,000", name: "bluetoothUnit" }]}
+                options={[
+                  {
+                    label: "￥15,000",
+                    name: "bluetoothUnit",
+                    defaultChecked: sendData.bluetoothUnit,
+                  },
+                ]}
               />
             </Grid>
 
@@ -173,7 +207,13 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                     label={"保険"}
                     row={true}
                     sx={{ pl: "20px" }}
-                    options={[{ label: insuranceLabel, name: "insurance" }]}
+                    options={[
+                      {
+                        label: insuranceLabel,
+                        name: "insurance",
+                        defaultChecked: sendData.insurance,
+                      },
+                    ]}
                   />
                 </Grid>
                 <Grid item xs={6} sm={8}>
@@ -198,7 +238,13 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 label={"ボディラッピング"}
                 row={true}
                 sx={{ pl: "20px" }}
-                options={[{ label: "要相談", name: "bodyRapping" }]}
+                options={[
+                  {
+                    label: "要相談",
+                    name: "bodyRapping",
+                    defaultChecked: sendData.bodyRapping,
+                  },
+                ]}
               />
             </Grid>
 
@@ -207,8 +253,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 variant={"h6"}
                 textAlign={{ xs: "left", sm: "right" }}
                 fontStyle={"italic"}
-                // borderBottom={1}
-              >
+                // borderBottom={1}aa
                 {`オプション ¥ ${calcValue?.optionTotalPrice?.toLocaleString()}（税込）`}
               </Typography>
             </Grid>

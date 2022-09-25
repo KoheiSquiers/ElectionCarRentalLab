@@ -1,7 +1,12 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Quote } from "../../public/pdfCreate";
+import { useQState } from "../../hooks/library/useQstate";
+import { CalcDataType } from "../../utils/calcSimulation";
+import { SendDataType } from "../../pages/simulation";
 
 interface SendingProps {
   setStepper: any;
@@ -9,7 +14,14 @@ interface SendingProps {
 
 const Finish = ({ setStepper }: SendingProps) => {
   const router = useRouter();
+  const [sendData] = useQState<SendDataType>(["sendData"]);
+  const [calcData] = useQState<CalcDataType>(["calcData"]);
 
+  // hookを使用して、PDFDownloadLinkがSSRを実行しないようにする
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
     <>
       <Container maxWidth="xs">
@@ -56,15 +68,19 @@ const Finish = ({ setStepper }: SendingProps) => {
 
           <Grid item xs={8} sx={{ pt: 4, pr: 2 }}>
             <Box textAlign={"center"}>
-              <Button
-                variant="outlined"
-                startIcon={<PictureAsPdfIcon />}
-                onClick={() => {
-                  alert("未完成");
-                }}
-              >
-                見積もり書
-              </Button>
+              {isClient && (
+                <PDFDownloadLink
+                  document={<Quote sendData={sendData} calcData={calcData} />}
+                  fileName="[選挙レンタカーラボ]見積書.pdf"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Box textAlign={"right"}>
+                    <Button variant="outlined" startIcon={<PictureAsPdfIcon />}>
+                      見積もり
+                    </Button>
+                  </Box>
+                </PDFDownloadLink>
+              )}
             </Box>
           </Grid>
 

@@ -112,6 +112,11 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
         insurance: sendData?.insurance, //保険
         insuranceDays: sendData?.insuranceDays, // 保険日数
         bodyRapping: sendData?.bodyRapping, // ボディラッピング
+
+        //金額
+        subTotalPrice: calcData?.subTotalPrice,
+        optionTotalPrice: calcData?.optionTotalPrice,
+        totalPrice: calcData?.totalPrice,
       };
 
       send(serviceID, templateID, template_param, "tvR3Qt2HckYv81QKY").then(
@@ -339,8 +344,8 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
         </Grid>
         <ConfLabel label={"合計金額"} value={PriceConv(calcData?.totalPrice)} />
 
-        <Grid item sm={6}>
-          <Box textAlign={"center"} padding={2}>
+        <Grid item xs={6}>
+          <Box textAlign={{ xs: "left", sm: "center" }} padding={2}>
             <Button
               variant={"outlined"}
               centerRipple={true}
@@ -352,8 +357,8 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
             </Button>
           </Box>
         </Grid>
-        <Grid item sm={6}>
-          <Box textAlign={"center"} padding={2}>
+        <Grid item xs={6}>
+          <Box textAlign={{ xs: "right", sm: "right" }} padding={2}>
             <Button
               variant={"contained"}
               centerRipple={true}
