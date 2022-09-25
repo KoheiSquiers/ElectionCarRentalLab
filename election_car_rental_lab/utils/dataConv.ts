@@ -42,7 +42,7 @@ export const CarClassConv = (value: string) => {
   }
 };
 
-// 車クラスを日本語に変換
+// 車両名を日本語に変換
 export const CarTypeConv = (value: string) => {
   switch (value) {
     // Sクラス
@@ -129,7 +129,7 @@ export const SpeakerConv = (value: string) => {
 };
 
 // 金額を税込金額カンマ区切りに変換
-export const PriceConv = (value: string) => {
+export const PriceConv = (value: string | number) => {
   return `¥ ${value.toLocaleString()}（税込）`;
 };
 
@@ -140,15 +140,15 @@ export const OptionConv = (value: boolean) => {
 
 // 値に「w」を追加
 export const WattConv = (value: string) => {
-  return value && `${value} w`;
+  return value && `${value}W`;
 };
 
 // 値に「個」を追加
-export const PiecesConv = (value: string) => {
+export const PiecesConv = (value: string | number) => {
   return value && `${value} 個`;
 };
 
 // 値に「日」を追加
-export const DayConv = (value: string) => {
+export const DayConv = (value: string | number) => {
   return value && `${value} 日`;
 };

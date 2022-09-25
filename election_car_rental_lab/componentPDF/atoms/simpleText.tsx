@@ -11,7 +11,7 @@ interface TextPops {
 
 export const SimpleText = (props: TextPops) => {
   const sizes = {
-    large: 14,
+    large: 15,
     normal: 10,
     small: 6,
   };

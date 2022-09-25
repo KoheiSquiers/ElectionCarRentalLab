@@ -6,12 +6,15 @@ import SendIcon from "@mui/icons-material/Send";
 import { useRouter } from "next/router";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Quote } from "../../public/pdfCreate";
+import { CalcDataType } from "../../utils/calcSimulation";
+import { SendDataType } from "../../pages/simulation";
 
 interface Props {
-  calcValue: any;
+  sendData: SendDataType;
+  calcData: CalcDataType;
 }
 
-const Footer = ({ calcValue }: Props) => {
+const Footer = ({ sendData, calcData }: Props) => {
   const router = useRouter();
 
   // hookを使用して、PDFDownloadLinkがSSRを実行しないようにする
@@ -49,7 +52,7 @@ const Footer = ({ calcValue }: Props) => {
                   noWrap={true}
                   paddingBottom={1}
                 >
-                  {`合計金額 ¥${calcValue?.totalPrice?.toLocaleString()}（税込）`}
+                  {`合計金額 ¥${calcData?.totalPrice?.toLocaleString()}（税込）`}
                 </Typography>
               </Grid>
               <Typography variant={"caption"} textAlign={"left"} color={"red"}>
@@ -67,8 +70,9 @@ const Footer = ({ calcValue }: Props) => {
               <Grid item sm={12}>
                 {isClient && (
                   <PDFDownloadLink
-                    document={<Quote calcValue={calcValue} />}
+                    document={<Quote sendData={sendData} calcData={calcData} />}
                     fileName="[選挙レンタカーラボ]見積書.pdf"
+                    style={{ textDecoration: "none" }}
                   >
                     <Box textAlign={"right"}>
                       <Button

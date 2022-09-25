@@ -27,11 +27,17 @@ export const styles = StyleSheet.create({
   },
 
   // アンダーライン
-  underline: {
+  underline1: {
+    borderBottom: 1,
+
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  underline5: {
     borderBottom: 5,
 
-    pt: 2,
-    pb: 2,
+    marginTop: 2,
+    marginBottom: 2,
   },
 
   //

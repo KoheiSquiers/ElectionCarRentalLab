@@ -485,6 +485,9 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
                 variant={"contained"}
                 centerRipple={true}
                 sx={{ whiteSpace: "nowrap" }}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
               >
                 確認画面へ
               </Button>

@@ -24,15 +24,15 @@ import ElectionDiv from "../features/simulation/electionDiv";
 import CarOption from "../features/simulation/carOption";
 import Footer from "../features/simulation/footer";
 import { useGetWindowSize } from "../hooks/useGetWindowSixe";
-import CalcSimulation from "../utils/calcSimulation";
+import CalcSimulation, { CalcDataType } from "../utils/calcSimulation";
 import Layout from "../component/templates/layout";
 
-export interface simulation {
+export interface SendDataType {
   electoralClass: string; // レンタル区分
   electionArea: { label: string; value: string }; // 選挙エリア
   parliamentClass: string; // 議会区分
 
-  carClass: string; // 車区分
+  carClass: "s" | "m" | "l" | "ll"; // 車区分
   carType: { s: string; m: string; l: string; ll: string }; // 車種
 
   signalLight: string; // ライト区分
@@ -50,7 +50,7 @@ export interface simulation {
   bodyRapping: boolean; // ボディラッピング
 }
 
-const formDefaultValue = {
+const formDefaultValue: SendDataType = {
   electoralClass: "union", // レンタル区分
   electionArea: { label: "鳥取県", value: "tottori" }, // 選挙エリア
   parliamentClass: "chairman", // 議会区分
@@ -76,9 +76,12 @@ const formDefaultValue = {
 const Simulation = () => {
   const windowSize = useGetWindowSize();
 
-  // グローバルステート
-  const [sendData, setSendData] = useQState(["sendData"], formDefaultValue);
-  const [calcData, setCalcData] = useQState(["calcData"]);
+  // グローバルステートを宣言
+  const [sendData, setSendData] = useQState<SendDataType>(
+    ["sendData"],
+    formDefaultValue,
+  );
+  const [calcData, setCalcData] = useQState<CalcDataType>(["calcData"]);
 
   const {
     handleSubmit,
@@ -97,8 +100,8 @@ const Simulation = () => {
   // メモ化などを行い、レンダリングをコントロールするべき
   // 特にAPI fetchは気をつけよう
   useEffect(() => {
-    const subscription = watch((value) => {
-      const calcData = CalcSimulation(value);
+    const subscription = watch((value: SendDataType) => {
+      const calcData: CalcDataType = CalcSimulation(value);
 
       // グローバルステートにセット
       setSendData(value);
@@ -112,7 +115,7 @@ const Simulation = () => {
   //
   useEffect(() => {
     // ToDo any!!
-    const firstCalcData = CalcSimulation(sendData);
+    const firstCalcData: CalcDataType = CalcSimulation(sendData);
     setCalcData(firstCalcData);
 
     setSendData(sendData);
@@ -151,7 +154,7 @@ const Simulation = () => {
           <CarOption control={control} errors={errors} calcValue={calcData} />
 
           {/*  フッター  */}
-          <Footer calcValue={calcData} />
+          <Footer sendData={sendData} calcData={calcData} />
         </form>
       </Grid>
     </Layout>

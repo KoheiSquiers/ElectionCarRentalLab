@@ -35,7 +35,7 @@ interface ConfirmationProps {
 
 interface ConfLabelProps {
   label: string;
-  value: string;
+  value: string | number;
 }
 
 const ConfLabel = ({ label, value }: ConfLabelProps) => {
@@ -133,23 +133,23 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
   return (
     <Container maxWidth="xs">
       <Grid container rowSpacing={2}>
-        <Grid sm={12}>
+        <Grid xs={12}>
           <Typography variant={"caption"}>
             下記の入力内容に相違ないようでしたら「送信する」ボタンを押してください。
             内容の変更を行う場合は「戻る」ボタンを押してください。
           </Typography>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Divider sx={{ mb: 2 }} />
         </Grid>
 
         {/**/}
         {/* 基本内容 */}
         {/**/}
-        <Grid sm={12}>
+        <Grid xs={12}>
           <Typography>基本内容</Typography>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Grid container>
             <ConfLabel label={"お名前"} value={inputData.name} />
             <ConfLabel label={"フリガナ"} value={inputData.furigana} />
@@ -159,16 +159,16 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
             <ConfLabel label={"メールアドレス"} value={inputData.mail} />
           </Grid>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Divider sx={{ mb: 2, mt: 2 }} />
         </Grid>
         {/**/}
         {/* 選挙事務所情報 */}
         {/**/}
-        <Grid sm={12} sx={{ pt: 2 }}>
+        <Grid xs={12} sx={{ pt: 2 }}>
           <Typography>選挙事務所情報</Typography>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Grid container>
             <ConfLabel
               label={"選挙事務所郵便番号"}
@@ -189,17 +189,17 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
             />
           </Grid>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Divider sx={{ mb: 2, mt: 2 }} />
         </Grid>
 
         {/**/}
         {/* 納車・引取り情報 */}
         {/**/}
-        <Grid sm={12} sx={{ pt: 2 }}>
+        <Grid xs={12} sx={{ pt: 2 }}>
           <Typography>納車・引取情報</Typography>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Grid container>
             {/* 納車 */}
             <ConfLabel label={"納車日時"} value={inputData.startDateTime} />
@@ -229,17 +229,17 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
           </Grid>
         </Grid>
 
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Divider sx={{ mb: 2, mt: 2 }} />
         </Grid>
 
         {/**/}
         {/* レンタル車両情報 */}
         {/**/}
-        <Grid sm={12} sx={{ pt: 2 }}>
+        <Grid xs={12} sx={{ pt: 2 }}>
           <Typography>レンタル車両情報</Typography>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Grid container>
             <ConfLabel
               label={"レンタル区分"}
@@ -278,7 +278,7 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
               label={"レンタル車両金額"}
               value={PriceConv(calcData?.subTotalPrice)}
             />
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <Divider sx={{ mb: 2, mt: 2 }} />
             </Grid>
           </Grid>
@@ -287,10 +287,10 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
         {/**/}
         {/* オプション追加 */}
         {/**/}
-        <Grid sm={12} sx={{ pt: 2 }}>
+        <Grid xs={12} sx={{ pt: 2 }}>
           <Typography>オプション追加</Typography>
         </Grid>
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Grid container>
             {/* オプション */}
             <ConfLabel
@@ -334,7 +334,7 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
           </Grid>
         </Grid>
 
-        <Grid item sm={12}>
+        <Grid item xs={12}>
           <Divider sx={{ mb: 2, mt: 2 }} />
         </Grid>
         <ConfLabel label={"合計金額"} value={PriceConv(calcData?.totalPrice)} />
