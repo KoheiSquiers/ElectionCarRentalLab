@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import SendIcon from "@mui/icons-material/Send";
 
 import { useRouter } from "next/router";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Quote } from "../../public/pdfCreate";
-import { CalcDataType } from "../../utils/calcSimulation";
-import { SendDataType } from "../../pages/simulation";
+import { Quote } from "../../../public/pdfCreate";
+import { CalcDataType } from "../calc/calcSimulation";
+import { SendDataType } from "../utils/sendDataType";
 
 interface Props {
   sendData: SendDataType;
@@ -72,13 +72,12 @@ const Footer = ({ sendData, calcData }: Props) => {
                   <PDFDownloadLink
                     document={<Quote sendData={sendData} calcData={calcData} />}
                     fileName="[選挙レンタカーラボ]見積書.pdf"
-                    style={{ textDecoration: "none" }}
+                    style={{
+                      textDecoration: "none",
+                    }}
                   >
                     <Box textAlign={"right"}>
-                      <Button
-                        variant="outlined"
-                        startIcon={<PictureAsPdfIcon />}
-                      >
+                      <Button variant="outlined" startIcon={<PictureAsPdfIcon />}>
                         見積もり
                       </Button>
                     </Box>

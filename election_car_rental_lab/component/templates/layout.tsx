@@ -3,7 +3,7 @@ import React from "react";
 import { ThemeProvider } from "@mui/system";
 import { createTheme } from "@mui/material/styles";
 import { Box, Container, Paper } from "@mui/material";
-import { useGetWindowSize } from "../../hooks/useGetWindowSixe";
+import { useGetWindowSize } from "../../hooks/useGetWindowSize";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const windowSize = useGetWindowSize();

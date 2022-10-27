@@ -1,13 +1,11 @@
 // 選挙区分を日本語に変換
-export const ElectoralClassConv = (value: string) => {
+export const ElectoralClassConv = (value: string): string => {
   switch (value) {
-    case "union":
+    case "unity":
       return "統一地方選挙";
     case "general":
       return "一般地方選挙";
-    case "lowRep":
-      return "衆・参議委員選挙";
-    case "advertisement":
+    case "ad":
       return "広告宣伝者";
     default:
       return "";
@@ -46,11 +44,11 @@ export const CarClassConv = (value: string) => {
 export const CarTypeConv = (value: string) => {
   switch (value) {
     // Sクラス
-    case "nBox":
+    case "heightWagon":
       return "軽ハイトワゴン";
-    case "every":
+    case "boxVan":
       return "軽ハコバン";
-    case "note":
+    case "compact":
       return "コンパクトカー";
 
     // Mクラス
@@ -129,8 +127,12 @@ export const SpeakerConv = (value: string) => {
 };
 
 // 金額を税込金額カンマ区切りに変換
-export const PriceConv = (value: string | number) => {
-  return `¥ ${value.toLocaleString()}（税込）`;
+export const PriceTaxConv = (value: string | number): string | number => {
+  return value && `¥ ${value.toLocaleString()}（税込）`;
+};
+// 金額を税込金額カンマ区切りに変換
+export const PriceConv = (value: string | number): string | number => {
+  return value && `¥ ${value.toLocaleString()}`;
 };
 
 // オプションを「追加する」か「追加しない」に変換

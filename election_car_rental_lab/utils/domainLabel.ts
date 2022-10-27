@@ -21,7 +21,7 @@ export const domainLabel = {
   endDateTime: "引取日時", // "引取日時"
   endLocation: "引取場所", // "引取場所"
   endOther: "その他の場合の入力フォーム", // "その他の場合の入力フォーム"
-  note: "備考", //"備考"
+  compact: "備考", //"備考"
   electoralClass: "選挙区分", // 選挙区分
   electionArea: "選挙エリア", // 選挙エリア
   parliamentClass: "議会区分", // 議会区分

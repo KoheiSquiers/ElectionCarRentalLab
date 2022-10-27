@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Controller } from "react-hook-form";
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-} from "@mui/material";
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel } from "@mui/material";
 import { RhfProps } from "./type";
 
 export interface CheckBoxProps {
   label: string;
-  options: { name: string; label: string; defaultChecked?: boolean }[];
+  options: { name: string; label: string | number; defaultChecked?: boolean }[];
   sx?: object;
   row?: boolean;
   labelPlacement?: "top" | "bottom" | "start" | "end";
@@ -19,15 +13,14 @@ export interface CheckBoxProps {
 
 type RhfCheckBoxProps = RhfProps & CheckBoxProps;
 
-const RhfCheckbox = (
-  {
-    control,
-    label,
-    options,
-    sx,
-    row = false,
-    labelPlacement = "end",
-  }: RhfCheckBoxProps) => {
+const RhfCheckbox = ({
+  control,
+  label,
+  options,
+  sx,
+  row = false,
+  labelPlacement = "end",
+}: RhfCheckBoxProps) => {
   return (
     <FormControl>
       <FormLabel>{label}</FormLabel>
@@ -45,9 +38,7 @@ const RhfCheckbox = (
                   label={option.label}
                   value={option.name}
                   labelPlacement={labelPlacement}
-                  control={
-                    <Checkbox defaultChecked={option.defaultChecked || false} />
-                  }
+                  control={<Checkbox defaultChecked={option.defaultChecked || false} />}
                 />
               )}
             />

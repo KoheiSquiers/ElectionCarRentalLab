@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Quote } from "../../public/pdfCreate";
-import { useQState } from "../../hooks/library/useQstate";
-import { CalcDataType } from "../../utils/calcSimulation";
-import { SendDataType } from "../../pages/simulation";
+import { Quote } from "../../../public/pdfCreate";
+import { useQState } from "../../../hooks/library/useQstate";
+import { CalcDataType } from "../../simulation/calc/calcSimulation";
+import { SendDataType } from "../../../pages/simulation";
 
 interface SendingProps {
   setStepper: any;
@@ -22,16 +22,13 @@ const Finish = ({ setStepper }: SendingProps) => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
   return (
     <>
       <Container maxWidth="xs">
         <Grid container>
           <Grid item xs={12}>
-            <Typography
-              textAlign={"center"}
-              variant={"h6"}
-              sx={{ textDecoration: "underline" }}
-            >
+            <Typography textAlign={"center"} variant={"h6"} sx={{ textDecoration: "underline" }}>
               送信完了
             </Typography>
           </Grid>
@@ -41,9 +38,7 @@ const Finish = ({ setStepper }: SendingProps) => {
           </Grid>
 
           <Grid item xs={12} sx={{ pt: 2 }}>
-            <Typography textAlign={"center"}>
-              お問合せいただきありがとうございました。
-            </Typography>
+            <Typography textAlign={"center"}>お問合せいただきありがとうございました。</Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography textAlign={"center"}>
@@ -72,7 +67,9 @@ const Finish = ({ setStepper }: SendingProps) => {
                 <PDFDownloadLink
                   document={<Quote sendData={sendData} calcData={calcData} />}
                   fileName="[選挙レンタカーラボ]見積書.pdf"
-                  style={{ textDecoration: "none" }}
+                  style={{
+                    textDecoration: "none",
+                  }}
                 >
                   <Box textAlign={"right"}>
                     <Button variant="outlined" startIcon={<PictureAsPdfIcon />}>

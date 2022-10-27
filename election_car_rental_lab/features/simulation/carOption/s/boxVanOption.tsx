@@ -9,7 +9,7 @@ interface option {
   calcValue: any;
 }
 
-const EveryOption = ({ control, errors, calcValue }: option) => {
+const BoxVanOption = ({ control, errors, calcValue }: option) => {
   console.dir(calcValue.subTotalPrice);
   return (
     <Grid item xs={12}>
@@ -80,4 +80,4 @@ const EveryOption = ({ control, errors, calcValue }: option) => {
   );
 };
 
-export default EveryOption;
+export default BoxVanOption;

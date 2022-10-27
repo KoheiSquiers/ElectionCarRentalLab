@@ -3,9 +3,8 @@
 // 原因は不明。
 //
 import React from "react";
-import { Page, Text, View, Font, Document, Image } from "@react-pdf/renderer";
+import { Document, Font, Image, Page, Text, View } from "@react-pdf/renderer";
 import { styles } from "../styles/pdfStyles";
-import { ListItem } from "../componentPDF/molecules/listItem";
 import { Grid } from "../componentPDF/atoms/grid";
 import { GridItem } from "../componentPDF/atoms/gridItem";
 import { SimpleText } from "../componentPDF/atoms/simpleText";
@@ -16,14 +15,14 @@ import { Table } from "../componentPDF/atoms/table/table";
 import { TableCell } from "../componentPDF/atoms/table/tableCell";
 import { TableBody } from "../componentPDF/atoms/table/TableBody";
 import { SendDataType } from "../pages/simulation";
-import { CalcDataType } from "../utils/calcSimulation";
+import { CalcDataType } from "../features/simulation/calc/calcSimulation";
 
 import { domainLabel } from "../utils/domainLabel";
 import {
   CarTypeConv,
   DayConv,
   PiecesConv,
-  PriceConv,
+  PriceTaxConv,
   SignalLightConv,
   SpeakerConv,
   WattConv,
@@ -51,8 +50,14 @@ interface QuoteProps {
 
 export const Quote = ({ sendData, calcData }: QuoteProps) => {
   // 車両金額詳細
-  const bodyValues: { label: string; value: string | number }[] = [
-    { label: domainLabel.carPrice, value: calcData.subs.carPrice },
+  const bodyValues: {
+    label: string;
+    value: string | number;
+  }[] = [
+    {
+      label: domainLabel.carPrice,
+      value: calcData.subs.carPrice,
+    },
     {
       label: SignalLightConv(sendData.signalLight),
       value: calcData.subs.signalLight,
@@ -67,15 +72,22 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
     },
   ];
   // オプション金額詳細
-  const optionValues: { label: string; value: string | number }[] = [
+  const optionValues: {
+    label: string;
+    value: string | number;
+  }[] = [
     {
-      label: `${domainLabel.totalMikePrice}: ${PiecesConv(
-        sendData.wirelessMikeNumber,
-      )}`,
+      label: `${domainLabel.totalMikePrice}: ${PiecesConv(sendData.wirelessMikeNumber)}`,
       value: calcData?.options.totalMikePrice,
     },
-    { label: domainLabel.sdPrice, value: calcData?.options.sdPrice },
-    { label: domainLabel.incomePrice, value: calcData?.options.incomePrice },
+    {
+      label: domainLabel.sdPrice,
+      value: calcData?.options.sdPrice,
+    },
+    {
+      label: domainLabel.incomePrice,
+      value: calcData?.options.incomePrice,
+    },
     {
       label: domainLabel.handSpeakerPrice,
       value: calcData?.options.handSpeakerPrice,
@@ -85,9 +97,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
       value: calcData?.options.bluetoothUnit,
     },
     {
-      label: `${domainLabel.insurancePrice}: ${DayConv(
-        sendData.insuranceDays,
-      )}`,
+      label: `${domainLabel.insurancePrice}: ${DayConv(sendData.insuranceDays)}`,
       value: calcData?.options.insurancePrice,
     },
   ];
@@ -112,15 +122,9 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                 <Table>
                   <TableBody>
                     <TableRow>
-                      <TableCell
-                        textAlign={"left"}
-                        width={"300"}
-                        border={false}
-                      >
+                      <TableCell textAlign={"left"} width={"300"} border={false}>
                         <SimpleText size={"large"}>
-                          {`車両名:　${CarTypeConv(
-                            sendData?.carType[sendData?.carClass],
-                          )}`}
+                          {`車両名:　${CarTypeConv(sendData?.carType[sendData?.carClass])}`}
                         </SimpleText>
                       </TableCell>
                       {/*<TableCell width={"150"} border={false}></TableCell>*/}
@@ -180,7 +184,13 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
             <View style={{ borderTop: 1, margin: 20 }} />
             {/* table*/}
             <SimpleText size={"large"}>【車両金額詳細】</SimpleText>
-            <View style={{ marginRight: 25, marginLeft: 25, marginTop: 5 }}>
+            <View
+              style={{
+                marginRight: 25,
+                marginLeft: 25,
+                marginTop: 5,
+              }}
+            >
               <Table>
                 <TableHead>
                   <TableRow>
@@ -195,7 +205,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                         <TableRow>
                           <TableCell>{body?.label}</TableCell>
                           <TableCell width={"250"} textAlign={"right"}>
-                            {PriceConv(body?.value)}
+                            {PriceTaxConv(body?.value)}
                           </TableCell>
                         </TableRow>
                       </>
@@ -219,7 +229,13 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
             {/* オプションテーブル*/}
             <View style={{ paddingBottom: 5 }}></View>
             <SimpleText size={"large"}>【オプション金額詳細】</SimpleText>
-            <View style={{ marginRight: 25, marginLeft: 25, marginTop: 5 }}>
+            <View
+              style={{
+                marginRight: 25,
+                marginLeft: 25,
+                marginTop: 5,
+              }}
+            >
               <Table>
                 <TableHead>
                   <TableRow>
@@ -233,11 +249,8 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                       <>
                         <TableRow>
                           <TableCell>{body?.label}</TableCell>
-                          <TableCell
-                            width={"250"}
-                            textAlign={body?.value ? "right" : "center"}
-                          >
-                            {body?.value ? PriceConv(body?.value) : "無し"}
+                          <TableCell width={"250"} textAlign={body?.value ? "right" : "center"}>
+                            {body?.value ? PriceTaxConv(body?.value) : "無し"}
                           </TableCell>
                         </TableRow>
                       </>
@@ -260,23 +273,23 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
             </View>
 
             {/*フッター*/}
-            <View style={{ marginRight: 25, marginLeft: 25, marginTop: 5 }}>
+            <View
+              style={{
+                marginRight: 25,
+                marginLeft: 25,
+                marginTop: 5,
+              }}
+            >
               <Grid flexDirection={"column"}>
                 <SimpleText bold>■ 保証内容</SimpleText>
                 <SimpleText>
-                  {
-                    "　対人：無制限　対物：無制限（免責５万円）　搭乗者：1名につき上限3,000万円"
-                  }
+                  {"　対人：無制限　対物：無制限（免責５万円）　搭乗者：1名につき上限3,000万円"}
                 </SimpleText>
-                <SimpleText>
-                  {"　車両：時価額（免責5万円）　看板：時価額"}
-                </SimpleText>
+                <SimpleText>{"　車両：時価額（免責5万円）　看板：時価額"}</SimpleText>
 
                 <SimpleText bold>■ 免責保証・看板保険は任意です</SimpleText>
                 <SimpleText>
-                  {
-                    "　任意で免責保証・看板保証（2,200円/日）にご加入いただけます"
-                  }
+                  {"　任意で免責保証・看板保証（2,200円/日）にご加入いただけます"}
                 </SimpleText>
 
                 <SimpleText bold>■ 休車保証料</SimpleText>
@@ -286,9 +299,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                   }
                 </SimpleText>
                 <SimpleText>
-                  {
-                    "　・自走可能・・・2万円　　　・自走不可能・・・5万円（＋レッカー代）"
-                  }
+                  {"　・自走可能・・・2万円　　　・自走不可能・・・5万円（＋レッカー代）"}
                 </SimpleText>
               </Grid>
             </View>

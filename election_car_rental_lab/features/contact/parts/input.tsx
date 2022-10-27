@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Container,
-  Divider,
   FormControl,
   FormHelperText,
   Grid,
@@ -15,30 +14,24 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { RhfSelectBox, RhfTextArea } from "../../component/molecules/rhfForm";
+import { RhfAutocomplete, RhfSelectBox, RhfTextArea } from "../../../component/molecules/rhfForm";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { SubmitHandler, useForm, useWatch } from "react-hook-form";
+import { Controller, SubmitHandler, useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  furigana,
-  mail,
-  mailCheck,
-  postCode,
-  tel,
-} from "../../utils/validation";
-import { InputValue } from "../../pages/contact";
-
-import { Controller } from "react-hook-form";
+import { furigana, mail, mailCheck, postCode, tel } from "../../../utils/validation";
+import { InputValue } from "../contactControl";
 
 import SearchIcon from "@mui/icons-material/Search";
-import { useGetZipAddress } from "../../hooks/api/useGetZipAddress";
-import RhfDateTimePicker, {
-  DatePickerProps,
-} from "../../component/molecules/rhfForm/rhfDateTimePicker";
+import { useGetZipAddress } from "../../../hooks/api/useGetZipAddress";
+import RhfDateTimePicker from "../../../component/molecules/rhfForm/rhfDateTimePicker";
 import * as yup from "yup";
 import moment from "moment/moment";
+import { prefCd } from "../../../constants/preCd";
+import RhfDatePicker from "../../../component/molecules/rhfForm/rhfDatePicker";
+import RhfToggleButtonGroup from "../../../component/molecules/rhfForm/rhfToggleButtonGroup";
 
+// Todo any!
 interface InputFormProps {
   setStepper: any;
   inputData: any;
@@ -78,12 +71,12 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
 
   const formSubmitHandler: SubmitHandler<InputValue> = (data) => {
     // dateをstringに変換。未入力の場合はそのままの値を返す
-    data.startDateTime =
-      data.startDateTime &&
-      moment(data.startDateTime).format("yyyy/MM/DD H:mm");
-    data.endDateTime =
-      data.endDateTime && moment(data.endDateTime).format("yyyy/MM/DD H:mm");
+    data.startDateTime = data.startDateTime && moment(data.startDateTime).format("yyyy/MM/DD H:mm");
+    data.endDateTime = data.endDateTime && moment(data.endDateTime).format("yyyy/MM/DD H:mm");
+    data.notificationDate = data.notificationDate && moment().format("YYYY/MM/DD");
+    // data.electionArea = data.electionArea.value
 
+    console.dir(data);
     setInputData(data);
     setStepper(1);
   };
@@ -119,10 +112,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
     }
   }, [address, zipSetter]);
 
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string,
-  ) => {
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === "clickaway") {
       return;
     }
@@ -130,7 +120,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
   };
 
   //
-  //otherDisplay control
+  //otherDisplay utils
   //
   const [startOtherDisplay, setStartOtherDisplay] = useState<boolean>(false);
   const [endOtherDisplay, setEndOtherDisplay] = useState<boolean>(false);
@@ -144,6 +134,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
       setStartOtherDisplay(false);
     }
   }, [startLocation]);
+
   useEffect(() => {
     if (endLocation === "other") {
       setEndOtherDisplay(true);
@@ -171,15 +162,51 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "top", horizontal: "center" }}
             >
-              <Alert
-                severity="error"
-                onClose={handleClose}
-                sx={{ width: "100%" }}
-              >
+              <Alert severity="error" onClose={handleClose} sx={{ width: "100%" }}>
                 住所の検索に失敗しました。
               </Alert>
             </Snackbar>
           )}
+
+          <Grid item xs={12}>
+            <Typography>【選挙情報】</Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <RhfToggleButtonGroup
+              control={control}
+              errors={errors}
+              name={"parliamentClass"}
+              size={"medium"}
+              sx={{ pt: "8px" }}
+              options={[
+                { label: "議員", value: "chairman" },
+                { label: "首長", value: "chief" },
+              ]}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <RhfAutocomplete
+              name={"electionArea"}
+              label={"選挙区"}
+              variant={"outlined"}
+              control={control}
+              errors={errors}
+              options={prefCd}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <RhfDatePicker
+              control={control}
+              errors={errors}
+              variant={"outlined"}
+              size={"medium"}
+              name={"notificationDate"}
+              label={"告示日"}
+            />
+          </Grid>
 
           <Grid item xs={12}>
             <Typography>【基本情報】</Typography>
@@ -297,9 +324,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
               name={"officePostCode"}
               render={({ field }): JSX.Element => (
                 <FormControl fullWidth>
-                  <InputLabel error={!!errors.officePostCode}>
-                    選挙事務所郵便番号
-                  </InputLabel>
+                  <InputLabel error={!!errors.officePostCode}>選挙事務所郵便番号</InputLabel>
                   <OutlinedInput
                     {...field}
                     label="選挙事務所郵便番号"
@@ -378,9 +403,7 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
           </Grid>
 
           <Grid item xs={12}>
-            <Typography>
-              【納車・引き取り】（希望があればご記入ください）
-            </Typography>
+            <Typography>【納車・引き取り】（希望があればご記入ください）</Typography>
           </Grid>
 
           <Grid item xs={12} sm={6}>

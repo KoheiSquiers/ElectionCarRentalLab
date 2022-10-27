@@ -1,32 +1,11 @@
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Container,
-  Divider,
-  Grid,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import ImageTest from "../../public/image/lightCar/nBox.png";
+import { Container, Divider, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import RhfToggleButtonGroup from "../../component/molecules/rhfForm/rhfToggleButtonGroup";
-import { Controller } from "react-hook-form";
-import CarTypeSubTotal from "./carTypeSubTotal";
-import CarToggle from "../../component/organisms/rapForm/carToggle";
-
+import RhfToggleButtonGroup from "../../../component/molecules/rhfForm/rhfToggleButtonGroup";
 import { useWatch } from "react-hook-form";
-import {
-  LightCar,
-  CompactCar,
-  VanCar,
-  StandardCar,
-} from "../../component/organisms/carType";
+import CarType from "./carType";
+import { CompactCar, LightCar, StandardCar, VanCar } from "../../../component/organisms/carType";
 
+// todo any!
 interface Props {
   setValue: any;
   control: any;
@@ -87,12 +66,7 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
 
             {carClass}
             {/*サブトータル*/}
-            <CarTypeSubTotal
-              setValue={setValue}
-              control={control}
-              errors={errors}
-              calcValue={calcValue}
-            />
+            <CarType setValue={setValue} control={control} errors={errors} calcValue={calcValue} />
           </Grid>
         </Container>
       </Grid>

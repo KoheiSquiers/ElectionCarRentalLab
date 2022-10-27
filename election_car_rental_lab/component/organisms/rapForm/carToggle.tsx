@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { useGetWindowSize } from "../../../hooks/useGetWindowSixe";
+import { useGetWindowSize } from "../../../hooks/useGetWindowSize";
 
 interface CarToggleProps {
   control: any;

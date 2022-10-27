@@ -1,29 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Grid,
-  Radio,
-  Typography,
-  FormControlLabel,
-  RadioGroup,
-  FormControl,
-  Select,
-  MenuItem,
-  InputLabel,
-} from "@mui/material";
-import { Controller, useWatch } from "react-hook-form";
+import { Container, Grid, Typography } from "@mui/material";
+import { useWatch } from "react-hook-form";
+import { RhfSelectBox } from "../../../component/molecules/rhfForm";
+import RhfCheckbox from "../../../component/molecules/rhfForm/rhfCheckbox";
+import { monthSelect } from "../../../constants/month";
+import { useQState } from "../../../hooks/library/useQstate";
+import { SendDataType } from "../utils/sendDataType";
+import { apiData } from "../../api/apiData";
+import { PriceConv } from "../../../utils/dataConv";
 
-import RhfToggleButtonGroup from "../../component/molecules/rhfForm/rhfToggleButtonGroup";
-import {
-  RhfAutocomplete,
-  RhfRadioButton,
-  RhfSelectBox,
-} from "../../component/molecules/rhfForm";
-import RhfCheckbox from "../../component/molecules/rhfForm/rhfCheckbox";
-import { monthSelect } from "../../constants/month";
-import { useQState } from "../../hooks/library/useQstate";
-import { SendDataType } from "../../pages/simulation";
-
+// todo any!
 interface Props {
   control: any;
   errors: any;
@@ -33,7 +19,7 @@ interface Props {
 const CarOption = ({ control, errors, calcValue }: Props) => {
   // ワイヤレスマイクフォーム制御
   //
-  const [mikeLabel, setMikeLabel] = useState<string>("¥15,000");
+  const [mikeLabel, setMikeLabel] = useState<string | number>(0);
   const [mikeNumberDisabled, setMikeNumberDisabled] = useState<boolean>(false);
   // マイクチェック状態とマイク数量を取得
   const getMike = useWatch({ control, name: "wirelessMike" });
@@ -43,21 +29,15 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
     setMikeNumberDisabled(!getMike);
 
     // ラベルセット
-    switch (getMikeNum) {
-      case 1:
-        setMikeLabel("¥15,000");
-        return;
-      case 2:
-        setMikeLabel("¥30,000");
-        return;
-    }
+    const label = apiData.mikeValue * getMikeNum;
+
+    setMikeLabel(PriceConv(label));
   }, [getMike, getMikeNum]);
 
   // 保険フォーム制御
   //
-  const [insuranceLabel, setInsuranceLabel] = useState<string>("¥1,500");
-  const [insuranceDaysDisabled, setInsuranceDaysDisabled] =
-    useState<boolean>(false);
+  const [insuranceLabel, setInsuranceLabel] = useState<string | number>(0);
+  const [insuranceDaysDisabled, setInsuranceDaysDisabled] = useState<boolean>(false);
   // 保険チェック状態と保険日数を取得
   const getInsurance = useWatch({ control, name: "insurance" });
   const getInsuranceDays = useWatch({ control, name: "insuranceDays" });
@@ -66,9 +46,9 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
     setInsuranceDaysDisabled(!getInsurance);
 
     // ラベルセット
-    const label = 1500 * getInsuranceDays;
+    const label = apiData.insuranceValue * getInsuranceDays;
 
-    setInsuranceLabel(`¥${label.toLocaleString()}`);
+    setInsuranceLabel(PriceConv(label));
   }, [getInsurance, getInsuranceDays]);
 
   const [sendData] = useQState<SendDataType>(["sendData"]);
@@ -133,7 +113,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 sx={{ pl: "20px" }}
                 options={[
                   {
-                    label: "¥20,000",
+                    label: PriceConv(apiData.sdPrice),
                     name: "sd",
                     defaultChecked: sendData.sd,
                   },
@@ -150,7 +130,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 sx={{ pl: "20px" }}
                 options={[
                   {
-                    label: "¥1,000",
+                    label: PriceConv(apiData.incomePrice),
                     name: "wirelessIncome",
                     defaultChecked: sendData.wirelessIncome,
                   },
@@ -167,7 +147,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 sx={{ pl: "20px" }}
                 options={[
                   {
-                    label: "¥1,500",
+                    label: PriceConv(apiData.handSpeaker),
                     name: "handSpeaker",
                     defaultChecked: sendData.handSpeaker,
                   },
@@ -184,7 +164,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 sx={{ pl: "20px" }}
                 options={[
                   {
-                    label: "￥15,000",
+                    label: PriceConv(apiData.bluetoothUnit),
                     name: "bluetoothUnit",
                     defaultChecked: sendData.bluetoothUnit,
                   },
@@ -274,7 +254,7 @@ export default CarOption;
 //
 //       <Grid item xs={12}>
 //         <RhfRadioButton
-//           control={control}
+//           utils={utils}
 //           name={"wirelessMike"}
 //           label={""}
 //           row={true}
@@ -288,7 +268,7 @@ export default CarOption;
 //
 //       <Grid item xs={12}>
 //         <RhfRadioButton
-//           control={control}
+//           utils={utils}
 //           name={"sd"}
 //           label={""}
 //           row={true}
@@ -302,7 +282,7 @@ export default CarOption;
 //
 //       <Grid item xs={12}>
 //         <RhfRadioButton
-//           control={control}
+//           utils={utils}
 //           name={"wirelessIncome"}
 //           label={""}
 //           row={true}
@@ -316,7 +296,7 @@ export default CarOption;
 //
 //       <Grid item xs={12}>
 //         <RhfRadioButton
-//           control={control}
+//           utils={utils}
 //           name={"handSpeaker"}
 //           label={""}
 //           row={true}
@@ -330,7 +310,7 @@ export default CarOption;
 //
 //       <Grid item xs={12}>
 //         <RhfRadioButton
-//           control={control}
+//           utils={utils}
 //           name={"bodyRapping"}
 //           label={""}
 //           row={true}
