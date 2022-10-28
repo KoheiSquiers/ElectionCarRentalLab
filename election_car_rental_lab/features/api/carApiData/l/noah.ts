@@ -19,7 +19,7 @@ export const noah: ClassType = {
       takingPlatform: null,
     },
     takingPlatformChangeDisplay: undefined,
-    takingPlatformSwitch: undefined,
+    takingPlatformFix: undefined,
     changeDisplay: undefined,
   },
 
@@ -39,7 +39,7 @@ export const noah: ClassType = {
       takingPlatform: 50000,
     },
     takingPlatformChangeDisplay: true,
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
     changeDisplay: {
       ampSize: {
         "150": true,
@@ -69,7 +69,7 @@ export const noah: ClassType = {
       takingPlatform: 50000,
     },
     takingPlatformChangeDisplay: true,
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
     changeDisplay: {
       ampSize: {
         "150": true,

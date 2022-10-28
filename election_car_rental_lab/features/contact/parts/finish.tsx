@@ -6,7 +6,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Quote } from "../../../public/pdfCreate";
 import { useQState } from "../../../hooks/library/useQstate";
 import { CalcDataType } from "../../simulation/calc/calcSimulation";
-import { SendDataType } from "../../../pages/simulation";
+import { SendDataType } from "../../simulation/utils/sendDataType";
 
 interface SendingProps {
   setStepper: any;
@@ -50,18 +50,14 @@ const Finish = ({ setStepper }: SendingProps) => {
               ＊3営業日以内に連絡がない場合は、お手数ですが、下記連絡先までお問合せください。
             </Typography>
           </Grid>
-          <Grid item xs={12} sx={{ pt: 2 }}>
-            <Typography textAlign={"center"}>
-              ＊3営業日以内に連絡がない場合は、お手数ですが、下記連絡先までお問合せください。
-            </Typography>
-          </Grid>
+
           <Grid item xs={12} sx={{ pt: 2 }}>
             <Typography variant={"h6"} textAlign={"center"}>
               090-1234-4567
             </Typography>
           </Grid>
 
-          <Grid item xs={8} sx={{ pt: 4, pr: 2 }}>
+          <Grid item xs={6} sx={{ pt: 4, pr: 2 }}>
             <Box textAlign={"center"}>
               {isClient && (
                 <PDFDownloadLink
@@ -81,7 +77,7 @@ const Finish = ({ setStepper }: SendingProps) => {
             </Box>
           </Grid>
 
-          <Grid item xs={4} sx={{ pt: 4 }}>
+          <Grid item xs={6} sx={{ pt: 4 }}>
             <Box textAlign={"center"}>
               <Button
                 variant={"contained"}
@@ -90,7 +86,7 @@ const Finish = ({ setStepper }: SendingProps) => {
                   router.push("simulation");
                 }}
               >
-                {"TOP"}
+                {"シュミレーションに戻る"}
               </Button>
             </Box>
           </Grid>

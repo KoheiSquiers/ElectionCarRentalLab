@@ -18,7 +18,7 @@ export const compact: ClassType = {
       },
       takingPlatform: 50000,
     },
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
     takingPlatformChangeDisplay: true,
     changeDisplay: {
       ampSize: {
@@ -48,7 +48,7 @@ export const compact: ClassType = {
       },
       takingPlatform: 50000,
     },
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
     takingPlatformChangeDisplay: true,
     changeDisplay: {
       ampSize: {
@@ -78,7 +78,7 @@ export const compact: ClassType = {
       },
       takingPlatform: 50000,
     },
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
     takingPlatformChangeDisplay: true,
     changeDisplay: {
       ampSize: {

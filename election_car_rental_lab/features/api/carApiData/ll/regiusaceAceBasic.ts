@@ -18,9 +18,19 @@ export const regiusaceAceBasic: ClassType = {
       },
       takingPlatform: 0,
     },
-    takingPlatformChangeDisplay: undefined,
-    takingPlatformSwitch: true,
-    changeDisplay: undefined,
+    takingPlatformChangeDisplay: false,
+    takingPlatformFix: true,
+    changeDisplay: {
+      ampSize: {
+        "150": false,
+        "300": false,
+        "600": true,
+      },
+      signalLight: {
+        outLight: true,
+        inLight: true,
+      },
+    },
   },
 
   // 一般地方選挙
@@ -38,9 +48,19 @@ export const regiusaceAceBasic: ClassType = {
       },
       takingPlatform: 0,
     },
-    takingPlatformChangeDisplay: undefined,
-    takingPlatformSwitch: true,
-    changeDisplay: undefined,
+    takingPlatformChangeDisplay: true,
+    takingPlatformFix: false,
+    changeDisplay: {
+      ampSize: {
+        "150": false,
+        "300": false,
+        "600": true,
+      },
+      signalLight: {
+        outLight: true,
+        inLight: true,
+      },
+    },
   },
 
   // 広告宣伝社
@@ -58,8 +78,18 @@ export const regiusaceAceBasic: ClassType = {
       },
       takingPlatform: 0,
     },
-    takingPlatformChangeDisplay: undefined,
-    takingPlatformSwitch: true,
-    changeDisplay: undefined,
+    takingPlatformChangeDisplay: true,
+    takingPlatformFix: false,
+    changeDisplay: {
+      ampSize: {
+        "150": false,
+        "300": false,
+        "600": true,
+      },
+      signalLight: {
+        outLight: true,
+        inLight: true,
+      },
+    },
   },
 };

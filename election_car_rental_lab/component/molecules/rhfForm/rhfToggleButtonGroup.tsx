@@ -6,19 +6,28 @@ import { RhfProps } from "./type";
 interface ToggleButtonGroupProps {
   name: string;
   options: Array<{ label: string; value: string | number }>;
+  key?: string;
   sx?: any;
   size?: "small" | "medium" | "large";
 }
 
 type RhfToggleButtonGroupProps = RhfProps & ToggleButtonGroupProps;
 
-const RhfToggleButtonGroup = ({ control, name, options, sx, size = "medium" }: RhfToggleButtonGroupProps) => {
+const RhfToggleButtonGroup = ({
+  control,
+  name,
+  options,
+  key = "abc",
+  sx,
+  size = "medium",
+}: RhfToggleButtonGroupProps) => {
   return (
     <Controller
       control={control}
       name={name}
       render={({ field }): JSX.Element => (
         <ToggleButtonGroup
+          key={key}
           exclusive
           color="primary"
           fullWidth
@@ -32,7 +41,7 @@ const RhfToggleButtonGroup = ({ control, name, options, sx, size = "medium" }: R
           }}
         >
           {options.map((option, index) => (
-            <ToggleButton key={index} value={option.value}>
+            <ToggleButton key={index + key} value={option.value}>
               {option.label}
             </ToggleButton>
           ))}

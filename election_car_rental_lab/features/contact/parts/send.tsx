@@ -1,5 +1,14 @@
-import { Box, Button, Container, Divider, Grid, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import {
+  Backdrop,
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Divider,
+  Grid,
+  Typography,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { useQState } from "../../../hooks/library/useQstate";
 import {
   CarClassConv,
@@ -51,6 +60,8 @@ const ConfLabel = ({ label, value }: ConfLabelProps) => {
 const Send = ({ inputData, setStepper }: ConfirmationProps) => {
   const [sendData] = useQState<SendDataType>(["sendData"]);
   const [calcData] = useQState<CalcDataType>(["calcData"]);
+
+  const [open, setOpen] = useState<boolean>(false);
 
   const sendMail = () => {
     const userID = process.env.NEXT_PUBLIC_USER_ID;
@@ -112,8 +123,8 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
       };
 
       send(serviceID, templateID, template_param, "tvR3Qt2HckYv81QKY").then(() => {
-        console.dir(userID);
         setStepper(2);
+        setOpen(false);
       });
     }
   };
@@ -302,6 +313,7 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
               centerRipple={true}
               onClick={() => {
                 sendMail();
+                setOpen(true);
               }}
             >
               送信
@@ -309,6 +321,13 @@ const Send = ({ inputData, setStepper }: ConfirmationProps) => {
           </Box>
         </Grid>
       </Grid>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+        // onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Container>
   );
 };

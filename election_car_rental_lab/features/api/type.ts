@@ -28,16 +28,16 @@ export interface UnitPriceType {
   // 単価の「takingPlatform」がnullの場合と、
   // 「takingPlatformChangeDisplay」がfalseの場合は、
   // 効力をなさない。
-  // trueの場合は登壇を「付ける」「付けない」を選択可能
-  // falseの場合は登壇が固定される。
-  takingPlatformSwitch?: boolean;
+  // trueの場合は登壇が固定される。
+  // falseの場合は登壇を「付ける」「付けない」を選択可能
+  takingPlatformFix?: boolean;
 
   // 登壇が選択された時に表示が変わるものを、ここで定義する。
   // 単価の「takingPlatform」がnullの場合と、
   // 「takingPlatformChangeDisplay」がfalseの場合は、
   // 効力をなさない。
   // true場合は表示
-  // false || undefined 場合は非表示
+  // false場合は非表示
   changeDisplay?: {
     ampSize: {
       "150": boolean;

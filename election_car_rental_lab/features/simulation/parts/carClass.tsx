@@ -4,6 +4,7 @@ import RhfToggleButtonGroup from "../../../component/molecules/rhfForm/rhfToggle
 import { useWatch } from "react-hook-form";
 import CarType from "./carType";
 import { CompactCar, LightCar, StandardCar, VanCar } from "../../../component/organisms/carType";
+import { apiData } from "../../api/apiData";
 
 // todo any!
 interface Props {
@@ -21,16 +22,16 @@ const CarClass = ({ setValue, control, errors, calcValue }: Props) => {
     // 車クラスによって表示する車を変更する
     switch (getCarClass) {
       case "s":
-        setCarClass(<LightCar control={control} setValue={setValue} />);
+        setCarClass(<LightCar control={control} setValue={setValue} apiData={apiData} />);
         return;
       case "m":
-        setCarClass(<CompactCar control={control} setValue={setValue} />);
+        setCarClass(<CompactCar control={control} setValue={setValue} apiData={apiData} />);
         return;
       case "l":
-        setCarClass(<StandardCar control={control} setValue={setValue} />);
+        setCarClass(<StandardCar control={control} setValue={setValue} apiData={apiData} />);
         return;
       case "ll":
-        setCarClass(<VanCar control={control} setValue={setValue} />);
+        setCarClass(<VanCar control={control} setValue={setValue} apiData={apiData} />);
         return;
       default:
         break;

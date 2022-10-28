@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 
 import { useForm } from "react-hook-form";
 
@@ -43,6 +43,9 @@ export const SimulationControl = () => {
     const subscription = watch((value: SendDataType) => {
       const calcData: CalcDataType = CalcSimulation(value);
 
+      console.dir("input");
+      console.dir(value);
+
       // グローバルステートにセット
       setSendData(value);
       setCalcData(calcData);
@@ -64,8 +67,15 @@ export const SimulationControl = () => {
     <Layout>
       <Grid container>
         {/*メインタイトル*/}
-        <Grid item xs={12}>
+        <Grid item xs={9}>
           <Typography variant={"h5"}>料金シュミレーション</Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <Box textAlign={"right"}>
+            <Button variant="contained" size={"small"} href="http://senkyocar-labo.com/">
+              TOP
+            </Button>
+          </Box>
         </Grid>
 
         <Grid item xs={12}>

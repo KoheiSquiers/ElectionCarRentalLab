@@ -3,6 +3,7 @@ import { useQState } from "../../hooks/library/useQstate";
 import React, { useState } from "react";
 import {
   Box,
+  Button,
   Container,
   Divider,
   Grid,
@@ -102,8 +103,15 @@ export const ContactControl = () => {
       <Layout>
         <Grid container>
           {/*メインタイトル*/}
-          <Grid item xs={12}>
+          <Grid item xs={9}>
             <Typography variant={"h5"}>お問合せ</Typography>
+          </Grid>
+          <Grid item xs={3}>
+            <Box textAlign={"right"}>
+              <Button variant="contained" size={"small"} href="http://senkyocar-labo.com/">
+                TOP
+              </Button>
+            </Box>
           </Grid>
 
           <Grid item xs={12}>

@@ -36,7 +36,8 @@ const CalcSimulation = (inputValue: SendDataType): CalcDataType => {
   // ライト料金
   const signalLightPrice = signalLight(inputValue.signalLight, subPrices.unitPrice.signalLight);
   // 登壇料金
-  const takingPlatform = subPrices.unitPrice.takingPlatform || 0;
+  const takingPlatform = inputValue?.takingPlatform ? subPrices.unitPrice.takingPlatform || 0 : 0;
+
   // 小計合計金額
   const subTotalPrice = carPrice + ampPrice + signalLightPrice + takingPlatform;
 

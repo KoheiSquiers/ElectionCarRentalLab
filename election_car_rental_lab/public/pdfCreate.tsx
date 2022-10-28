@@ -14,7 +14,7 @@ import { TableRow } from "../componentPDF/atoms/table/tableRow";
 import { Table } from "../componentPDF/atoms/table/table";
 import { TableCell } from "../componentPDF/atoms/table/tableCell";
 import { TableBody } from "../componentPDF/atoms/table/TableBody";
-import { SendDataType } from "../pages/simulation";
+import { SendDataType } from "../features/simulation/utils/sendDataType";
 import { CalcDataType } from "../features/simulation/calc/calcSimulation";
 
 import { domainLabel } from "../utils/domainLabel";
@@ -59,6 +59,10 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
       value: calcData.subs.carPrice,
     },
     {
+      label: domainLabel.takingPlatform,
+      value: calcData.subs.takingPlatform,
+    },
+    {
       label: SignalLightConv(sendData.signalLight),
       value: calcData.subs.signalLight,
     },
@@ -68,7 +72,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
     },
     {
       label: `スピーカー：${SpeakerConv(sendData.speaker)}`,
-      value: calcData.subs.speaker,
+      value: 0,
     },
   ];
   // オプション金額詳細
@@ -181,7 +185,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                 </Grid>
               </GridItem>
             </Grid>
-            <View style={{ borderTop: 1, margin: 20 }} />
+            <View style={{ borderTop: 1, margin: 5 }} />
             {/* table*/}
             <SimpleText size={"large"}>【車両金額詳細】</SimpleText>
             <View
@@ -303,8 +307,10 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                 </SimpleText>
               </Grid>
             </View>
-            <View style={{ paddingTop: 5 }} />
+            {/*<View style={{ paddingTop: 5 }} />*/}
+            {/*<View style={{ height: 50 }}>*/}
             <Image src="./image/pdf_footer.png" />
+            {/*</View>*/}
           </View>
         </Page>
       </Document>

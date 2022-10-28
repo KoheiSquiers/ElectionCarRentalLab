@@ -36,8 +36,8 @@ export const styles = StyleSheet.create({
   underline5: {
     borderBottom: 5,
 
-    marginTop: 2,
-    marginBottom: 2,
+    // marginTop: 2,
+    // marginBottom: 2,
   },
 
   //

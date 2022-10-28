@@ -11,6 +11,7 @@ export interface SendDataType {
     ll: "regiusaceAceBasic" | "regiusaceAceWide";
   };
 
+  takingPlatform: boolean;
   signalLight: "outLight" | "inLight"; // ライト区分
   ampSize: "150" | "300" | "600"; // アンプサイズ
   speaker: string; // スピーカー

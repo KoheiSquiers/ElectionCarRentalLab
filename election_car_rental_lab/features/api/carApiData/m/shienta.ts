@@ -23,7 +23,7 @@ export const shienta: ClassType = {
   // 一般地方選挙
   general: {
     unitPrice: {
-      car: 239000,
+      car: 249000,
       ampSize: {
         "150": 0,
         "300": 50000,
@@ -40,7 +40,7 @@ export const shienta: ClassType = {
   // 広告宣伝社
   ad: {
     unitPrice: {
-      car: 239000,
+      car: 249000,
       ampSize: {
         "150": 0,
         "300": 50000,

@@ -7,7 +7,9 @@ export interface CheckBoxProps {
   label: string;
   options: { name: string; label: string | number; defaultChecked?: boolean }[];
   sx?: object;
+  key?: string;
   row?: boolean;
+  disabled?: boolean;
   labelPlacement?: "top" | "bottom" | "start" | "end";
 }
 
@@ -18,7 +20,9 @@ const RhfCheckbox = ({
   label,
   options,
   sx,
+  key = "aaa",
   row = false,
+  disabled = false,
   labelPlacement = "end",
 }: RhfCheckBoxProps) => {
   return (
@@ -28,15 +32,16 @@ const RhfCheckbox = ({
         <>
           {options.map((option, index) => (
             <Controller
-              key={index}
+              key={index + key}
               control={control}
               name={option.name}
               render={({ field }) => (
                 <FormControlLabel
                   {...field}
-                  key={index}
+                  key={index + key}
                   label={option.label}
                   value={option.name}
+                  disabled={disabled}
                   labelPlacement={labelPlacement}
                   control={<Checkbox defaultChecked={option.defaultChecked || false} />}
                 />

@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useWatch } from "react-hook-form";
-import NBoxOption from "../carOption/s/nBoxOption";
-import BoxVanOption from "../carOption/s/boxVanOption";
-import NoteOption from "../carOption/s/compact";
-import CorollaFielderOption from "../carOption/m/corollaFielder";
-import ShientaOption from "../carOption/m/shienta";
-import ProBocOption from "../carOption/m/proBoc";
-import NoahOption from "../carOption/l/noahOprion";
-import TownAceOption from "../carOption/l/townAce";
-import RegiusaceAceOption from "../carOption/ll/regiusaceAce";
+import { ChangeCarForm } from "./changeCarForm";
+import { apiData } from "../../api/apiData";
 
 interface Props {
   setValue: any;
@@ -19,8 +12,9 @@ interface Props {
 
 const CarType = ({ setValue, control, errors, calcValue }: Props) => {
   const [carType, setCarType] = useState<any>("");
-  const getCarClass = useWatch({ control, name: "carClass" });
+  const getCarClass: "s" | "m" | "l" | "ll" = useWatch({ control, name: "carClass" });
   const getCarType = useWatch({ control, name: "carType" });
+  const electoralClass: "unity" | "general" | "ad" = useWatch({ control, name: "electoralClass" });
 
   // 車のタイプによって、オプション表示を切り替える
   // useWatchでサイレンダンリングされるため、副作用はセットしない
@@ -28,46 +22,127 @@ const CarType = ({ setValue, control, errors, calcValue }: Props) => {
     switch (getCarType[getCarClass]) {
       // sClass
       case "heightWagon":
-        setCarType(<NBoxOption control={control} errors={errors} calcValue={calcValue} />);
+        console.dir(apiData.s.heightWagon[electoralClass]);
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.s.heightWagon[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
         break;
       case "boxVan":
-        setCarType(<BoxVanOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.s.boxVan[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
         break;
       case "compact":
-        setCarType(<NoteOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.s.compact[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
         break;
 
       // mClass
       case "corollaFielder":
         setCarType(
-          <CorollaFielderOption control={control} errors={errors} calcValue={calcValue} />,
+          <ChangeCarForm
+            apiData={apiData.m.corollaFielder[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
         );
         break;
       case "shienta":
-        setCarType(<ShientaOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.m.shienta[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
         break;
-      case "proBoc":
-        // setValue("ampSize", "300");
-        setCarType(<ProBocOption control={control} errors={errors} calcValue={calcValue} />);
+      case "proBox":
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.m.proBox[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
         break;
 
       // lClass
       case "noah":
-        setCarType(<NoahOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.l.noah[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
         break;
       case "townAce":
-        setCarType(<TownAceOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.l.townAce[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
         break;
 
       // llClass
       case "regiusaceAceBasic":
-        setCarType(<RegiusaceAceOption control={control} errors={errors} calcValue={calcValue} />);
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.ll.regiusaceAceBasic[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
+        break;
+      case "regiusaceAceWide":
+        setCarType(
+          <ChangeCarForm
+            apiData={apiData.ll.regiusaceAceWide[electoralClass]}
+            control={control}
+            errors={errors}
+            calcValue={calcValue}
+            setValue={setValue}
+          />,
+        );
         break;
 
       default:
         break;
     }
-  }, [getCarClass, getCarType, calcValue]);
+  }, [getCarClass, getCarType, calcValue, electoralClass]);
 
   return carType;
 };

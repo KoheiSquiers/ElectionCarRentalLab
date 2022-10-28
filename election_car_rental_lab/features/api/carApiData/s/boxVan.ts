@@ -18,8 +18,18 @@ export const boxVan: ClassType = {
       },
       takingPlatform: 100000,
     },
-    takingPlatformChangeDisplay: false,
-    takingPlatformSwitch: false,
+    takingPlatformFix: true,
+    changeDisplay: {
+      ampSize: {
+        "150": true,
+        "300": true,
+        "600": false,
+      },
+      signalLight: {
+        outLight: true,
+        inLight: false,
+      },
+    },
   },
 
   // 一般地方選挙
@@ -35,10 +45,21 @@ export const boxVan: ClassType = {
         outLight: 0,
         inLight: null,
       },
-      takingPlatform: null,
+      takingPlatform: 50000,
     },
-    takingPlatformChangeDisplay: false,
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
+    takingPlatformChangeDisplay: true,
+    changeDisplay: {
+      ampSize: {
+        "150": true,
+        "300": true,
+        "600": false,
+      },
+      signalLight: {
+        outLight: true,
+        inLight: false,
+      },
+    },
   },
 
   // 広告宣伝社
@@ -54,9 +75,20 @@ export const boxVan: ClassType = {
         outLight: 0,
         inLight: null,
       },
-      takingPlatform: null,
+      takingPlatform: 50000,
     },
-    takingPlatformChangeDisplay: false,
-    takingPlatformSwitch: true,
+    takingPlatformChangeDisplay: true,
+    takingPlatformFix: false,
+    changeDisplay: {
+      ampSize: {
+        "150": true,
+        "300": true,
+        "600": false,
+      },
+      signalLight: {
+        outLight: true,
+        inLight: false,
+      },
+    },
   },
 };

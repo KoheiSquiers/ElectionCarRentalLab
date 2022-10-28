@@ -19,7 +19,7 @@ export const townAce: ClassType = {
       takingPlatform: 100000,
     },
     takingPlatformChangeDisplay: true,
-    takingPlatformSwitch: false,
+    takingPlatformFix: true,
     changeDisplay: {
       ampSize: {
         "150": false,
@@ -49,7 +49,7 @@ export const townAce: ClassType = {
       takingPlatform: 100000,
     },
     takingPlatformChangeDisplay: true,
-    takingPlatformSwitch: false,
+    takingPlatformFix: false,
     changeDisplay: {
       ampSize: {
         "150": true,
@@ -79,7 +79,7 @@ export const townAce: ClassType = {
       takingPlatform: 100000,
     },
     takingPlatformChangeDisplay: true,
-    takingPlatformSwitch: false,
+    takingPlatformFix: false,
     changeDisplay: {
       ampSize: {
         "150": true,

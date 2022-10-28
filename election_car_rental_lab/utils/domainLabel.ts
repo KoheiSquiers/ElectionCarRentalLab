@@ -47,4 +47,6 @@ export const domainLabel = {
   incomePrice: "ワイヤレスマイク",
   handSpeakerPrice: "ハンドスピーカー",
   insurancePrice: "保険",
+
+  takingPlatform: "登壇",
 };

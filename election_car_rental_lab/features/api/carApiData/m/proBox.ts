@@ -19,7 +19,7 @@ export const proBox: ClassType = {
       takingPlatform: 50000,
     },
     takingPlatformChangeDisplay: true,
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
     changeDisplay: {
       ampSize: {
         "150": false,
@@ -49,7 +49,7 @@ export const proBox: ClassType = {
       takingPlatform: 50000,
     },
     takingPlatformChangeDisplay: true,
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
     changeDisplay: {
       ampSize: {
         "150": false,
@@ -57,8 +57,8 @@ export const proBox: ClassType = {
         "600": false,
       },
       signalLight: {
-        outLight: true,
-        inLight: false,
+        outLight: false,
+        inLight: true,
       },
     },
   },
@@ -79,7 +79,7 @@ export const proBox: ClassType = {
       takingPlatform: 50000,
     },
     takingPlatformChangeDisplay: true,
-    takingPlatformSwitch: true,
+    takingPlatformFix: false,
     changeDisplay: {
       ampSize: {
         "150": false,
@@ -87,8 +87,8 @@ export const proBox: ClassType = {
         "600": false,
       },
       signalLight: {
-        outLight: true,
-        inLight: false,
+        outLight: false,
+        inLight: true,
       },
     },
   },

@@ -56,7 +56,7 @@ export const CarTypeConv = (value: string) => {
       return "カローラ フィルダー";
     case "shienta":
       return "トヨタ シエンタ";
-    case "proBoc":
+    case "proBox":
       return "プロボックス";
 
     // Lクラス
@@ -128,11 +128,19 @@ export const SpeakerConv = (value: string) => {
 
 // 金額を税込金額カンマ区切りに変換
 export const PriceTaxConv = (value: string | number): string | number => {
-  return value && `¥ ${value.toLocaleString()}（税込）`;
+  if (value || value === 0) {
+    return `¥ ${value.toLocaleString()}（税込）`;
+  } else {
+    return "";
+  }
 };
 // 金額を税込金額カンマ区切りに変換
 export const PriceConv = (value: string | number): string | number => {
-  return value && `¥ ${value.toLocaleString()}`;
+  if (value || value === 0) {
+    return `¥ ${value.toLocaleString()}`;
+  } else {
+    return "";
+  }
 };
 
 // オプションを「追加する」か「追加しない」に変換
