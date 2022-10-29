@@ -112,8 +112,8 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
         <Page size="A4" style={styles.page}>
           {/* ヘッダー */}
           <View style={styles.header}>
-            <Text style={styles.fontSize20}>お見積もり書</Text>
-            <View style={{ width: 200 }}>
+            <Text style={styles.fontSize20}>概算見積もり書</Text>
+            <View style={{ width: 200, height: 30 }}>
               <Image src="./image/logo.png" />
             </View>
           </View>
@@ -122,7 +122,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
           {/* メインコンテンツ */}
           <View style={styles.main}>
             <Grid flexDirection={"row"} style={{ alignItems: "center" }}>
-              <GridItem flexGrow={1}>
+              <GridItem flexGrow={5}>
                 <Table>
                   <TableBody>
                     <TableRow>
@@ -161,27 +161,39 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                   </TableBody>
                 </Table>
               </GridItem>
-              <GridItem flexGrow={2}>
+              <GridItem flexGrow={1}>
                 <Grid flexDirection={"column"}>
                   <SimpleText size={"normal"} bold position={"center"}>
                     {ToDayJP()}
                   </SimpleText>
                   <View style={{ paddingBottom: 2 }} />
-                  <SimpleText size={"normal"} bold position={"center"}>
+                  <SimpleText size={"normal"} bold position={"left"}>
+                    株式会社ACEON
+                  </SimpleText>
+                  <SimpleText size={"normal"} bold position={"left"}>
+                    選挙カーLABo.
+                  </SimpleText>
+                  <SimpleText size={"normal"} bold position={"left"}>
+                    [事務所住所]
+                  </SimpleText>
+                  <SimpleText size={"normal"} bold position={"left"}>
                     〒683-0105
                   </SimpleText>
-                  <SimpleText size={"normal"} bold position={"center"}>
-                    鳥取県米子市葭津33−1
+                  <SimpleText size={"normal"} bold position={"left"}>
+                    鳥取県米子市葭津1576-1
                   </SimpleText>
-                  <SimpleText size={"normal"} bold position={"center"}>
-                    選挙レンタカーLab株式会社
+                  <SimpleText size={"normal"} bold position={"left"}>
+                    TEL:080-5342-9617
                   </SimpleText>
-                  <SimpleText size={"normal"} bold position={"center"}>
-                    FAX:0859-21-4576
-                  </SimpleText>
-                  <SimpleText size={"normal"} bold position={"center"}>
-                    FAX:0859-21-4576
-                  </SimpleText>
+                  {/*<SimpleText size={"normal"} bold position={"left"}>*/}
+                  {/*  [本社住所]*/}
+                  {/*</SimpleText>*/}
+                  {/*<SimpleText size={"normal"} bold position={"left"}>*/}
+                  {/*  〒683-0105*/}
+                  {/*</SimpleText>*/}
+                  {/*<SimpleText size={"normal"} bold position={"left"}>*/}
+                  {/*  鳥取県米子市葭津1508-7*/}
+                  {/*</SimpleText>*/}
                 </Grid>
               </GridItem>
             </Grid>
@@ -285,6 +297,24 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
               }}
             >
               <Grid flexDirection={"column"}>
+                <SimpleText bold>■ 統一地方選挙について</SimpleText>
+                <SimpleText style={{ color: "red" }}>
+                  {"　 ※統一地方選挙につきましては、選挙カーは弊社関東拠点(千葉県木更津市)へ"}
+                </SimpleText>
+                <SimpleText style={{ color: "red" }}>
+                  {
+                    "　　引き取り・返却をお願い致します。ご自宅へのお届け・引き取りは別途料金で承ります。"
+                  }
+                </SimpleText>
+
+                <SimpleText bold>■ 公費は別途請求</SimpleText>
+                <SimpleText bold style={{ color: "red" }}>
+                  {"　レンタカー代（16,100円／日数）は別途当社から選管にご請求させて頂きます。"}
+                </SimpleText>
+                <SimpleText style={{ color: "blue" }}>
+                  {"　＊公費請求額は、供託物の没収に該当する場合は候補者様に請求いたします。"}
+                </SimpleText>
+
                 <SimpleText bold>■ 保証内容</SimpleText>
                 <SimpleText>
                   {"　対人：無制限　対物：無制限（免責５万円）　搭乗者：1名につき上限3,000万円"}
@@ -305,12 +335,34 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                 <SimpleText>
                   {"　・自走可能・・・2万円　　　・自走不可能・・・5万円（＋レッカー代）"}
                 </SimpleText>
+
+                <SimpleText bold>★ キャンセルポリシー</SimpleText>
+                <SimpleText>
+                  {
+                    "　ご予約後、キャンセルとなった場合は以下のキャンセル料を申し受けます。ご了承ください。"
+                  }
+                </SimpleText>
+                <SimpleText>
+                  {"　　・レンタル日６０日前まで　　　　　　　　　　基本料金の５０%"}
+                </SimpleText>
+                <SimpleText>
+                  {"　　・レンタル日５９日前から１６日前まで　　　　基本料金の８０%"}
+                </SimpleText>
+                <SimpleText>
+                  {"　　・レンタル日１６日前から当日　　　　　　　　基本料金の１００%"}
+                </SimpleText>
+                <SimpleText style={{ color: "red" }}>
+                  {
+                    "注意）レンタル日の60日前以前であっても、看板デザイン決定後は基本料金の80%のキャンセル料を"
+                  }
+                </SimpleText>
+                <SimpleText style={{ color: "red" }}>{"　　　申し受けます。"}</SimpleText>
+                <SimpleText style={{ color: "red" }}>
+                  {"　　　＊基本料金とは、見積もり合計金額と公費負担額の合計のことを指します。"}
+                </SimpleText>
               </Grid>
             </View>
-            {/*<View style={{ paddingTop: 5 }} />*/}
-            {/*<View style={{ height: 50 }}>*/}
-            <Image src="./image/pdf_footer.png" />
-            {/*</View>*/}
+            {/*<Image src="./image/pdf_footer.png" />*/}
           </View>
         </Page>
       </Document>

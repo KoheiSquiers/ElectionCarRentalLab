@@ -45,26 +45,37 @@ const CalcSimulation = (inputValue: SendDataType): CalcDataType => {
   // オプション
   //
   // ワイヤレスマイク単価セット（1本分）
-  const mikeValue = inputValue?.wirelessMike ? apiData.mikeValue : 0;
+  const mikeValue = inputValue?.wirelessMike ? apiData.mikeValue[inputValue.electoralClass] : 0;
   // ワイヤレスマイク数セット
   const mikeNumberValue = inputValue?.wirelessMikeNumber;
   // ワイヤレスマイク料金 ・・・ ワイヤレスマイク * 数量
   const totalMikePrice = mikeValue * mikeNumberValue;
 
   // SDカード料金
-  const sdPrice = inputValue?.sd ? apiData.sdPrice : 0;
+  const sdPrice = inputValue?.sd ? apiData.sdPrice[inputValue.electoralClass] : 0;
 
   // ワイヤレスインカム料金
-  const incomePrice = inputValue?.wirelessIncome ? apiData.incomePrice : 0;
+  const incomePrice = inputValue?.wirelessIncome
+    ? apiData.incomePrice[inputValue.electoralClass]
+    : 0;
 
   // ハンドスピーカー料金
-  const handSpeakerPrice = inputValue?.handSpeaker ? apiData.handSpeaker : 0;
+  const handSpeakerPrice = inputValue?.handSpeaker
+    ? apiData.handSpeaker[inputValue.electoralClass]
+    : 0;
 
   // Bluetoothユニット料金
-  const bluetoothUnit = inputValue?.bluetoothUnit ? apiData.bluetoothUnit : 0;
+  const bluetoothUnit = inputValue?.bluetoothUnit
+    ? apiData.bluetoothUnit[inputValue.electoralClass]
+    : 0;
 
+  // todo カオス
   // 保険単価セット（1日分）
-  const insuranceValue = inputValue?.insurance ? apiData.insuranceValue : 0;
+  const insuranceValue = inputValue?.insurance
+    ? inputValue?.takingPlatform
+      ? apiData.insuranceValue.basic[inputValue.electoralClass]
+      : apiData.insuranceValue.takingPlatform[inputValue.electoralClass]
+    : 0;
   // 保険日数セット
   const insuranceDays = inputValue?.insuranceDays;
   // 保険料金 ... 保険単価 * 日数

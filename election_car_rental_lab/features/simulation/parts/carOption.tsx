@@ -16,7 +16,17 @@ interface Props {
   calcValue: any;
 }
 
+// todo カオス
 const CarOption = ({ control, errors, calcValue }: Props) => {
+  const getElectoralClass: "unity" | "general" | "ad" = useWatch({
+    control,
+    name: "electoralClass",
+  });
+  const getTakingPlatform: boolean = useWatch({
+    control,
+    name: "takingPlatform",
+  });
+  //
   // ワイヤレスマイクフォーム制御
   //
   const [mikeLabel, setMikeLabel] = useState<string | number>(0);
@@ -29,11 +39,12 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
     setMikeNumberDisabled(!getMike);
 
     // ラベルセット
-    const label = apiData.mikeValue * getMikeNum;
+    const label = apiData.mikeValue[getElectoralClass] * getMikeNum;
 
     setMikeLabel(PriceConv(label));
-  }, [getMike, getMikeNum]);
+  }, [getMike, getMikeNum, getElectoralClass]);
 
+  //
   // 保険フォーム制御
   //
   const [insuranceLabel, setInsuranceLabel] = useState<string | number>(0);
@@ -46,10 +57,12 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
     setInsuranceDaysDisabled(!getInsurance);
 
     // ラベルセット
-    const label = apiData.insuranceValue * getInsuranceDays;
+    const label = !getTakingPlatform
+      ? apiData.insuranceValue.basic[getElectoralClass] * getInsuranceDays
+      : apiData.insuranceValue.takingPlatform[getElectoralClass] * getInsuranceDays;
 
     setInsuranceLabel(PriceConv(label));
-  }, [getInsurance, getInsuranceDays]);
+  }, [getInsurance, getInsuranceDays, getElectoralClass, getTakingPlatform]);
 
   const [sendData] = useQState<SendDataType>(["sendData"]);
 
@@ -113,7 +126,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 sx={{ pl: "20px" }}
                 options={[
                   {
-                    label: PriceConv(apiData.sdPrice),
+                    label: PriceConv(apiData.sdPrice[getElectoralClass]),
                     name: "sd",
                     defaultChecked: sendData.sd,
                   },
@@ -130,7 +143,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 sx={{ pl: "20px" }}
                 options={[
                   {
-                    label: PriceConv(apiData.incomePrice),
+                    label: PriceConv(apiData.incomePrice[getElectoralClass]),
                     name: "wirelessIncome",
                     defaultChecked: sendData.wirelessIncome,
                   },
@@ -147,7 +160,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 sx={{ pl: "20px" }}
                 options={[
                   {
-                    label: PriceConv(apiData.handSpeaker),
+                    label: PriceConv(apiData.handSpeaker[getElectoralClass]),
                     name: "handSpeaker",
                     defaultChecked: sendData.handSpeaker,
                   },
@@ -164,7 +177,7 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
                 sx={{ pl: "20px" }}
                 options={[
                   {
-                    label: PriceConv(apiData.bluetoothUnit),
+                    label: PriceConv(apiData.bluetoothUnit[getElectoralClass]),
                     name: "bluetoothUnit",
                     defaultChecked: sendData.bluetoothUnit,
                   },
@@ -245,85 +258,3 @@ const CarOption = ({ control, errors, calcValue }: Props) => {
 };
 
 export default CarOption;
-
-// ゴミ箱
-
-// <Grid item xs={12}>
-//   <Container fixed>
-//     <Grid container>
-//
-//       <Grid item xs={12}>
-//         <RhfRadioButton
-//           utils={utils}
-//           name={"wirelessMike"}
-//           label={""}
-//           row={true}
-//           options={
-//             [
-//               { label: "ワイヤレスマイク", value: "true" },
-//             ]
-//           }
-//         />
-//       </Grid>
-//
-//       <Grid item xs={12}>
-//         <RhfRadioButton
-//           utils={utils}
-//           name={"sd"}
-//           label={""}
-//           row={true}
-//           options={
-//             [
-//               { label: "SD", value: "true" },
-//             ]
-//           }
-//         />
-//       </Grid>
-//
-//       <Grid item xs={12}>
-//         <RhfRadioButton
-//           utils={utils}
-//           name={"wirelessIncome"}
-//           label={""}
-//           row={true}
-//           options={
-//             [
-//               { label: "ワイヤレスインカム", value: "true" },
-//             ]
-//           }
-//         />
-//       </Grid>
-//
-//       <Grid item xs={12}>
-//         <RhfRadioButton
-//           utils={utils}
-//           name={"handSpeaker"}
-//           label={""}
-//           row={true}
-//           options={
-//             [
-//               { label: "ハンドスピーカー", value: "true" },
-//             ]
-//           }
-//         />
-//       </Grid>
-//
-//       <Grid item xs={12}>
-//         <RhfRadioButton
-//           utils={utils}
-//           name={"bodyRapping"}
-//           label={""}
-//           row={true}
-//           options={
-//             [
-//               { label: "ボディラッピング", value: "true" },
-//             ]
-//           }
-//         />
-//       </Grid>
-//
-//     </Grid>
-//
-//
-//   </Container>
-// </Grid>

@@ -81,15 +81,46 @@ export interface ApiDataType {
   // オプション
   //
   // ワイヤレスマイク
-  mikeValue: number;
+  mikeValue: {
+    unity: number;
+    general: number;
+    ad: number;
+  };
   // SDカード料金
-  sdPrice: number;
+  sdPrice: {
+    unity: number;
+    general: number;
+    ad: number;
+  };
   // ワイヤレスインカム料金
-  incomePrice: number;
+  incomePrice: {
+    unity: number;
+    general: number;
+    ad: number;
+  };
   // ハンドスピーカー
-  handSpeaker: number;
+  handSpeaker: {
+    unity: number;
+    general: number;
+    ad: number;
+  };
   // Bluetoothユニット料金
-  bluetoothUnit: number;
+  bluetoothUnit: {
+    unity: number;
+    general: number;
+    ad: number;
+  };
   // 保険単価
-  insuranceValue: number;
+  insuranceValue: {
+    basic: {
+      unity: number;
+      general: number;
+      ad: number;
+    };
+    takingPlatform: {
+      unity: number;
+      general: number;
+      ad: number;
+    };
+  };
 }

@@ -45,15 +45,46 @@ export const apiData: ApiDataType = {
   //
 
   // ワイヤレスマイク
-  mikeValue: 500,
+  mikeValue: {
+    unity: 22000,
+    general: 16500,
+    ad: 16500,
+  },
   // SDカード料金
-  sdPrice: 1000,
+  sdPrice: {
+    unity: 27500,
+    general: 22000,
+    ad: 22000,
+  },
   // ワイヤレスインカム料金
-  incomePrice: 1000,
+  incomePrice: {
+    unity: 22000,
+    general: 16500,
+    ad: 16500,
+  },
   // ハンドスピーカー
-  handSpeaker: 1500,
+  handSpeaker: {
+    unity: 55000,
+    general: 27500,
+    ad: 27500,
+  },
   // Bluetoothユニット料金
-  bluetoothUnit: 2500,
+  bluetoothUnit: {
+    unity: 22000,
+    general: 16500,
+    ad: 16500,
+  },
   // 保険単価
-  insuranceValue: 3000,
+  insuranceValue: {
+    basic: {
+      unity: 3300,
+      general: 2200,
+      ad: 2200,
+    },
+    takingPlatform: {
+      unity: 4400,
+      general: 3300,
+      ad: 3300,
+    },
+  },
 };
