@@ -44,7 +44,7 @@ export const domainLabel = {
   carPrice: "車両料金",
   totalMikePrice: "ワイヤレスマイク",
   sdPrice: "SDカード",
-  incomePrice: "ワイヤレスマイク",
+  incomePrice: "ワイヤレスインカム",
   handSpeakerPrice: "ハンドスピーカー",
   insurancePrice: "保険",
 

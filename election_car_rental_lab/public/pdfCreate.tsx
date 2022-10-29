@@ -102,7 +102,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
     },
     {
       label: `${domainLabel.insurancePrice}: ${DayConv(sendData.insuranceDays)}`,
-      value: calcData?.options.insurancePrice,
+      value: calcData?.options.totalInsurancePrice,
     },
   ];
 
@@ -112,7 +112,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
         <Page size="A4" style={styles.page}>
           {/* ヘッダー */}
           <View style={styles.header}>
-            <Text style={styles.fontSize20}>概算見積もり書</Text>
+            <Text style={styles.fontSize20}>概算見積書</Text>
             <View style={{ width: 200, height: 30 }}>
               <Image src="./image/logo.png" />
             </View>
@@ -315,21 +315,21 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                   {"　＊公費請求額は、供託物の没収に該当する場合は候補者様に請求いたします。"}
                 </SimpleText>
 
-                <SimpleText bold>■ 保証内容</SimpleText>
+                <SimpleText bold>■ 補償内容</SimpleText>
                 <SimpleText>
                   {"　対人：無制限　対物：無制限（免責５万円）　搭乗者：1名につき上限3,000万円"}
                 </SimpleText>
                 <SimpleText>{"　車両：時価額（免責5万円）　看板：時価額"}</SimpleText>
 
-                <SimpleText bold>■ 免責保証・看板保険は任意です</SimpleText>
+                <SimpleText bold>■ 免責補償・看板保険は任意です</SimpleText>
                 <SimpleText>
-                  {"　任意で免責保証・看板保証（2,200円/日）にご加入いただけます"}
+                  {`　任意で免責補償・看板保険（${calcData.options.insurancePrice.toLocaleString()}円/日）にご加入いただけます`}
                 </SimpleText>
 
-                <SimpleText bold>■ 休車保証料</SimpleText>
+                <SimpleText bold>■ 休車補償料</SimpleText>
                 <SimpleText>
                   {
-                    "　＊車両・看板にキズ・へこみ等をつけてしまった場合、休車保証料を請求させて頂きます"
+                    "　＊車両・看板にキズ・へこみ等をつけてしまった場合、休車補償料を請求させて頂きます"
                   }
                 </SimpleText>
                 <SimpleText>
@@ -358,7 +358,7 @@ export const Quote = ({ sendData, calcData }: QuoteProps) => {
                 </SimpleText>
                 <SimpleText style={{ color: "red" }}>{"　　　申し受けます。"}</SimpleText>
                 <SimpleText style={{ color: "red" }}>
-                  {"　　　＊基本料金とは、見積もり合計金額と公費負担額の合計のことを指します。"}
+                  {"　　　＊基本料金とは、見積合計金額と公費負担額の合計のことを指します。"}
                 </SimpleText>
               </Grid>
             </View>

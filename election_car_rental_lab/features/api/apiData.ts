@@ -78,13 +78,13 @@ export const apiData: ApiDataType = {
   insuranceValue: {
     basic: {
       unity: 3300,
-      general: 2200,
-      ad: 2200,
+      general: 3300,
+      ad: 3300,
     },
     takingPlatform: {
       unity: 4400,
-      general: 3300,
-      ad: 3300,
+      general: 4400,
+      ad: 4400,
     },
   },
 };

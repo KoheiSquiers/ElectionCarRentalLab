@@ -32,13 +32,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <ThemeProvider theme={theme}>
       <Container disableGutters maxWidth={"md"}>
         <Box sx={{ mt: { md: 1 } }}>
-          <Paper elevation={3} sx={{ p: 3 }}>
+          <Paper
+            elevation={3}
+            sx={{
+              pt: { xs: 2, sm: 3 },
+              pl: { xs: 1, sm: 3 },
+              pr: { xs: 1, sm: 3 },
+              pb: { xs: 2, sm: 3 },
+            }}
+          >
             <Box
               sx={{
-                pt: 0,
-                pl: 3,
-                pr: 3,
-                pb: 0,
+                pt: { xs: 0, sm: 3 },
+                pl: { xs: 0, sm: 3 },
+                pr: { xs: 0, sm: 3 },
+                pb: { xs: 0, sm: 3 },
                 overflow: "scroll",
                 height: {
                   sm: windowSize.height - 50,

@@ -16,6 +16,7 @@ export interface CalcDataType {
     handSpeakerPrice: number;
     bluetoothUnit: number;
     insurancePrice: number;
+    totalInsurancePrice: number;
   };
 
   subTotalPrice: number;
@@ -70,20 +71,25 @@ const CalcSimulation = (inputValue: SendDataType): CalcDataType => {
     : 0;
 
   // todo カオス
+  //pdf用
+  const insurancePrice = !inputValue?.takingPlatform
+    ? apiData.insuranceValue.basic[inputValue.electoralClass]
+    : apiData.insuranceValue.takingPlatform[inputValue.electoralClass];
+  
   // 保険単価セット（1日分）
   const insuranceValue = inputValue?.insurance
-    ? inputValue?.takingPlatform
+    ? !inputValue?.takingPlatform
       ? apiData.insuranceValue.basic[inputValue.electoralClass]
       : apiData.insuranceValue.takingPlatform[inputValue.electoralClass]
     : 0;
   // 保険日数セット
   const insuranceDays = inputValue?.insuranceDays;
   // 保険料金 ... 保険単価 * 日数
-  const insurancePrice = insuranceValue * insuranceDays;
+  const totalInsurancePrice = insuranceValue * insuranceDays;
 
   // オプション合計金額
   const optionTotalPrice =
-    totalMikePrice + sdPrice + incomePrice + handSpeakerPrice + bluetoothUnit + insurancePrice;
+    totalMikePrice + sdPrice + incomePrice + handSpeakerPrice + bluetoothUnit + totalInsurancePrice;
 
   //
   // 合計金額 ... 小計＋オプション
@@ -104,6 +110,7 @@ const CalcSimulation = (inputValue: SendDataType): CalcDataType => {
       handSpeakerPrice: handSpeakerPrice,
       bluetoothUnit: bluetoothUnit,
       insurancePrice: insurancePrice,
+      totalInsurancePrice: totalInsurancePrice,
     },
     subTotalPrice: subTotalPrice,
     optionTotalPrice: optionTotalPrice,
