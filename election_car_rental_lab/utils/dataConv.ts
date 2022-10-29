@@ -66,8 +66,10 @@ export const CarTypeConv = (value: string) => {
       return "タウンエース";
 
     // LLクラス
-    case "regiusaceAce":
-      return "REGISTRYACEACE";
+    case "regiusaceAceBasic":
+      return "REGISTRYACEACE（標準ボディ）";
+    case "regiusaceAceWide":
+      return "REGISTRYACEACE（ワイドボディ）";
 
     default:
       return "";

@@ -76,7 +76,6 @@ const InputForm = ({ setStepper, inputData, setInputData }: InputFormProps) => {
     data.notificationDate = data.notificationDate && moment().format("YYYY/MM/DD");
     // data.electionArea = data.electionArea.value
 
-    console.dir(data);
     setInputData(data);
     setStepper(1);
   };
