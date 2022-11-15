@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import RhfToggleButtonGroup from "../../../component/molecules/rhfForm/rhfToggleButtonGroup";
 import { useWatch } from "react-hook-form";
 import CarType from "./carType";
-import { CompactCar, LightCar, StandardCar, VanCar } from "../../../component/organisms/carType";
+import { CompactCar, LightCar, StandardCar, VanCar } from "../carType";
 import { apiData } from "../../api/apiData";
 
 // todo any!

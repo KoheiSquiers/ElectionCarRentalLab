@@ -43,8 +43,6 @@ export const SimulationControl = () => {
     const subscription = watch((value: SendDataType) => {
       const calcData: CalcDataType = CalcSimulation(value);
 
-      console.dir("input");
-      console.dir(value);
 
       // グローバルステートにセット
       setSendData(value);
@@ -84,9 +82,9 @@ export const SimulationControl = () => {
 
         {/*TODO 最適化*/}
         <form
-        // onClick={handleSubmit(formSubmitHandler)}
-        // onChange={handleSubmit(formSubmitHandler)}
-        // onBlur={handleSubmit(formSubmitHandler)}
+          // onClick={handleSubmit(formSubmitHandler)}
+          // onChange={handleSubmit(formSubmitHandler)}
+          // onBlur={handleSubmit(formSubmitHandler)}
         >
           {/*選挙区分*/}
           <ElectionDiv control={control} errors={errors} setValue={setValue} />

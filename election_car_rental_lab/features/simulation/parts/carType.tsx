@@ -22,7 +22,6 @@ const CarType = ({ setValue, control, errors, calcValue }: Props) => {
     switch (getCarType[getCarClass]) {
       // sClass
       case "heightWagon":
-        console.dir(apiData.s.heightWagon[electoralClass]);
         setCarType(
           <ChangeCarForm
             apiData={apiData.s.heightWagon[electoralClass]}
