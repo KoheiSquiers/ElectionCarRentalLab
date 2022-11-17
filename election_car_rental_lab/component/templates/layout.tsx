@@ -38,7 +38,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               pt: { xs: 2, sm: 3 },
               pl: { xs: 1, sm: 3 },
               pr: { xs: 1, sm: 3 },
-              pb: { xs: 2, sm: 3 },
+              pb: { xs: 2, sm: 2 },
             }}
           >
             <Box
@@ -46,7 +46,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 pt: { xs: 0, sm: 3 },
                 pl: { xs: 0, sm: 3 },
                 pr: { xs: 0, sm: 3 },
-                pb: { xs: 0, sm: 3 },
+                pb: { xs: 0, sm: 0 },
                 overflow: "scroll",
                 height: {
                   sm: windowSize.height - 50,

@@ -26,7 +26,7 @@ const ElectionDiv = ({ control, errors, setValue }: Props) => {
             options={[
               { label: "統一地方選挙", value: "unity" },
               { label: "一般地方選挙", value: "general" },
-              { label: "広告宣伝者", value: "ad" },
+              { label: "広告宣伝車", value: "ad" },
             ]}
           />
         </Grid>
@@ -46,7 +46,7 @@ const ElectionDiv = ({ control, errors, setValue }: Props) => {
                   options={[
                     { label: "統一地方選挙", value: "unity" },
                     { label: "一般地方選挙", value: "general" },
-                    { label: "広告宣伝者", value: "ad" },
+                    { label: "広告宣伝車", value: "ad" },
                   ]}
                 />
               </Grid>

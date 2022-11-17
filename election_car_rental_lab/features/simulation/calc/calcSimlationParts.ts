@@ -12,7 +12,7 @@ import { UnitPriceType } from "../../api/type";
 //       return apiData.electoralClass.general;
 //     case "lowRep": // 衆・参議委員選挙
 //       return apiData.electoralClass.lowRep;
-//     case "advertisement": // 広告宣伝者
+//     case "advertisement": // 広告宣伝車
 //       return apiData.electoralClass.advertisement;
 //     default:
 //       return 0;

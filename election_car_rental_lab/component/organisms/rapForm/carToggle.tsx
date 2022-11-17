@@ -48,14 +48,19 @@ const CarToggle = ({ control, name, options }: CarToggleProps) => {
         >
           {options.map((option, index) => (
             <ToggleButton key={index} value={option.value}>
-              <Card sx={{ backgroundColor: "#fff0", boxShadow: "none" }}>
+              <Card
+                sx={{
+                  backgroundColor: "#fff0",
+                  boxShadow: "none",
+                }}
+              >
                 <CardMedia>
                   <Box
                     sx={{
                       width: "100%",
                     }}
                   >
-                    <Image src={option.image} height={"100"} width={"150"} />
+                    <Image src={option.image} height={260} width={195} objectFit="contain" />
                   </Box>
                 </CardMedia>
                 <CardContent>
